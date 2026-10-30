@@ -54,9 +54,15 @@
         <h1 class="fit" style="--n:11">Vos bureaux déménagent, votre activité continue</h1>
         <p class="lead">Nous déménageons le soir, le week-end ou par étapes, pour que vos équipes retrouvent leur poste prêt le matin suivant.</p>
       </div>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="bureaux" data-iso="m" data-plan='{"pieces":{"piece":"Pièce principale","hall":"Hall","sejour":"Séjour","chambre":"Chambre","cuisine":"Cuisine","bains":"Bains","cave":"Cave","galetas":"Galetas","open":"Open space","reunion":"Salle de réunion","bureau":"Bureau","archives":"Archives","sanitaires":"Sanitaires"},"notes":{"m":"Emballé, démonté, inventorié","c":"Nettoyé, état des lieux signé","s":"Stocké au dépôt, inventaire photo"},"echelle":"Échelle indicative"}'><title id="plan-t">Plan d'exemple d'un logement, en couleur les pièces dont s'occupe ce service</title></svg>
-        <p class="plan-cap">Plan et cotes d'exemple : en couleur, les pièces dont s'occupe ce service.</p>
+      <div class="plan-wrap volume-wrap postes-wrap" data-postes='{&quot;types&quot;: [[&quot;bureaux&quot;, &quot;Bureaux&quot;, 1.5], [&quot;cabinet&quot;, &quot;Cabinet&quot;, 2.2], [&quot;commerce&quot;, &quot;Commerce&quot;, 2.8]], &quot;unite&quot;: &quot;postes&quot;, &quot;volume&quot;: &quot;≈ {v} m³ à déménager&quot;, &quot;caisses&quot;: &quot;≈ {c} caisses de déménagement&quot;, &quot;horaires&quot;: [[10, &quot;Un soir ou un samedi&quot;], [30, &quot;Un week-end&quot;], [9999, &quot;Par étapes, service par service&quot;]]}'>
+        <div class="vol-tete"><p class="t">Votre transfert, poste par poste</p><p class="vol-m3"><b data-n>12</b> <span>postes</span></p></div>
+        <svg class="vol-svg" viewBox="0 0 900 520" role="img" aria-label="Glissez pour indiquer le nombre de postes de travail : l'estimation se met à jour."></svg>
+        <p class="vol-info"><span data-vol></span><span data-caisses></span></p>
+        <p class="postes-horaire"><span>Organisation habituelle</span><b data-horaire></b></p>
+        <label class="vol-range"><span>Postes de travail</span><input type="range" min="1" max="80" step="1" value="12"></label>
+        <div class="vol-presets"><button class="chip" type="button" data-type="bureaux" aria-pressed="true">Bureaux</button><button class="chip" type="button" data-type="cabinet" aria-pressed="false">Cabinet</button><button class="chip" type="button" data-type="commerce" aria-pressed="false">Commerce</button></div>
+        <div class="vol-actions"><span></span><button class="btn" type="button" data-postes-go>Préparer mon devis d'entreprise</button></div>
+        <p class="plan-cap">Glissez pour indiquer le nombre de postes de travail : l'estimation se met à jour. Estimation indicative, établie sur des postes types : le volume réel est mesuré à la visite des deux adresses.</p>
       </div>
       <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -86,6 +92,19 @@
   <section>
     <div class="shell">
       <div class="head">
+        <h2 class="fit" style="--n:6">Pour quel type de locaux ?</h2>
+        <p class="intro">Un cabinet ne déménage pas comme un open space. Le plan de transfert part de votre activité.</p>
+      </div>
+      <div class="situ" data-situations>
+        <div class="situ-tabs" role="tablist" hidden><button type="button" role="tab" data-situ="bureaux">Bureaux et open space</button><button type="button" role="tab" data-situ="cabinet">Cabinet médical ou dentaire</button><button type="button" role="tab" data-situ="commerce">Commerce et boutique</button><button type="button" role="tab" data-situ="archives">Archives et stockage</button></div>
+        <div class="situ-panneaux"><article class="situ-p" data-situ="bureaux"><h3>Bureaux et open space</h3><p>Postes, armoires, salles de réunion : chaque poste est étiqueté et retrouve sa place à l'arrivée, avec ses caisses.</p><p class="situ-d"><span>Organisation habituelle</span><b>Un soir, un samedi ou par étapes</b></p></article><article class="situ-p" data-situ="cabinet"><h3>Cabinet médical ou dentaire</h3><p>Mobilier, matériel fragile et dossiers dans des caisses fermées : le transfert se cale entre deux jours de consultation.</p><p class="situ-d"><span>Organisation habituelle</span><b>Entre deux jours de consultation</b></p></article><article class="situ-p" data-situ="commerce"><h3>Commerce et boutique</h3><p>Présentoirs, stock et caisse : nous déménageons après la fermeture, pour que la boutique rouvre le plus vite possible.</p><p class="situ-d"><span>Organisation habituelle</span><b>Après la fermeture</b></p></article><article class="situ-p" data-situ="archives"><h3>Archives et stockage</h3><p>Les archives qui ne suivent pas tout de suite partent au garde-meubles, inventoriées, et reviennent quand vous en avez besoin.</p><p class="situ-d"><span>Organisation habituelle</span><b>Au rythme de votre tri</b></p></article></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
         <h2 class="fit" style="--n:7">Ce qui est compris</h2>
         <p class="intro">Un transfert préparé avec vous, poste par poste, avec une seule personne responsable de bout en bout.</p>
       </div>
@@ -98,6 +117,20 @@
         <li><span class="coche" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg></span><h3>Archives et stockage</h3><p>Les archives ou le mobilier en trop peuvent rester au garde-meubles, le temps qu'il faut.</p></li>
       </ul>
       
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
+        <h2 class="fit" style="--n:10">Un plan de transfert, poste par poste</h2>
+        <p class="intro">Avant le jour J, chaque poste reçoit une étiquette : son numéro, son service et sa pièce d'arrivée. Les caisses suivent l'étiquette, et chacun retrouve son poste au bon endroit.</p>
+      </div>
+      <div class="inv" data-inventaire='{&quot;sortir&quot;: &quot;{n} postes prioritaires&quot;, &quot;sortir1&quot;: &quot;1 poste prioritaire&quot;, &quot;sortir0&quot;: &quot;Cochez les postes à installer en premier, par exemple l&#x27;accueil.&quot;}'>
+        <p class="inv-t"><span class="inv-badge">Exemple de plan de transfert</span><span>SwissDem · Déménagement d'entreprise</span></p>
+        <div class="inv-scroll"><table><thead><tr><th>Étiquette</th><th>Poste</th><th>Départ</th><th>Arrivée</th><th>Prioritaire</th></tr></thead><tbody><tr><td class="n">A-01</td><td>Accueil, poste 1</td><td>Rez, accueil</td><td>1er étage, accueil</td><td class="out"><input type="checkbox" aria-label="Prioritaire : Accueil, poste 1"></td></tr><tr><td class="n">A-02</td><td>Accueil, poste 2</td><td>Rez, accueil</td><td>1er étage, accueil</td><td class="out"><input type="checkbox" aria-label="Prioritaire : Accueil, poste 2"></td></tr><tr><td class="n">C-07</td><td>Comptabilité, poste 7</td><td>2e étage, bureau 204</td><td>1er étage, open space</td><td class="out"><input type="checkbox" aria-label="Prioritaire : Comptabilité, poste 7"></td></tr><tr><td class="n">C-08</td><td>Comptabilité, poste 8</td><td>2e étage, bureau 204</td><td>1er étage, open space</td><td class="out"><input type="checkbox" aria-label="Prioritaire : Comptabilité, poste 8"></td></tr><tr><td class="n">D-01</td><td>Direction</td><td>3e étage, bureau 301</td><td>2e étage, bureau 201</td><td class="out"><input type="checkbox" aria-label="Prioritaire : Direction"></td></tr><tr><td class="n">R-01</td><td>Salle de réunion, 8 places</td><td>3e étage, salle 305</td><td>2e étage, salle 210</td><td class="out"><input type="checkbox" aria-label="Prioritaire : Salle de réunion, 8 places"></td></tr></tbody></table></div>
+        <div class="inv-pied"><p aria-live="polite" data-sortir>Cochez les postes à installer en premier, par exemple l'accueil.</p><p class="inv-rdv" hidden>Le plan de transfert les place en tête : ils sont déménagés et installés en premier. Parlons-en : <a href="tel:+41325604925">032 560 49 25</a> · <a href="tel:+41265611025">026 561 10 25</a></p></div>
+      </div>
     </div>
   </section>
 

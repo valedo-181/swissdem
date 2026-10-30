@@ -663,6 +663,80 @@
   dessiner(mien > 0 ? mien : 23);
 })();
 
+// Entreprises (v7) : les postes de travail dessinés en rangées (vue isométrique), une couleur d'étiquette par rangée
+// comme sur le plan de transfert ; nombre de postes et type de locaux donnent un volume et une organisation indicatifs.
+(function(){
+  const zone = document.querySelector('.postes-wrap[data-postes]');
+  if (!zone) return;
+  const T = JSON.parse(zone.dataset.postes);
+  const de = document.documentElement.lang.startsWith('de');
+  const svg = zone.querySelector('.vol-svg'), range = zone.querySelector('input[type=range]');
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, at) => { const n = document.createElementNS(NS, tag); for (const k in at) n.setAttribute(k, at[k]); return n; };
+  const A = Math.cos(Math.PI / 6), B = .5, iso = (x, y, z) => [(x - z) * A, (x + z) * B - y];
+  const poly = pts => pts.map(p => p.map(v => v.toFixed(2)).join(',')).join(' ');
+  const fmt = v => Math.round(v).toLocaleString(de ? 'de-CH' : 'fr-CH');
+  const PAR_RANG = 6, PAS_X = 1.6, PAS_Z = 2.3, ETIQ = ['var(--move)', 'var(--clean)', 'var(--store)'];
+  const monde = el('g', {class:'vol-monde'}), sol = el('g', {}), salle = el('g', {});
+  monde.append(sol, salle); svg.append(monde);
+  // Un bloc (boîte) : dessus et deux faces visibles
+  const bloc = (g, x, y, z, l, h, p, cls) => {
+    const P = (a, b, c) => iso(x + a * l, y + b * h, z + c * p);
+    g.append(el('polygon', {points: poly([P(0,0,1), P(1,0,1), P(1,1,1), P(0,1,1)]), class: cls + ' fg'}),
+             el('polygon', {points: poly([P(1,0,0), P(1,0,1), P(1,1,1), P(1,1,0)]), class: cls + ' fd'}),
+             el('polygon', {points: poly([P(0,1,0), P(1,1,0), P(1,1,1), P(0,1,1)]), class: cls + ' ft'}));
+  };
+  function poste(k){
+    const i = k % PAR_RANG, r = Math.floor(k / PAR_RANG), x = i * PAS_X, z = r * PAS_Z;
+    const g = el('g', {class:'ps'});
+    // Dessiné de l'arrière vers l'avant : pieds, plateau, écran, puis la chaise côté allée
+    bloc(g, x + .04, 0, z + .04, .05, .7, .67, 'pied');
+    bloc(g, x + 1.31, 0, z + .04, .05, .7, .67, 'pied');
+    bloc(g, x, .7, z, 1.4, .05, .75, 'bureau');
+    bloc(g, x + .5, .75, z + .12, .42, .3, .04, 'ecran');
+    bloc(g, x + .48, 0, z + .95, .46, .46, .46, 'chaise');
+    bloc(g, x + .48, .46, z + 1.36, .46, .42, .06, 'chaise');
+    const [a, b] = iso(x + .08, .72, z + .75), [c, d] = iso(x + .42, .72, z + .75);
+    g.append(el('line', {x1:a, y1:b, x2:c, y2:d, class:'etiq', style:`stroke:${ETIQ[r % 3]}`}));   // étiquette du service
+    g.dataset.ordre = (i * PAS_X + r * PAS_Z) * 10;
+    return g;
+  }
+  const postes = [];
+  let n = 0, type = T.types[0];
+  function dessiner(nb){
+    const avant = n;
+    for (let k = postes.length; k < nb; k++) postes.push(poste(k));
+    postes.slice(nb).forEach(g => g.remove());
+    postes.slice(0, nb).forEach((g, k) => { if (!g.isConnected) { g.style.setProperty('--d', Math.min(30, k - avant) * 18 + 'ms'); g.classList.add('entre'); } });
+    postes.slice(0, nb).sort((a, b) => a.dataset.ordre - b.dataset.ordre).forEach(g => salle.append(g));
+    n = nb;
+    const cols = Math.min(nb, PAR_RANG), rangs = Math.ceil(nb / PAR_RANG), L = cols * PAS_X, P = rangs * PAS_Z;
+    sol.replaceChildren(el('polygon', {points: poly([iso(-.4,0,-.4), iso(L + .2,0,-.4), iso(L + .2,0,P), iso(-.4,0,P)]), class:'plancher'}));
+    const xs = [iso(-.6,0,P + .2)[0], iso(L + .4,0,-.6)[0]], ys = [iso(0,1.3,0)[1], iso(L,0,P + .4)[1]];
+    const w = xs[1] - xs[0], h = ys[1] - ys[0], e = Math.min(820 / w, 460 / h, 120);
+    monde.style.transform = `translate(${450 - (xs[0] + w / 2) * e}px, ${260 - (ys[0] + h / 2) * e}px) scale(${e})`;
+    zone.querySelector('[data-n]').textContent = nb;
+    zone.querySelector('[data-vol]').textContent = T.volume.replace('{v}', fmt(nb * type[2]));
+    zone.querySelector('[data-caisses]').textContent = T.caisses.replace('{c}', fmt(nb * 4));
+    zone.querySelector('[data-horaire]').textContent = T.horaires.find(([max]) => nb <= max)[1];
+    range.value = nb;
+  }
+  zone.querySelectorAll('.vol-presets .chip').forEach(b => b.addEventListener('click', () => {
+    type = T.types.find(t => t[0] === b.dataset.type);
+    zone.querySelectorAll('.vol-presets .chip').forEach(c => c.setAttribute('aria-pressed', c === b));
+    dessiner(n);
+  }));
+  range.addEventListener('input', () => dessiner(Number(range.value)));
+  zone.querySelector('[data-postes-go]').addEventListener('click', () => {
+    const f = document.querySelector('.cartouche form');
+    if (!f) return;
+    if (f.elements.volume) f.elements.volume.value = `${n} ${T.unite}, ${fmt(n * type[2])} m³`;
+    document.getElementById('devis').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'});
+    setTimeout(() => f.querySelector('input[name="npa_depart"]').focus({preventScroll:true}), 600);
+  });
+  dessiner(12);
+})();
+
 // Garde-meubles (v7) : situations en onglets (sans JavaScript, toutes restent affichées)
 (function(){
   const zone = document.querySelector('[data-situations]');

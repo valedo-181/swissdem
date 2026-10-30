@@ -832,3 +832,22 @@ section h2::after{content:"";display:block;width:76px;height:5px;margin-top:22px
 .anim .panels li.rv.vu{transform:none}
 .anim .panels li.rv.vu.actif{transform:translateY(-3px)}
 @media (prefers-reduced-motion:reduce){.panels li,.panels li::before{transition:none}}
+
+/* ---------- v7 : page entreprises ---------- */
+.postes-wrap .vol-m3 span{font-size:.45em;letter-spacing:-.01em;font-stretch:100%;color:var(--ink-2)}
+.postes-horaire{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--r-2);background:var(--move-tint);font-size:.9rem}
+.postes-horaire span{color:var(--ink-2)}
+.postes-horaire b{color:var(--ink)}
+.vol-svg .ps{transform-box:fill-box;transform-origin:center bottom}
+.vol-svg .ps.entre{animation:carton-in .45s var(--ease) both;animation-delay:var(--d,0ms)}
+.vol-svg .ps polygon{stroke:rgba(15,19,25,.18);stroke-width:.012;stroke-linejoin:round}
+.vol-svg .bureau.ft{fill:#ffffff}.vol-svg .bureau.fg{fill:#e3e6eb}.vol-svg .bureau.fd{fill:#cfd4db}
+.vol-svg .chaise.ft{fill:#3d4450}.vol-svg .chaise.fg{fill:#2a2f38}.vol-svg .chaise.fd{fill:#1f232a}
+.vol-svg .ecran.ft{fill:#2a2f38}.vol-svg .ecran.fg{fill:#0f1319}.vol-svg .ecran.fd{fill:#1f232a}
+.vol-svg .etiq{stroke-width:.09;stroke-linecap:round}
+/* Plan de transfert : colonnes libres, cartes sur téléphone */
+@media (max-width:560px){.inv td:nth-child(n+3):not(.out):not(.ph){grid-column:2;font-size:.86rem}}
+.vol-svg .pied.ft,.vol-svg .pied.fg,.vol-svg .pied.fd{fill:#b9bfc8}
+/* Les cartes qui entrent par le côté ne doivent pas élargir la page sur téléphone */
+main{overflow-x:clip}
+@media (max-width:560px){.inv:not(:has(.ph)) td:nth-child(4)::before{content:"→ ";color:var(--store);font-weight:600}}

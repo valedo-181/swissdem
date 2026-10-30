@@ -54,9 +54,15 @@
         <h1 class="fit" style="--n:7">Ihr Büro zieht um, Ihr Betrieb läuft weiter</h1>
         <p class="lead">Wir ziehen abends, am Wochenende oder in Etappen um, damit Ihr Team am nächsten Morgen an einem fertigen Arbeitsplatz beginnt.</p>
       </div>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="bureaux" data-iso="m" data-plan='{"pieces":{"piece":"Wohnraum","hall":"Korridor","sejour":"Wohnzimmer","chambre":"Zimmer","cuisine":"Küche","bains":"Bad","cave":"Keller","galetas":"Estrich","open":"Grossraumbüro","reunion":"Sitzungszimmer","bureau":"Büro","archives":"Archiv","sanitaires":"WC"},"notes":{"m":"Verpackt, abgebaut, erfasst","c":"Gereinigt, Abgabe unterschrieben","s":"Eingelagert, Fotoinventar"},"echelle":"Massstab indikativ"}'><title id="plan-t">Beispielplan einer Wohnung, farbig die Räume, um die sich diese Dienstleistung kümmert</title></svg>
-        <p class="plan-cap">Beispielplan und -masse: farbig die Räume, um die sich diese Dienstleistung kümmert.</p>
+      <div class="plan-wrap volume-wrap postes-wrap" data-postes='{&quot;types&quot;: [[&quot;bureaux&quot;, &quot;Büro&quot;, 1.5], [&quot;cabinet&quot;, &quot;Praxis&quot;, 2.2], [&quot;commerce&quot;, &quot;Geschäft&quot;, 2.8]], &quot;unite&quot;: &quot;Arbeitsplätze&quot;, &quot;volume&quot;: &quot;≈ {v} m³ zu zügeln&quot;, &quot;caisses&quot;: &quot;≈ {c} Umzugskisten&quot;, &quot;horaires&quot;: [[10, &quot;Ein Abend oder ein Samstag&quot;], [30, &quot;Ein Wochenende&quot;], [9999, &quot;In Etappen, Abteilung für Abteilung&quot;]]}'>
+        <div class="vol-tete"><p class="t">Ihr Umzug, Arbeitsplatz für Arbeitsplatz</p><p class="vol-m3"><b data-n>12</b> <span>Arbeitsplätze</span></p></div>
+        <svg class="vol-svg" viewBox="0 0 900 520" role="img" aria-label="Ziehen Sie den Regler auf die Zahl Ihrer Arbeitsplätze: Die Schätzung passt sich an."></svg>
+        <p class="vol-info"><span data-vol></span><span data-caisses></span></p>
+        <p class="postes-horaire"><span>Übliche Organisation</span><b data-horaire></b></p>
+        <label class="vol-range"><span>Arbeitsplätze</span><input type="range" min="1" max="80" step="1" value="12"></label>
+        <div class="vol-presets"><button class="chip" type="button" data-type="bureaux" aria-pressed="true">Büro</button><button class="chip" type="button" data-type="cabinet" aria-pressed="false">Praxis</button><button class="chip" type="button" data-type="commerce" aria-pressed="false">Geschäft</button></div>
+        <div class="vol-actions"><span></span><button class="btn" type="button" data-postes-go>Firmen-Offerte vorbereiten</button></div>
+        <p class="plan-cap">Ziehen Sie den Regler auf die Zahl Ihrer Arbeitsplätze: Die Schätzung passt sich an. Unverbindliche Schätzung auf Basis typischer Arbeitsplätze: Das tatsächliche Volumen wird bei der Besichtigung beider Adressen gemessen.</p>
       </div>
       <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -86,6 +92,19 @@
   <section>
     <div class="shell">
       <div class="head">
+        <h2 class="fit" style="--n:7">Für welche Art von Räumen?</h2>
+        <p class="intro">Eine Praxis zügelt anders als ein Grossraumbüro. Der Umzugsplan richtet sich nach Ihrer Tätigkeit.</p>
+      </div>
+      <div class="situ" data-situations>
+        <div class="situ-tabs" role="tablist" hidden><button type="button" role="tab" data-situ="bureaux">Büros und Grossraumbüros</button><button type="button" role="tab" data-situ="cabinet">Arzt- oder Zahnarztpraxis</button><button type="button" role="tab" data-situ="commerce">Geschäft und Laden</button><button type="button" role="tab" data-situ="archives">Archive und Lagerung</button></div>
+        <div class="situ-panneaux"><article class="situ-p" data-situ="bureaux"><h3>Büros und Grossraumbüros</h3><p>Arbeitsplätze, Schränke, Sitzungszimmer: Jeder Platz wird beschriftet und findet am Ziel seinen Ort, mit seinen Kisten.</p><p class="situ-d"><span>Übliche Organisation</span><b>Ein Abend, ein Samstag oder in Etappen</b></p></article><article class="situ-p" data-situ="cabinet"><h3>Arzt- oder Zahnarztpraxis</h3><p>Mobiliar, empfindliches Material und Dossiers in verschlossenen Kisten: Der Umzug wird zwischen zwei Sprechtage gelegt.</p><p class="situ-d"><span>Übliche Organisation</span><b>Zwischen zwei Sprechtagen</b></p></article><article class="situ-p" data-situ="commerce"><h3>Geschäft und Laden</h3><p>Auslagen, Lager und Kasse: Wir zügeln nach Ladenschluss, damit Ihr Geschäft so schnell wie möglich wieder öffnet.</p><p class="situ-d"><span>Übliche Organisation</span><b>Nach Ladenschluss</b></p></article><article class="situ-p" data-situ="archives"><h3>Archive und Lagerung</h3><p>Archive, die nicht sofort mitkommen, gehen inventarisiert ins Möbellager und kommen zurück, wenn Sie sie brauchen.</p><p class="situ-d"><span>Übliche Organisation</span><b>In Ihrem Tempo</b></p></article></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
         <h2 class="fit" style="--n:11">Was inbegriffen ist</h2>
         <p class="intro">Ein Umzug, den wir mit Ihnen Arbeitsplatz für Arbeitsplatz vorbereiten, mit einer einzigen verantwortlichen Person.</p>
       </div>
@@ -98,6 +117,20 @@
         <li><span class="coche" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg></span><h3>Archiv und Lagerung</h3><p>Archive oder überzähliges Mobiliar können so lange wie nötig im Möbellager bleiben.</p></li>
       </ul>
       
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
+        <h2 class="fit" style="--n:12">Ein Umzugsplan, Arbeitsplatz für Arbeitsplatz</h2>
+        <p class="intro">Vor dem Umzugstag erhält jeder Arbeitsplatz eine Etikette: Nummer, Abteilung und Zielraum. Die Kisten folgen der Etikette, und alle finden ihren Platz am richtigen Ort.</p>
+      </div>
+      <div class="inv" data-inventaire='{&quot;sortir&quot;: &quot;{n} Plätze mit Vorrang&quot;, &quot;sortir1&quot;: &quot;1 Platz mit Vorrang&quot;, &quot;sortir0&quot;: &quot;Kreuzen Sie die Plätze an, die zuerst eingerichtet werden sollen, zum Beispiel den Empfang.&quot;}'>
+        <p class="inv-t"><span class="inv-badge">Beispiel-Umzugsplan</span><span>SwissDem · Firmenumzug</span></p>
+        <div class="inv-scroll"><table><thead><tr><th>Etikette</th><th>Arbeitsplatz</th><th>Auszug</th><th>Einzug</th><th>Vorrang</th></tr></thead><tbody><tr><td class="n">A-01</td><td>Empfang, Platz 1</td><td>EG, Empfang</td><td>1. Stock, Empfang</td><td class="out"><input type="checkbox" aria-label="Vorrang : Empfang, Platz 1"></td></tr><tr><td class="n">A-02</td><td>Empfang, Platz 2</td><td>EG, Empfang</td><td>1. Stock, Empfang</td><td class="out"><input type="checkbox" aria-label="Vorrang : Empfang, Platz 2"></td></tr><tr><td class="n">C-07</td><td>Buchhaltung, Platz 7</td><td>2. Stock, Büro 204</td><td>1. Stock, Grossraumbüro</td><td class="out"><input type="checkbox" aria-label="Vorrang : Buchhaltung, Platz 7"></td></tr><tr><td class="n">C-08</td><td>Buchhaltung, Platz 8</td><td>2. Stock, Büro 204</td><td>1. Stock, Grossraumbüro</td><td class="out"><input type="checkbox" aria-label="Vorrang : Buchhaltung, Platz 8"></td></tr><tr><td class="n">D-01</td><td>Geschäftsleitung</td><td>3. Stock, Büro 301</td><td>2. Stock, Büro 201</td><td class="out"><input type="checkbox" aria-label="Vorrang : Geschäftsleitung"></td></tr><tr><td class="n">R-01</td><td>Sitzungszimmer, 8 Plätze</td><td>3. Stock, Raum 305</td><td>2. Stock, Raum 210</td><td class="out"><input type="checkbox" aria-label="Vorrang : Sitzungszimmer, 8 Plätze"></td></tr></tbody></table></div>
+        <div class="inv-pied"><p aria-live="polite" data-sortir>Kreuzen Sie die Plätze an, die zuerst eingerichtet werden sollen, zum Beispiel den Empfang.</p><p class="inv-rdv" hidden>Der Umzugsplan stellt sie an den Anfang: Sie werden zuerst gezügelt und eingerichtet. Sprechen wir darüber: <a href="tel:+41325604925">032 560 49 25</a> · <a href="tel:+41265611025">026 561 10 25</a></p></div>
+      </div>
     </div>
   </section>
 
