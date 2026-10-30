@@ -12,6 +12,10 @@
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-nettoyage.html"/>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-reinigung.html"/>
   </url>
+  <url><loc>https://swissdem.vercel.app/checklist-demenagement.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/checklist-demenagement.html"/>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzugscheckliste.html"/>
+  </url>
   <url><loc>https://swissdem.vercel.app/confidentialite.html</loc>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/confidentialite.html"/>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/datenschutz.html"/>
@@ -125,6 +129,10 @@
   <url><loc>https://swissdem.vercel.app/de/umzug.html</loc>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/demenagement.html"/>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzug.html"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/de/umzugscheckliste.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/checklist-demenagement.html"/>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzugscheckliste.html"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/duedingen.html</loc>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/dudingen.html"/>

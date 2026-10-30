@@ -638,3 +638,65 @@ section h2::after{content:"";display:block;width:76px;height:5px;margin-top:22px
 .legal-txt ul{display:grid;gap:8px;padding-left:1.2em}
 .legal-txt strong{color:var(--ink);font-weight:600}
 .legal-txt a{color:var(--ink);text-underline-offset:3px}
+
+/* ---------- v7 : checklist de déménagement ---------- */
+.check-page{padding-block:clamp(28px,5vw,64px) clamp(48px,8vw,110px)}
+.check-page h1{font-size:clamp(2.2rem,4.4vw,4rem);max-width:16ch;margin-top:18px}
+.check-page .lead{max-width:58ch;margin-top:18px}
+.check-outils{position:sticky;top:88px;z-index:5;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px 28px;margin-top:36px;padding:16px 20px;background:rgba(255,255,255,.9);backdrop-filter:saturate(1.5) blur(18px);-webkit-backdrop-filter:saturate(1.5) blur(18px);border-radius:var(--r-3);box-shadow:var(--sh-3)}
+.check-date{display:grid;gap:2px;font-size:.78rem;font-weight:500;color:var(--mute)}
+.check-date input{min-height:42px;padding:0 12px;border:0;border-radius:var(--r-1);background:var(--soft);font:inherit;font-size:1rem;color:var(--ink)}
+.check-date small{font-size:.74rem}
+.check-avance p{display:flex;justify-content:space-between;gap:12px;font-size:.88rem;color:var(--ink-2)}
+.check-avance b{color:var(--ink);font-variant-numeric:tabular-nums}
+.barre{height:8px;margin-top:8px;border-radius:4px;background:var(--soft);overflow:hidden}
+.barre i{display:block;height:100%;background:linear-gradient(90deg,var(--clean) 0 33.33%,var(--move) 33.33% 66.66%,var(--store) 66.66%);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease)}
+.check-boutons{display:flex;align-items:center;gap:8px}
+.check-boutons .btn{min-height:44px;padding:0 20px;font-size:.92rem}
+.check{list-style:none;display:grid;gap:16px;margin-top:28px;counter-reset:etape}
+.etape{position:relative;padding:clamp(20px,3vw,32px);padding-left:clamp(64px,7vw,92px);background:var(--white);border-radius:var(--r-3);box-shadow:var(--sh-2);transition:box-shadow .3s var(--ease)}
+.etape::before{counter-increment:etape;content:counter(etape);position:absolute;left:clamp(18px,2.4vw,30px);top:clamp(20px,3vw,32px);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--soft);font-weight:600;font-variant-numeric:tabular-nums;transition:background .3s var(--ease),color .3s var(--ease)}
+.etape.complete::before{content:"✓";background:var(--clean);color:var(--white)}
+.etape.maintenant{box-shadow:0 0 0 2px var(--ink),var(--sh-3)}
+.etape.maintenant::before{background:var(--move)}
+.etape.passee:not(.complete){opacity:.75}
+.etape-t{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:14px}
+.etape-t h2{font-size:clamp(1.35rem,2vw,1.7rem);max-width:none}
+.etape-t h2::after{display:none}
+.etape-t .quand{color:var(--ink-2);font-size:.92rem}
+.etape.maintenant .quand{color:var(--ink);font-weight:600}
+.etape-t .compte{margin-left:auto;font-size:.85rem;font-weight:600;color:var(--mute);font-variant-numeric:tabular-nums}
+.etape ul{list-style:none;display:grid;gap:4px}
+.etape li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;padding:8px 10px;border-radius:var(--r-1);transition:background .2s var(--ease)}
+.etape li:hover{background:var(--soft)}
+.etape label{display:flex;gap:14px;align-items:flex-start;flex:1 1 320px;cursor:pointer;line-height:1.5}
+.etape input{flex:none;appearance:none;-webkit-appearance:none;width:24px;height:24px;margin:0;border-radius:7px;box-shadow:inset 0 0 0 1.5px var(--line-2);background:var(--white) center/16px no-repeat;cursor:pointer;transition:background-color .2s var(--ease),box-shadow .2s var(--ease)}
+.etape input:checked{background-color:var(--ink);box-shadow:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")}
+.etape input:focus-visible{outline:2px solid var(--store);outline-offset:2px}
+.etape li.coche span{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--line-2)}
+.etape .more{font-size:.9rem;margin-left:38px}
+.check-note{max-width:70ch;margin-top:24px;font-size:.88rem;color:var(--mute)}
+@media (max-width:900px){
+  .check-outils{grid-template-columns:minmax(0,1fr);top:76px;padding:14px 16px;gap:12px}
+  .check-date small{display:none}
+  .check-boutons .btn{flex:1}
+}
+@media (max-width:560px){.check-outils{position:static}.etape{padding-left:20px;padding-top:64px}.etape::before{top:20px;left:20px}}
+@media print{
+  .top,.foot,.callbar,.avance,.check-boutons,.crumbs,.check-date small{display:none!important}
+  body{background:#fff}
+  .check-outils{position:static;box-shadow:none;border:1px solid #ccc;backdrop-filter:none}
+  .etape{box-shadow:none;border:1px solid #ccc;break-inside:avoid;opacity:1!important}
+  .etape .more{display:none}
+  .anim .rv,.anim .mots .w > span{opacity:1!important;transform:none!important}
+  .etape input{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+/* Accueil : encart vers la checklist, sous les étapes */
+.check-pub{display:flex;align-items:center;gap:18px;margin-top:20px;padding:20px 24px;background:var(--white);border-radius:var(--r-3);box-shadow:var(--sh-1);text-decoration:none;color:var(--ink-2);transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+.check-pub:hover{box-shadow:var(--sh-2);transform:translateY(-2px)}
+.check-pub .ico{display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:16px;background:var(--move-tint);color:var(--ink)}
+.check-pub .ico svg{width:26px;height:26px}
+.check-pub b{display:block;margin-bottom:2px;font-size:1.1rem;color:var(--ink)}
+.check-pub::after{content:"";flex:none;width:1.2em;height:1.2em;margin-left:auto;background:var(--ink);-webkit-mask:var(--fleche) center/contain no-repeat;mask:var(--fleche) center/contain no-repeat;transition:transform .25s var(--ease)}
+.check-pub:hover::after{transform:translateX(4px)}
+.check-avance b{white-space:nowrap}

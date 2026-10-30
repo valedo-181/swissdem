@@ -498,6 +498,60 @@
   zone.hidden = false;
 })();
 
+// Checklist de déménagement (v7) : cases enregistrées sur l'appareil, avancement, dates de chaque étape
+// à partir de la date du déménagement, étape en cours mise en avant, impression ou PDF. Sans JavaScript, la liste reste à cocher et à imprimer.
+(function(){
+  const outils = document.querySelector('.check-outils[data-check]');
+  if (!outils) return;
+  const T = JSON.parse(outils.dataset.check);
+  const de = document.documentElement.lang.startsWith('de');
+  const CLE = 'swissdem-checklist';
+  const cases = [...document.querySelectorAll('.check input[type=checkbox]')];
+  const etapes = [...document.querySelectorAll('.check .etape')];
+  const champDate = outils.querySelector('input[name=date]');
+  let etat = {};
+  try { etat = JSON.parse(localStorage.getItem(CLE)) || {}; } catch (e) {}
+  const garder = () => { try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) {} };
+  cases.forEach(c => { c.checked = !!(etat.cases || []).includes(c.name); });
+  if (etat.date) champDate.value = etat.date;
+  const jour = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const fmt = d => d.toLocaleDateString(de ? 'de-CH' : 'fr-CH', {weekday:'long', day:'numeric', month:'long'});
+
+  function maj(){
+    const faites = cases.filter(c => c.checked).length;
+    outils.querySelector('[data-fait]').textContent = T.fait.replace('{n}', faites).replace('{t}', cases.length);
+    outils.querySelector('.barre i').style.transform = `scaleX(${cases.length ? faites / cases.length : 0})`;
+    etapes.forEach(e => {
+      const cs = [...e.querySelectorAll('input')], n = cs.filter(c => c.checked).length;
+      e.querySelector('.compte').textContent = `${n}/${cs.length}`;
+      e.classList.toggle('complete', n === cs.length);
+      e.querySelectorAll('li').forEach(li => li.classList.toggle('coche', li.querySelector('input').checked));
+    });
+    // Dates : chaque étape commence N jours avant le jour J (après le déménagement : N jours après)
+    const v = champDate.value, aujourd = jour(new Date());
+    let courante = null;
+    etapes.forEach((e, i) => {
+      const q = e.querySelector('.quand');
+      e.classList.remove('maintenant', 'passee');
+      if (!v) { q.hidden = true; return; }
+      const [a, m, j] = v.split('-').map(Number), jj = new Date(a, m - 1, j);
+      const debut = new Date(jj); debut.setDate(jj.getDate() - Number(e.dataset.jours));
+      const suivante = etapes[i + 1] ? (() => { const d = new Date(jj); d.setDate(jj.getDate() - Number(etapes[i + 1].dataset.jours)); return d; })() : null;
+      q.hidden = false;
+      q.textContent = T.des.replace('{d}', fmt(debut));
+      if (debut <= aujourd && (!suivante || aujourd < suivante)) courante = e;
+      else if (suivante && suivante <= aujourd) e.classList.add('passee');
+    });
+    if (courante) { courante.classList.add('maintenant'); courante.querySelector('.quand').textContent += ` · ${T.maintenant}`; }
+  }
+  cases.forEach(c => c.addEventListener('change', () => { etat.cases = cases.filter(x => x.checked).map(x => x.name); garder(); maj(); }));
+  champDate.addEventListener('change', () => { etat.date = champDate.value; garder(); maj(); });
+  outils.querySelector('[data-vider]').addEventListener('click', () => { cases.forEach(c => { c.checked = false; }); etat.cases = []; garder(); maj(); });
+  outils.querySelector('[data-imprimer]').addEventListener('click', () => print());
+  outils.hidden = false;
+  maj();
+})();
+
 // Mouvement (v7) : barre d'avancement, en-tête compact, titres mot par mot, blocs en cascade,
 // chiffres qui défilent, étapes qui s'allument, cartes inclinées à la souris.
 // Avec « réduire les animations », seuls la barre (sans transition) et l'en-tête compact restent.
@@ -546,7 +600,7 @@
 
   // Blocs révélés, avec un décalage dans chaque groupe
   const groupes = ['.head .intro', '.copy .lead', '.proof > span', '.situations > *', '.recap', '.nomenclature > li', '.trade', '.cote > li',
-    '.atouts > li', '.quotes > *', '.carte', '.agency', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
+    '.atouts > li', '.quotes > *', '.carte', '.agency', '.check > li', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
   const vus = new Set();
   groupes.forEach(sel => document.querySelectorAll(sel).forEach(el => {
     if (vus.has(el) || el.closest('.stage')) return;
