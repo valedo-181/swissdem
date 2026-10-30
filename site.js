@@ -532,6 +532,7 @@
 
   // Titres : chaque mot dans un masque (seulement les titres sans balise intérieure)
   document.querySelectorAll('main h1, main section h2').forEach(t => {
+    if (t.closest('.legal-txt')) return;   // textes légaux : titres immobiles, lecture d'abord
     if (t.children.length) { t.classList.add('rv'); return; }
     const mots = t.textContent.trim().split(/\s+/);
     t.textContent = '';
