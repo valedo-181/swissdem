@@ -52,6 +52,7 @@
           <label>Wohnung<select name="pieces"><option>Studio</option><option>2,5 Zimmer</option><option selected>3,5 Zimmer</option><option>4,5 Zimmer</option><option>5,5 Zimmer und mehr</option><option>Haus</option><option>Büro</option></select></label>
           <label>Wunschtermin<input type="date" name="date"></label>
           <input type="hidden" name="lang" value="de">
+          <input type="hidden" name="formule" value="">
           <div class="go"><button class="btn move" type="submit">Anfrage fortsetzen</button></div>
           <p class="note"><span class="err" role="alert">Bitte beide vierstelligen PLZ angeben. </span>Kostenlos und unverbindlich. Oder rufen Sie an: <a href="tel:+41265611025">026 561 10 25</a> oder <a href="tel:+41325604925">032 560 49 25</a>.</p>
         </form>
@@ -68,23 +69,40 @@
     </p>
   </div>
 
-  <!-- Der Plan: jeder Raum in der Farbe des zuständigen Service -->
-  <section id="plan">
+  <!-- Stellen Sie Ihr Paket zusammen: die Situation wählt die Services, der Knopf bereitet die Offerte vor -->
+  <section id="formule">
     <div class="shell">
       <div class="head">
-        <h2>Jeder Raum, der richtige Service</h2>
-        <p class="intro">Tippen Sie auf einen Service, um die Räume zu sehen, um die er sich kümmert. Der Plan folgt der Wohnung, die Sie in der Offerte wählen.</p>
+        <h2>Stellen Sie Ihr Paket zusammen</h2>
+        <p class="intro">Sagen Sie uns, was ansteht. Jeder Service kommt in dieselbe Offerte, mit einer einzigen Ansprechperson vom Anfang bis zum Schluss.</p>
       </div>
-      <div class="plan-card">
-      <ul class="legend" aria-label="Was wir übernehmen, auf dem Plan anzeigen">
-        <li><button type="button" data-svc="m" aria-pressed="false"><span class="num" aria-hidden="true">1</span><span class="sw move" aria-hidden="true"></span><span><b>Umzug</b><small>Einpacken, Abbau, Transport, Aufbau</small></span></button></li>
-        <li><button type="button" data-svc="c" aria-pressed="false"><span class="num" aria-hidden="true">2</span><span class="sw clean" aria-hidden="true"></span><span><b>Endreinigung</b><small>Mit Abnahmegarantie gegenüber der Verwaltung</small></span></button></li>
-        <li><button type="button" data-svc="s" aria-pressed="false"><span class="num" aria-hidden="true">3</span><span class="sw store" aria-hidden="true"></span><span><b>Möbellager</b><small>Geschlossenes Lager, Inventar beim Einlagern</small></span></button></li>
-      </ul>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-plan='{"pieces":{"piece":"Wohnraum","hall":"Korridor","sejour":"Wohnzimmer","chambre":"Zimmer","cuisine":"Küche","bains":"Bad","cave":"Keller","galetas":"Estrich","open":"Grossraumbüro","reunion":"Sitzungszimmer","bureau":"Büro","archives":"Archiv","sanitaires":"WC"},"notes":{"m":"Verpackt, abgebaut, erfasst","c":"Gereinigt, Abgabe unterschrieben","s":"Eingelagert, Fotoinventar"},"echelle":"Massstab indikativ"}'><title id="plan-t">Beispielplan Ihrer Wohnung, jeder Raum in der Farbe der Dienstleistung, die sich darum kümmert</title></svg>
-        <p class="plan-cap">Beispielplan und -masse: Sie folgen der Wohnung, die Sie in der Offerte wählen.</p>
-      </div>
+      <div class="formule">
+        <fieldset class="situations">
+          <legend>Ihre Situation, Mehrfachauswahl möglich</legend>
+          <button type="button" data-svc="m" aria-pressed="true"><span class="sw move" aria-hidden="true"></span><span><b>Ich ziehe um</b><small>Eine Wohnung, ein Haus oder Büros</small></span><span class="tick" aria-hidden="true"></span></button>
+          <button type="button" data-svc="c" aria-pressed="false"><span class="sw clean" aria-hidden="true"></span><span><b>Ich gebe meine Wohnung ab</b><small>Die Reinigung für die Wohnungsabgabe</small></span><span class="tick" aria-hidden="true"></span></button>
+          <button type="button" data-svc="s" aria-pressed="false"><span class="sw store" aria-hidden="true"></span><span><b>Ich muss Möbel einlagern</b><small>Zwischen zwei Mietverträgen oder länger</small></span><span class="tick" aria-hidden="true"></span></button>
+        </fieldset>
+        <div class="recap" aria-live="polite">
+          <p class="recap-t"><span>Ihr Paket</span><span class="compte" data-un="1 Service, eine einzige Offerte" data-plusieurs="{n} Services, eine einzige Offerte">3 Services, eine einzige Offerte</span></p>
+          <article class="bloc" data-svc="m">
+            <h3><span class="sw move" aria-hidden="true"></span>Umzug</h3>
+            <ul><li>Ein- und Auspacken</li><li>Ab- und Aufbau der Möbel</li><li>Unterschriebenes Inventar beim Aus- und Einzug</li></ul>
+            <dl><div><dt>Preis</dt><dd>Nach Volumen in m³, bekannt, bevor Sie unterschreiben</dd></div><div><dt>Wann reservieren</dt><dd>Idealerweise 4 bis 6 Wochen vorher</dd></div></dl>
+          </article>
+          <article class="bloc" data-svc="c">
+            <h3><span class="sw clean" aria-hidden="true"></span>Endreinigung</h3>
+            <ul><li>Küche, Bad und WC, Fenster, Storen, Böden</li><li>Mittel und Material inklusive</li><li>Abnahmegarantie bis zur Unterschrift</li></ul>
+            <dl><div><dt>Preis</dt><dd>Feste Pauschale nach Zimmerzahl</dd></div><div><dt>Wann</dt><dd>Vor der Wohnungsabgabe, auf Wunsch sind wir dabei</dd></div></dl>
+          </article>
+          <article class="bloc" data-svc="s">
+            <h3><span class="sw store" aria-hidden="true"></span>Möbellager</h3>
+            <ul><li>Inventar jedes eingelagerten Gegenstands</li><li>Zugang nach Vereinbarung</li><li>Lieferung an die neue Adresse</li></ul>
+            <dl><div><dt>Preis</dt><dd>Monatspreis pro gelagertem m³</dd></div><div><dt>Dauer</dt><dd>Ein paar Wochen oder mehrere Monate</dd></div></dl>
+          </article>
+          <p class="vide" hidden>Wählen Sie mindestens eine Situation, um Ihr Paket zusammenzustellen.</p>
+          <div class="recap-go"><a class="btn move" href="#devis" data-preparer>Offerte vorbereiten</a><p>Kostenlos und unverbindlich. Antwort innert 24 Stunden an Werktagen.</p></div>
+        </div>
       </div>
     </div>
   </section>

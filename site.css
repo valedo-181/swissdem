@@ -37,6 +37,7 @@
   --wide:112%;            /* largeur des titres */
   --gut:clamp(16px,3.4vw,56px);
   --ease:cubic-bezier(.16,1,.3,1);
+  --coche:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
   --fleche:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -117,18 +118,10 @@ h2{font-size:clamp(2rem,3.8vw,3.6rem);max-width:20ch}
 .stage.sans-3d .hint{display:none}
 .hero .cartouche{width:min(1220px,calc(100% - 2 * clamp(0px,3vw,48px)));justify-self:center;margin-top:clamp(-96px,-7vw,-56px)}
 
-/* Légende des services : elle pilote le plan */
-.legend{list-style:none;display:grid;gap:8px;align-content:start}
-.legend button{display:flex;gap:14px;align-items:center;width:100%;padding:14px 16px;border:0;border-radius:var(--r-2);background:var(--soft);font:inherit;font-size:.97rem;text-align:left;color:var(--ink);cursor:pointer;transition:background .25s var(--ease),box-shadow .25s var(--ease)}
-.legend button:hover{background:var(--soft-2)}
-.legend button[aria-pressed="true"]{background:var(--white);box-shadow:var(--sh-2)}
-.legend b{font-weight:600}
-.legend span.sw{flex:none;width:14px;height:14px;border-radius:50%}
-.legend .num{flex:none;margin:0;width:26px;height:26px;font-size:.78rem}
+/* Pastilles de service : les couleurs du logo */
 .sw.move{background:var(--move)}
 .sw.clean{background:var(--clean)}
 .sw.store{background:var(--store)}
-.legend small{display:block;color:var(--mute);font-size:.85rem}
 
 /* Le plan */
 .plan-wrap{grid-row:1 / span 2;grid-column:2;position:relative;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;min-width:0;padding:clamp(16px,2vw,28px);background:var(--white);border-radius:var(--r-3);box-shadow:var(--sh-2)}
@@ -141,10 +134,38 @@ h2{font-size:clamp(2rem,3.8vw,3.6rem);max-width:20ch}
 .plan .dim{font:500 14px var(--x);fill:var(--ink-2);font-variant-numeric:tabular-nums}
 .plan.draw .room{animation:room-in .45s var(--ease) both;animation-delay:calc(var(--i) * 35ms)}
 @keyframes room-in{from{opacity:.15}}
-/* Accueil : le plan et sa légende dans une seule carte */
-.plan-card{display:grid;grid-template-columns:minmax(260px,4fr) minmax(0,8fr);gap:clamp(20px,3vw,40px);margin-top:48px;padding:clamp(16px,2.4vw,32px);background:var(--white);border-radius:var(--r-3);box-shadow:var(--sh-2)}
-.plan-card .plan-wrap{grid-row:auto;grid-column:auto;padding:0;background:none;box-shadow:none}
-.plan-card .plan{max-height:600px}
+/* Composez votre formule (accueil) : les situations à gauche, le récapitulatif qui se compose à droite */
+.formule{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(16px,2vw,28px);margin-top:48px;align-items:start}
+.situations{border:0;display:grid;gap:10px;min-width:0}
+.situations legend{padding:0;margin-bottom:12px;font-size:.86rem;font-weight:600;color:var(--mute)}
+.situations button{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;width:100%;padding:22px 22px;border:0;border-radius:var(--r-2);background:var(--white);box-shadow:var(--sh-1);font:inherit;text-align:left;color:var(--ink);cursor:pointer;transition:box-shadow .25s var(--ease),transform .2s var(--ease)}
+.situations button:hover{box-shadow:var(--sh-2)}
+.situations button:active{transform:scale(.99)}
+.situations button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ink),var(--sh-2)}
+.situations .sw{width:14px;height:14px;border-radius:50%}
+.situations b{display:block;font-size:clamp(1.05rem,1.4vw,1.2rem);font-weight:600;font-stretch:var(--wide);letter-spacing:-.02em;line-height:1.2}
+.situations small{display:block;margin-top:3px;color:var(--mute);font-size:.9rem}
+.tick{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--line-2);transition:background .2s var(--ease),box-shadow .2s var(--ease)}
+.tick::after{content:"";width:16px;height:16px;background:var(--white);-webkit-mask:var(--coche) center/contain no-repeat;mask:var(--coche) center/contain no-repeat;opacity:0;transform:scale(.6);transition:opacity .2s var(--ease),transform .25s var(--ease)}
+.situations [aria-pressed="true"] .tick{background:var(--ink);box-shadow:none}
+.situations [aria-pressed="true"] .tick::after{opacity:1;transform:none}
+.recap{position:sticky;top:96px;padding:clamp(22px,3vw,36px);background:var(--white);border-radius:var(--r-3);box-shadow:var(--sh-3)}
+.recap-t{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.recap-t span:first-child{font-size:clamp(1.4rem,2vw,1.8rem);font-weight:600;font-stretch:var(--wide);letter-spacing:-.03em}
+.compte{padding:6px 12px;border-radius:999px;background:var(--soft);font-size:.84rem;font-weight:600;color:var(--ink-2)}
+.bloc{padding:22px 0;border-bottom:1px solid var(--line);animation:bloc-in .4s var(--ease) both}
+.bloc h3{display:flex;align-items:center;gap:12px;font-size:1.3rem}
+.bloc h3 .sw{flex:none;width:12px;height:12px;border-radius:50%}
+.bloc ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.bloc li{padding:7px 12px;border-radius:999px;background:var(--soft);font-size:.9rem;font-weight:500}
+.bloc dl{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-top:16px}
+.bloc dt{font-size:.76rem;font-weight:500;color:var(--mute)}
+.bloc dd{font-size:.96rem;font-weight:500}
+.vide{padding:28px 0;color:var(--mute)}
+.recap-go{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding-top:22px}
+.recap-go p{font-size:.88rem;color:var(--mute)}
+@keyframes bloc-in{from{opacity:0;transform:translateY(8px)}}
+@media (prefers-reduced-motion:reduce){.bloc{animation:none}}
 
 /* Demande de devis : un panneau de verre, champs arrondis, le bouton jaune */
 .cartouche{grid-column:1/-1;grid-row:3;margin-top:28px;position:relative;z-index:2;padding:16px;background:rgba(255,255,255,.86);backdrop-filter:saturate(1.5) blur(20px);-webkit-backdrop-filter:saturate(1.5) blur(20px);border-radius:var(--r-3);box-shadow:var(--sh-3)}
@@ -332,17 +353,14 @@ details p{padding:0 0 22px;max-width:64ch;color:var(--ink-2)}
 }
 @media (max-width:900px){
   .board-in{grid-template-columns:minmax(0,1fr);grid-template-rows:none;min-height:0}
-  .board .copy,.legend,.plan-wrap,.cartouche,.fiche,.photo-plate{grid-column:1;grid-row:auto}
+  .board .copy,.plan-wrap,.cartouche,.fiche,.photo-plate{grid-column:1;grid-row:auto}
   .board .plan-wrap{order:2;margin-top:24px}
   .plan{max-height:42svh}
   .board .cartouche{order:4;margin-top:20px}
   .fiche,.photo-plate{order:3;margin-top:28px}
   .hero .cartouche{width:100%;margin-top:-40px}
-  .plan-card{grid-template-columns:minmax(0,1fr)}
-  .plan-card .legend{order:2;grid-template-columns:repeat(3,minmax(0,1fr))}
-  .plan-card .legend button{flex-direction:column;align-items:flex-start;gap:8px;padding:12px}
-  .plan-card .legend small{display:none}
-  .head,.price,.faq,.trade{grid-template-columns:minmax(0,1fr)}
+  .head,.price,.faq,.trade,.formule{grid-template-columns:minmax(0,1fr)}
+  .recap{position:static}
   .trade,.trade:nth-of-type(even){padding:14px 14px 28px}
   .trade > div{padding-inline:12px}
   .trade:nth-of-type(even) figure{order:0}
@@ -368,9 +386,10 @@ details p{padding:0 0 22px;max-width:64ch;color:var(--ink-2)}
   .cartouche .t span:last-child{display:none}
   .nomenclature,.notes,.panels,.zones,.quotes,.cote{grid-template-columns:minmax(0,1fr)}
   .nomenclature .num{margin-bottom:22px}
+  .bloc dl{grid-template-columns:minmax(0,1fr)}
+  .recap-go .btn{width:100%}
+  .situations button{padding:16px 18px}
   .quotes figure{padding:24px}
-  .plan-card .legend{grid-template-columns:minmax(0,1fr)}
-  .plan-card .legend button{flex-direction:row;align-items:center}
   .factors div{grid-template-columns:1fr;gap:4px}
   .foot .grid{grid-template-columns:1fr}
   .agency .tel{font-size:clamp(1.6rem,8.6vw,2.2rem)}

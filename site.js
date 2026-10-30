@@ -22,10 +22,10 @@
   });
 })();
 
-// Barre d'appel mobile : cachée tant que le cartouche ou l'appel final du pied de page est à l'écran
+// Barre d'appel mobile : cachée tant que le cartouche, le bouton de la formule ou l'appel final du pied de page est à l'écran
 // (un seul bouton jaune à la fois, et rien ne couvre « Continuer »)
 (function(){
-  const cibles = [...document.querySelectorAll('.cartouche, .foot .close')];
+  const cibles = [...document.querySelectorAll('.cartouche, .recap-go, .foot .close')];
   if (!cibles.length || !('IntersectionObserver' in window)) return;
   const vues = new Set();
   const io = new IntersectionObserver(es => {
@@ -33,6 +33,36 @@
     document.body.classList.toggle('form-on', vues.size > 0);
   });
   cibles.forEach(c => io.observe(c));
+})();
+
+// Composez votre formule (accueil) : chaque situation ajoute ou retire son service du récapitulatif ;
+// « Préparer mon devis » reporte le choix dans le cartouche (prestation et champ caché « formule »).
+// Sans JavaScript, les trois services restent affichés.
+(function(){
+  const boutons = [...document.querySelectorAll('.situations button')];
+  if (!boutons.length) return;
+  const blocs = [...document.querySelectorAll('.recap .bloc')];
+  const compte = document.querySelector('.recap .compte'), vide = document.querySelector('.recap .vide');
+  const go = document.querySelector('[data-preparer]');
+  const nom = {m:'demenagement', c:'nettoyage', s:'garde-meubles'}, rang = {m:0, c:2, s:3};   // options du choix « Prestation »
+  const choisis = () => boutons.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.dataset.svc);
+  function maj(){
+    const c = choisis();
+    blocs.forEach(b => { b.hidden = !c.includes(b.dataset.svc); });
+    vide.hidden = c.length > 0;
+    go.closest('.recap-go').hidden = !c.length;
+    compte.textContent = c.length > 1 ? compte.dataset.plusieurs.replace('{n}', c.length) : compte.dataset.un;
+    compte.hidden = !c.length;
+  }
+  boutons.forEach(b => b.addEventListener('click', () => { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); maj(); }));
+  go.addEventListener('click', () => {
+    const c = choisis(), f = document.querySelector('.cartouche form');
+    if (!f || !c.length) return;
+    f.elements.prestation.selectedIndex = rang[c[0]];
+    f.elements.formule.value = c.map(k => nom[k]).join(',');
+    setTimeout(() => f.querySelector('input[name="npa_depart"]').focus({preventScroll:true}), 600);
+  });
+  maj();
 })();
 
 // Plan du logement : redessiné selon le logement choisi dans le cartouche, pièces colorées par service.

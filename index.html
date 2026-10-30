@@ -51,6 +51,7 @@
           <label>Logement<select name="pieces"><option>Studio</option><option>2,5 pièces</option><option selected>3,5 pièces</option><option>4,5 pièces</option><option>5,5 pièces et plus</option><option>Maison</option><option>Bureaux</option></select></label>
           <label>Date souhaitée<input type="date" name="date"></label>
           <input type="hidden" name="lang" value="fr">
+          <input type="hidden" name="formule" value="">
           <div class="go"><button class="btn move" type="submit">Continuer ma demande</button></div>
           <p class="note"><span class="err" role="alert">Indiquez les deux NPA à 4 chiffres pour continuer. </span>Gratuit et sans engagement. Ou appelez le <a href="tel:+41325604925">032 560 49 25</a> ou le <a href="tel:+41265611025">026 561 10 25</a>.</p>
         </form>
@@ -67,23 +68,40 @@
     </p>
   </div>
 
-  <!-- Le plan : chaque pièce colorée selon le service qui s'en occupe -->
-  <section id="plan">
+  <!-- Composez votre formule : la situation du visiteur assemble les services ; le bouton prépare le devis avec ce choix -->
+  <section id="formule">
     <div class="shell">
       <div class="head">
-        <h2>Chaque pièce, le bon service</h2>
-        <p class="intro">Touchez un service pour voir les pièces dont il s'occupe. Le plan suit le logement choisi dans le devis.</p>
+        <h2>Composez votre formule</h2>
+        <p class="intro">Dites-nous ce qui vous attend. Chaque service s'ajoute au même devis, avec un seul interlocuteur du début à la fin.</p>
       </div>
-      <div class="plan-card">
-      <ul class="legend" aria-label="Ce que nous prenons en charge, à afficher sur le plan">
-        <li><button type="button" data-svc="m" aria-pressed="false"><span class="num" aria-hidden="true">1</span><span class="sw move" aria-hidden="true"></span><span><b>Déménagement</b><small>Emballage, démontage, transport, remontage</small></span></button></li>
-        <li><button type="button" data-svc="c" aria-pressed="false"><span class="num" aria-hidden="true">2</span><span class="sw clean" aria-hidden="true"></span><span><b>Nettoyage de fin de bail</b><small>Avec garantie de restitution face à la régie</small></span></button></li>
-        <li><button type="button" data-svc="s" aria-pressed="false"><span class="num" aria-hidden="true">3</span><span class="sw store" aria-hidden="true"></span><span><b>Garde-meubles</b><small>Dépôt fermé, inventaire à l'entrée</small></span></button></li>
-      </ul>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-plan='{"pieces":{"piece":"Pièce principale","hall":"Hall","sejour":"Séjour","chambre":"Chambre","cuisine":"Cuisine","bains":"Bains","cave":"Cave","galetas":"Galetas","open":"Open space","reunion":"Salle de réunion","bureau":"Bureau","archives":"Archives","sanitaires":"Sanitaires"},"notes":{"m":"Emballé, démonté, inventorié","c":"Nettoyé, état des lieux signé","s":"Stocké au dépôt, inventaire photo"},"echelle":"Échelle indicative"}'><title id="plan-t">Plan d'exemple de votre logement, chaque pièce colorée selon le service qui s'en occupe</title></svg>
-        <p class="plan-cap">Plan et cotes d'exemple : ils suivent le logement choisi dans le devis.</p>
-      </div>
+      <div class="formule">
+        <fieldset class="situations">
+          <legend>Votre situation, plusieurs choix possibles</legend>
+          <button type="button" data-svc="m" aria-pressed="true"><span class="sw move" aria-hidden="true"></span><span><b>Je déménage</b><small>Un appartement, une maison ou des bureaux</small></span><span class="tick" aria-hidden="true"></span></button>
+          <button type="button" data-svc="c" aria-pressed="false"><span class="sw clean" aria-hidden="true"></span><span><b>Je rends mon logement</b><small>Le nettoyage pour l'état des lieux de sortie</small></span><span class="tick" aria-hidden="true"></span></button>
+          <button type="button" data-svc="s" aria-pressed="false"><span class="sw store" aria-hidden="true"></span><span><b>Je dois stocker des meubles</b><small>Entre deux baux, ou plus longtemps</small></span><span class="tick" aria-hidden="true"></span></button>
+        </fieldset>
+        <div class="recap" aria-live="polite">
+          <p class="recap-t"><span>Votre formule</span><span class="compte" data-un="1 service, un seul devis" data-plusieurs="{n} services, un seul devis">3 services, un seul devis</span></p>
+          <article class="bloc" data-svc="m">
+            <h3><span class="sw move" aria-hidden="true"></span>Déménagement</h3>
+            <ul><li>Emballage et déballage</li><li>Démontage et remontage des meubles</li><li>Inventaire signé au départ et à l'arrivée</li></ul>
+            <dl><div><dt>Prix</dt><dd>Calculé sur le volume en m³, annoncé avant de signer</dd></div><div><dt>Quand réserver</dt><dd>Idéalement 4 à 6 semaines avant</dd></div></dl>
+          </article>
+          <article class="bloc" data-svc="c">
+            <h3><span class="sw clean" aria-hidden="true"></span>Nettoyage de fin de bail</h3>
+            <ul><li>Cuisine, sanitaires, vitres, stores, sols</li><li>Produits et matériel fournis</li><li>Garantie de restitution jusqu'à la signature</li></ul>
+            <dl><div><dt>Prix</dt><dd>Forfait fixe selon le nombre de pièces</dd></div><div><dt>Quand</dt><dd>Avant l'état des lieux, avec présence possible</dd></div></dl>
+          </article>
+          <article class="bloc" data-svc="s">
+            <h3><span class="sw store" aria-hidden="true"></span>Garde-meubles</h3>
+            <ul><li>Inventaire de chaque objet déposé</li><li>Accès sur rendez-vous</li><li>Livraison à la nouvelle adresse</li></ul>
+            <dl><div><dt>Prix</dt><dd>Tarif mensuel au m³ stocké</dd></div><div><dt>Durée</dt><dd>Quelques semaines ou plusieurs mois</dd></div></dl>
+          </article>
+          <p class="vide" hidden>Choisissez au moins une situation pour composer votre formule.</p>
+          <div class="recap-go"><a class="btn move" href="#devis" data-preparer>Préparer mon devis</a><p>Gratuit et sans engagement. Réponse sous 24 heures ouvrables.</p></div>
+        </div>
       </div>
     </div>
   </section>
