@@ -1,4 +1,4 @@
-// SwissDem v6 : menu mobile, cartouche de devis, barre d'appel et plan interactif, communs à toutes les pages.
+// SwissDem v7 : menu mobile, cartouche de devis, barre d'appel, plan interactif et mouvement au défilement, communs à toutes les pages.
 // Menu mobile
 (function(){
   const top = document.querySelector('.top'), b = top && top.querySelector('.menu-btn');
@@ -178,4 +178,100 @@
   const lire = () => choix[sel ? sel.selectedIndex : 2] || 'p35';
   if (sel) sel.addEventListener('change', () => dessiner(lire(), true));
   dessiner(svg.dataset.layout || lire(), false);
+})();
+
+// Mouvement (v7) : barre d'avancement, en-tête compact, titres mot par mot, blocs en cascade,
+// chiffres qui défilent, étapes qui s'allument, cartes inclinées à la souris.
+// Avec « réduire les animations », seuls la barre (sans transition) et l'en-tête compact restent.
+(function(){
+  const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const top = document.querySelector('.top');
+  const barre = document.createElement('div');
+  barre.className = 'avance'; barre.setAttribute('aria-hidden', 'true');
+  document.body.append(barre);
+  const cote = !reduit && document.querySelector('.cote');
+  const etapes = cote ? [...cote.children] : [];
+
+  let attente = false;
+  function defiler(){
+    attente = false;
+    const h = document.documentElement.scrollHeight - innerHeight;
+    barre.style.setProperty('--p', h > 0 ? (scrollY / h).toFixed(4) : 0);
+    if (top) top.classList.toggle('compact', scrollY > 40);
+    if (cote) {
+      // 0 quand le haut des étapes passe à 80 % de l'écran, 1 quand il atteint 30 %
+      const r = cote.getBoundingClientRect(), p = Math.min(1, Math.max(0, (innerHeight * .8 - r.top) / (innerHeight * .5)));
+      cote.style.setProperty('--p', p.toFixed(3));
+      etapes.forEach((li, i) => li.classList.toggle('atteint', p >= i / etapes.length + .01 || (i === 0 && p > 0)));
+    }
+  }
+  addEventListener('scroll', () => { if (!attente) { attente = true; requestAnimationFrame(defiler); } }, {passive:true});
+  addEventListener('resize', defiler);
+  defiler();
+
+  if (reduit || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('anim');
+
+  // Titres : chaque mot dans un masque (seulement les titres sans balise intérieure)
+  document.querySelectorAll('main h1, main section h2').forEach(t => {
+    if (t.children.length) { t.classList.add('rv'); return; }
+    const mots = t.textContent.trim().split(/\s+/);
+    t.textContent = '';
+    mots.forEach((m, k) => {
+      const w = document.createElement('span'), s = document.createElement('span');
+      w.className = 'w'; s.textContent = m; s.style.setProperty('--k', k);
+      w.append(s); t.append(w, ' ');
+    });
+    t.classList.add('mots');
+  });
+
+  // Blocs révélés, avec un décalage dans chaque groupe
+  const groupes = ['.head .intro', '.copy .lead', '.proof > span', '.situations > *', '.recap', '.nomenclature > li', '.trade', '.cote > li',
+    '.atouts > li', '.quotes > *', '.agency', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
+  const vus = new Set();
+  groupes.forEach(sel => document.querySelectorAll(sel).forEach(el => {
+    if (vus.has(el) || el.closest('.stage')) return;
+    vus.add(el);
+    const freres = [...el.parentElement.children].filter(f => f.matches(sel));
+    el.style.setProperty('--d', Math.min(5, freres.indexOf(el)));
+    el.classList.add('rv');
+  }));
+
+  // Icônes : longueur de trait normalisée pour le dessin
+  document.querySelectorAll('.atouts .ico svg *').forEach(f => { if (f.getTotalLength) f.setAttribute('pathLength', 1); });
+
+  // Chiffres de la barre de preuves : « 3 000+ », « 15 ans », « 5,0 »
+  const compter = b => {
+    const m = b.textContent.match(/^(\d{1,3}(?:[\s\u202f\u00a0']\d{3})*)(?:,(\d))?(.*)$/);
+    if (!m) return;
+    const fin = parseFloat(m[1].replace(/\D/g, '') + (m[2] ? '.' + m[2] : '')), dec = m[2] ? 1 : 0, suite = m[3];
+    const fmt = v => v.toLocaleString('fr-CH', {minimumFractionDigits:dec, maximumFractionDigits:dec}).replace(/[\s\u202f\u00a0\u2019']/g, '\u202f') + suite;
+    const t0 = performance.now(), duree = 1400;
+    const pas = now => { const t = Math.min(1, (now - t0) / duree), e = 1 - Math.pow(1 - t, 4); b.textContent = fmt(fin * e); if (t < 1) requestAnimationFrame(pas); };
+    b.setAttribute('aria-label', b.textContent);
+    requestAnimationFrame(pas);
+  };
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('vu');
+    if (e.target.matches('.proof > span')) e.target.querySelectorAll('b').forEach(b => { if (/^\d/.test(b.textContent)) compter(b); });
+    io.unobserve(e.target);
+  }), {rootMargin:'0px 0px -8% 0px', threshold:.12});
+  document.querySelectorAll('.rv, .mots, main section h2').forEach(el => io.observe(el));
+
+  // Cartes inclinées : suivent la souris, au plus 5 degrés
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    document.querySelectorAll('.nomenclature > li, .atouts > li, .cote > li').forEach(c => {
+      c.classList.add('incline');
+      c.addEventListener('pointermove', e => {
+        const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        c.style.setProperty('--ry', ((x - .5) * 10).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', ((.5 - y) * 8).toFixed(2) + 'deg');
+        c.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        c.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      });
+      c.addEventListener('pointerleave', () => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+    });
+  }
 })();
