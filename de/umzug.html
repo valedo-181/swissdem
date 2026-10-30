@@ -54,9 +54,15 @@
         <h1 class="fit" style="--n:7">Ihr Umzug zum Preis der Offerte</h1>
         <p class="lead">Ein festangestelltes Team packt ein, baut ab, transportiert und baut Ihre Möbel wieder auf. Der Preis steht nach der kostenlosen Besichtigung fest und ändert sich am Umzugstag nicht.</p>
       </div>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="p35" data-iso="m" data-plan='{"pieces":{"piece":"Wohnraum","hall":"Korridor","sejour":"Wohnzimmer","chambre":"Zimmer","cuisine":"Küche","bains":"Bad","cave":"Keller","galetas":"Estrich","open":"Grossraumbüro","reunion":"Sitzungszimmer","bureau":"Büro","archives":"Archiv","sanitaires":"WC"},"notes":{"m":"Verpackt, abgebaut, erfasst","c":"Gereinigt, Abgabe unterschrieben","s":"Eingelagert, Fotoinventar"},"echelle":"Massstab indikativ"}'><title id="plan-t">Beispielplan einer Wohnung, farbig die Räume, um die sich diese Dienstleistung kümmert</title></svg>
-        <p class="plan-cap">Beispielplan und -masse: farbig die Räume, um die sich diese Dienstleistung kümmert.</p>
+      <div class="plan-wrap volume-wrap camion-wrap" data-camion-volume='{&quot;equiv&quot;: [[12, &quot;ein Studio&quot;], [27, &quot;eine 2,5-Zimmer-Wohnung&quot;], [36, &quot;eine 3,5-Zimmer-Wohnung&quot;], [45, &quot;eine 4,5-Zimmer-Wohnung&quot;], [999, &quot;eine 5,5-Zimmer-Wohnung oder ein Haus&quot;]], &quot;comme&quot;: &quot;Wie {x}&quot;, &quot;mon&quot;: &quot;Mein Inventar&quot;, &quot;un&quot;: &quot;Ein 3,5-t-Lastwagen&quot;, &quot;lourd&quot;: &quot;Lastwagen oder zwei Fahrten&quot;}'>
+        <div class="vol-tete"><p class="t">Ihr Volumen, im Lastwagen</p><p class="vol-m3"><b data-m3>32</b> m³</p></div>
+        <svg class="vol-svg" viewBox="0 0 900 520" role="img" aria-label="Wählen Sie Ihre Wohnung oder ziehen Sie den Regler: Der Lastwagen füllt sich, Karton für Karton."></svg>
+        <p class="vol-info"><span data-equiv></span><span data-camions></span></p>
+        <p class="postes-horaire"><span>Ein 3,5-t-Lastwagen fasst etwa 20 m³</span></p>
+        <label class="vol-range"><span>Umzugsvolumen</span><input type="range" min="1" max="60" step="1" value="32"></label>
+        <div class="vol-presets"><button class="chip" type="button" data-v="9">Studio</button><button class="chip" type="button" data-v="23">2,5 Zimmer</button><button class="chip" type="button" data-v="32">3,5 Zimmer</button><button class="chip" type="button" data-v="41">4,5 Zimmer</button><button class="chip" type="button" data-v="50">5,5 Zimmer</button></div>
+        <div class="vol-actions"><a class="more" href="index.html#volume">Volumen Raum für Raum berechnen</a><button class="btn" type="button" data-camion-go>Umzugsofferte vorbereiten</button></div>
+        <p class="plan-cap">Wählen Sie Ihre Wohnung oder ziehen Sie den Regler: Der Lastwagen füllt sich, Karton für Karton. Unverbindliche Schätzung auf Basis von 9 m³ pro Zimmer: Das tatsächliche Volumen wird bei der Besichtigung gemessen.</p>
       </div>
       <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -86,6 +92,19 @@
   <section>
     <div class="shell">
       <div class="head">
+        <h2 class="fit" style="--n:7">Welcher Umzug?</h2>
+        <p class="intro">Ein Studio in der Altstadt zügelt anders als ein Haus mit Garten. Die Besichtigung geht von Ihrer Wohnung aus.</p>
+      </div>
+      <div class="situ" data-situations>
+        <div class="situ-tabs" role="tablist" hidden><button type="button" role="tab" data-situ="appartement">Wohnung in der Stadt</button><button type="button" role="tab" data-situ="maison">Einfamilienhaus</button><button type="button" role="tab" data-situ="plus-petit">In eine kleinere Wohnung</button><button type="button" role="tab" data-situ="premier">Erste Wohnung oder Studio</button></div>
+        <div class="situ-panneaux"><article class="situ-p" data-situ="appartement"><h3>Wohnung in der Stadt</h3><p>Treppen, enger Lift, steile Gasse: Wir prüfen den Zugang bei der Besichtigung und beantragen die Parkbewilligung für den Lastwagen.</p><p class="situ-d"><span>Was wir vorsehen</span><b>Parkbewilligung, Möbellift falls nötig</b></p></article><article class="situ-p" data-situ="maison"><h3>Einfamilienhaus</h3><p>Keller, Estrich, Garage und Garten: Alles wird bei der Besichtigung gezählt, damit am Umzugstag nichts zurückbleibt.</p><p class="situ-d"><span>Was wir vorsehen</span><b>Ganzes Volumen, Keller und Aussenbereich inbegriffen</b></p></article><article class="situ-p" data-situ="plus-petit"><h3>In eine kleinere Wohnung</h3><p>Nicht alles kommt mit: Wir helfen beim Aussortieren, und was warten muss, kommt inventarisiert ins Möbellager.</p><p class="situ-d"><span>Was wir vorsehen</span><b>Aussortieren, Möbellager und Räumung</b></p></article><article class="situ-p" data-situ="premier"><h3>Erste Wohnung oder Studio</h3><p>Wenig Möbel, viele Kartons: ein kleiner Lastwagen, ein kleineres Team, auch am späten Nachmittag möglich.</p><p class="situ-d"><span>Was wir vorsehen</span><b>Kleines Volumen, flexible Zeiten</b></p></article></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
         <h2 class="fit" style="--n:11">Was inbegriffen ist</h2>
         <p class="intro">Alles, damit Ihre Möbel so ankommen, wie sie abgefahren sind, und beide Wohnungen unbeschädigt bleiben.</p>
       </div>
@@ -98,6 +117,20 @@
         <li><span class="coche" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg></span><h3>Schwere Gegenstände</h3><p>Klavier, Tresor, massiver Schrank: Möbellift und passendes Material auf Wunsch.</p></li>
       </ul>
       <figure class="plate-wide"><video class="video-auto" muted loop playsinline preload="none" width="896" height="448" poster="../images/swissdem-monte-meubles.webp" data-src="../images/monte-meubles-swissdem.mp4" aria-label="Der SwissDem-Möbellift bringt einen Sessel und Kartons zum Balkon und fährt wieder herunter; ein Zügelmann führt die Last."></video></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
+        <h2 class="fit" style="--n:16">Ein unterschriebenes Inventar, vom Auszug bis zum Einzug</h2>
+        <p class="intro">Beim Verladen wird jedes Möbelstück und jeder Karton mit Zustand und Zielraum notiert. Sie unterschreiben beim Auszug, und wir kontrollieren gemeinsam bei der Ablieferung.</p>
+      </div>
+      <div class="inv" data-inventaire='{&quot;sortir&quot;: &quot;{n} Gegenstände vom Team verpackt&quot;, &quot;sortir1&quot;: &quot;1 Gegenstand vom Team verpackt&quot;, &quot;sortir0&quot;: &quot;Kreuzen Sie an, was Sie dem Team zum Verpacken überlassen möchten.&quot;}'>
+        <p class="inv-t"><span class="inv-badge">Beispiel eines Umzugsinventars</span><span>SwissDem · Privatumzug</span></p>
+        <div class="inv-scroll"><table><thead><tr><th>Nr.</th><th>Gegenstand</th><th>Zustand beim Auszug</th><th>Zielraum</th><th>Vom Team verpackt</th></tr></thead><tbody><tr><td class="n">01</td><td>Sofa 3-plätzig</td><td>Guter Zustand</td><td>Wohnzimmer</td><td class="out"><input type="checkbox" aria-label="Vom Team verpackt : Sofa 3-plätzig"></td></tr><tr><td class="n">02</td><td>Schrank 3-türig, demontiert</td><td>Kratzer linke Tür</td><td>Zimmer 1</td><td class="out"><input type="checkbox" aria-label="Vom Team verpackt : Schrank 3-türig, demontiert"></td></tr><tr><td class="n">03</td><td>Fernseher 55 Zoll</td><td>Guter Zustand</td><td>Wohnzimmer</td><td class="out"><input type="checkbox" aria-label="Vom Team verpackt : Fernseher 55 Zoll"></td></tr><tr><td class="n">04</td><td>Wandspiegel</td><td>Guter Zustand</td><td>Korridor</td><td class="out"><input type="checkbox" aria-label="Vom Team verpackt : Wandspiegel"></td></tr><tr><td class="n">05</td><td>Karton «Geschirr», zerbrechlich</td><td>Verschlossen</td><td>Küche</td><td class="out"><input type="checkbox" aria-label="Vom Team verpackt : Karton «Geschirr», zerbrechlich"></td></tr><tr><td class="n">06</td><td>Doppelbett, demontiert</td><td>Guter Zustand</td><td>Zimmer 1</td><td class="out"><input type="checkbox" aria-label="Vom Team verpackt : Doppelbett, demontiert"></td></tr></tbody></table></div>
+        <div class="inv-pied"><p aria-live="polite" data-sortir>Kreuzen Sie an, was Sie dem Team zum Verpacken überlassen möchten.</p><p class="inv-rdv" hidden>Kartons und Schutzmaterial sind inbegriffen; das Verpacken steht in der Offerte. Sprechen wir darüber: <a href="tel:+41325604925">032 560 49 25</a> · <a href="tel:+41265611025">026 561 10 25</a></p></div>
+      </div>
     </div>
   </section>
 

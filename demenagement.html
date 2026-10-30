@@ -54,9 +54,15 @@
         <h1 class="fit" style="--n:13">Votre déménagement, au prix du devis</h1>
         <p class="lead">Une équipe salariée emballe, démonte, transporte et remonte vos meubles. Le prix est fixé après la visite gratuite et ne change pas le jour J.</p>
       </div>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="p35" data-iso="m" data-plan='{"pieces":{"piece":"Pièce principale","hall":"Hall","sejour":"Séjour","chambre":"Chambre","cuisine":"Cuisine","bains":"Bains","cave":"Cave","galetas":"Galetas","open":"Open space","reunion":"Salle de réunion","bureau":"Bureau","archives":"Archives","sanitaires":"Sanitaires"},"notes":{"m":"Emballé, démonté, inventorié","c":"Nettoyé, état des lieux signé","s":"Stocké au dépôt, inventaire photo"},"echelle":"Échelle indicative"}'><title id="plan-t">Plan d'exemple d'un logement, en couleur les pièces dont s'occupe ce service</title></svg>
-        <p class="plan-cap">Plan et cotes d'exemple : en couleur, les pièces dont s'occupe ce service.</p>
+      <div class="plan-wrap volume-wrap camion-wrap" data-camion-volume='{&quot;equiv&quot;: [[12, &quot;un studio&quot;], [27, &quot;un 2,5 pièces&quot;], [36, &quot;un 3,5 pièces&quot;], [45, &quot;un 4,5 pièces&quot;], [999, &quot;un 5,5 pièces ou une maison&quot;]], &quot;comme&quot;: &quot;Comme {x}&quot;, &quot;mon&quot;: &quot;Mon inventaire&quot;, &quot;un&quot;: &quot;Un camion 3,5 t&quot;, &quot;lourd&quot;: &quot;Poids lourd ou deux voyages&quot;}'>
+        <div class="vol-tete"><p class="t">Votre volume, en camion</p><p class="vol-m3"><b data-m3>32</b> m³</p></div>
+        <svg class="vol-svg" viewBox="0 0 900 520" role="img" aria-label="Choisissez votre logement ou glissez le curseur : le camion se charge, carton après carton."></svg>
+        <p class="vol-info"><span data-equiv></span><span data-camions></span></p>
+        <p class="postes-horaire"><span>Un camion 3,5 t emporte environ 20 m³</span></p>
+        <label class="vol-range"><span>Volume à déménager</span><input type="range" min="1" max="60" step="1" value="32"></label>
+        <div class="vol-presets"><button class="chip" type="button" data-v="9">Studio</button><button class="chip" type="button" data-v="23">2,5 pièces</button><button class="chip" type="button" data-v="32">3,5 pièces</button><button class="chip" type="button" data-v="41">4,5 pièces</button><button class="chip" type="button" data-v="50">5,5 pièces</button></div>
+        <div class="vol-actions"><a class="more" href="index.html#volume">Calculer mon volume pièce par pièce</a><button class="btn" type="button" data-camion-go>Préparer mon devis de déménagement</button></div>
+        <p class="plan-cap">Choisissez votre logement ou glissez le curseur : le camion se charge, carton après carton. Estimation indicative, sur la base de 9 m³ par pièce : le volume réel est mesuré à la visite.</p>
       </div>
       <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -86,6 +92,19 @@
   <section>
     <div class="shell">
       <div class="head">
+        <h2 class="fit" style="--n:12">Quel déménagement ?</h2>
+        <p class="intro">Un studio en vieille ville ne se déménage pas comme une maison avec jardin. La visite part de votre logement.</p>
+      </div>
+      <div class="situ" data-situations>
+        <div class="situ-tabs" role="tablist" hidden><button type="button" role="tab" data-situ="appartement">Appartement en ville</button><button type="button" role="tab" data-situ="maison">Maison familiale</button><button type="button" role="tab" data-situ="plus-petit">Vers un logement plus petit</button><button type="button" role="tab" data-situ="premier">Premier logement ou studio</button></div>
+        <div class="situ-panneaux"><article class="situ-p" data-situ="appartement"><h3>Appartement en ville</h3><p>Escaliers, ascenseur étroit, rue en pente : nous voyons l'accès à la visite et demandons l'autorisation de stationnement pour le camion.</p><p class="situ-d"><span>Ce que nous prévoyons</span><b>Autorisation de stationnement, monte-meubles si nécessaire</b></p></article><article class="situ-p" data-situ="maison"><h3>Maison familiale</h3><p>Cave, galetas, garage et jardin : tout est compté à la visite, pour que rien ne reste derrière le jour J.</p><p class="situ-d"><span>Ce que nous prévoyons</span><b>Volume complet, cave et extérieur compris</b></p></article><article class="situ-p" data-situ="plus-petit"><h3>Vers un logement plus petit</h3><p>Tout ne suit pas : nous aidons à trier, et ce qui attend part au garde-meubles, inventorié.</p><p class="situ-d"><span>Ce que nous prévoyons</span><b>Tri, garde-meubles et débarras</b></p></article><article class="situ-p" data-situ="premier"><h3>Premier logement ou studio</h3><p>Peu de meubles, beaucoup de cartons : un petit camion, une équipe réduite, et un horaire possible en fin de journée.</p><p class="situ-d"><span>Ce que nous prévoyons</span><b>Petit volume, horaire souple</b></p></article></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
         <h2 class="fit" style="--n:7">Ce qui est compris</h2>
         <p class="intro">Tout ce qu'il faut pour que vos meubles arrivent comme ils sont partis, et que vos deux logements restent intacts.</p>
       </div>
@@ -98,6 +117,20 @@
         <li><span class="coche" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg></span><h3>Objets lourds</h3><p>Piano, coffre-fort, armoire massive : monte-meubles et matériel adaptés, sur demande.</p></li>
       </ul>
       <figure class="plate-wide"><video class="video-auto" muted loop playsinline preload="none" width="896" height="448" poster="images/swissdem-monte-meubles.webp" data-src="images/monte-meubles-swissdem.mp4" aria-label="Le monte-meubles SwissDem monte un fauteuil et des cartons jusqu'au balcon, puis redescend ; un déménageur guide la charge."></video></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
+        <h2 class="fit" style="--n:10">Un inventaire signé, du départ à l'arrivée</h2>
+        <p class="intro">Au chargement, chaque meuble et chaque carton est noté avec son état et sa pièce d'arrivée. Vous signez au départ, et nous contrôlons ensemble à la livraison.</p>
+      </div>
+      <div class="inv" data-inventaire='{&quot;sortir&quot;: &quot;{n} objets emballés par l&#x27;équipe&quot;, &quot;sortir1&quot;: &quot;1 objet emballé par l&#x27;équipe&quot;, &quot;sortir0&quot;: &quot;Cochez ce que vous aimeriez confier à l&#x27;équipe pour l&#x27;emballage.&quot;}'>
+        <p class="inv-t"><span class="inv-badge">Exemple d'inventaire de déménagement</span><span>SwissDem · Déménagement privé</span></p>
+        <div class="inv-scroll"><table><thead><tr><th>N°</th><th>Objet</th><th>État au départ</th><th>Pièce d'arrivée</th><th>Emballé par l'équipe</th></tr></thead><tbody><tr><td class="n">01</td><td>Canapé 3 places</td><td>Bon état</td><td>Séjour</td><td class="out"><input type="checkbox" aria-label="Emballé par l'équipe : Canapé 3 places"></td></tr><tr><td class="n">02</td><td>Armoire 3 portes, démontée</td><td>Rayure porte gauche</td><td>Chambre 1</td><td class="out"><input type="checkbox" aria-label="Emballé par l'équipe : Armoire 3 portes, démontée"></td></tr><tr><td class="n">03</td><td>Télévision 55 pouces</td><td>Bon état</td><td>Séjour</td><td class="out"><input type="checkbox" aria-label="Emballé par l'équipe : Télévision 55 pouces"></td></tr><tr><td class="n">04</td><td>Miroir mural</td><td>Bon état</td><td>Hall</td><td class="out"><input type="checkbox" aria-label="Emballé par l'équipe : Miroir mural"></td></tr><tr><td class="n">05</td><td>Carton « Vaisselle », fragile</td><td>Fermé</td><td>Cuisine</td><td class="out"><input type="checkbox" aria-label="Emballé par l'équipe : Carton « Vaisselle », fragile"></td></tr><tr><td class="n">06</td><td>Lit double, démonté</td><td>Bon état</td><td>Chambre 1</td><td class="out"><input type="checkbox" aria-label="Emballé par l'équipe : Lit double, démonté"></td></tr></tbody></table></div>
+        <div class="inv-pied"><p aria-live="polite" data-sortir>Cochez ce que vous aimeriez confier à l'équipe pour l'emballage.</p><p class="inv-rdv" hidden>Cartons et protections sont fournis ; l'emballage figure sur le devis. Pour en parler : <a href="tel:+41325604925">032 560 49 25</a> · <a href="tel:+41265611025">026 561 10 25</a></p></div>
+      </div>
     </div>
   </section>
 

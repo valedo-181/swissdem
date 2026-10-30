@@ -851,3 +851,15 @@ section h2::after{content:"";display:block;width:76px;height:5px;margin-top:22px
 /* Les cartes qui entrent par le côté ne doivent pas élargir la page sur téléphone */
 main{overflow-x:clip}
 @media (max-width:560px){.inv:not(:has(.ph)) td:nth-child(4)::before{content:"→ ";color:var(--store);font-weight:600}}
+
+/* ---------- v7 : page déménagement, camion qui se charge ---------- */
+.camion-wrap .postes-horaire{justify-content:center}
+.vol-svg .plancher-c{fill:#b9a888}
+.vol-svg .paroi{fill:#eef0f3;stroke:#cdd2d9;stroke-width:.02}
+.vol-svg .paroi.p2{fill:#e2e5ea}
+.vol-svg .arete{fill:none;stroke:#9aa2ad;stroke-width:.03;stroke-linejoin:round;stroke-dasharray:.12 .07}
+.vol-svg .chassis.ft,.vol-svg .chassis.fg,.vol-svg .chassis.fd{fill:#1b1e22}
+.vol-svg .cabine.ft{fill:#e0362b}.vol-svg .cabine.fg{fill:#c8241b}.vol-svg .cabine.fd{fill:#a51d16}
+.vol-svg .vitre.ft,.vol-svg .vitre.fg,.vol-svg .vitre.fd{fill:#10151b;opacity:.85}
+.vol-svg .roue{fill:#202326;stroke:#c9cdd2;stroke-width:.06}
+.vol-svg .cm .ct polygon{stroke:#8a6236;stroke-width:.012;stroke-linejoin:round}

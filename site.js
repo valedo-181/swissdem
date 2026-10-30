@@ -663,6 +663,103 @@
   dessiner(mien > 0 ? mien : 23);
 })();
 
+// Déménagement (v7) : le volume chargé dans des camions 3,5 t (vue isométrique, environ 20 m³ par camion) ;
+// au-delà, un second camion apparaît. Logements types, inventaire de l'estimateur, volume transmis au devis.
+(function(){
+  const zone = document.querySelector('.camion-wrap[data-camion-volume]');
+  if (!zone) return;
+  const T = JSON.parse(zone.dataset.camionVolume);
+  const de = document.documentElement.lang.startsWith('de');
+  const svg = zone.querySelector('.vol-svg'), range = zone.querySelector('input[type=range]');
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, at) => { const n = document.createElementNS(NS, tag); for (const k in at) n.setAttribute(k, at[k]); return n; };
+  const A = Math.cos(Math.PI / 6), B = .5, iso = (x, y, z) => [(x - z) * A, (x + z) * B - y];
+  const poly = pts => pts.map(p => p.map(v => v.toFixed(2)).join(',')).join(' ');
+  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(de ? 'de-CH' : 'fr-CH', {maximumFractionDigits:1});
+  const C = .52, NX = 8, NY = 4, NZ = 4, PLACES = NX * NY * NZ, CAP = 20;   // caisse ≈ 4,2 × 2,1 × 2,1 m
+  const LC = NX * C, PC = NZ * C, HC = NY * C, ESP = LC + 2.4;            // camions à la file, le second derrière le premier
+  const monde = el('g', {class:'vol-monde'}); svg.append(monde);
+  const face = (g, pts, cls) => g.append(el('polygon', {points: poly(pts), class: cls}));
+  const bloc = (g, x, y, z, l, h, p, cls) => {
+    const P = (a, b, c) => iso(x + a * l, y + b * h, z + c * p);
+    face(g, [P(0,0,1), P(1,0,1), P(1,1,1), P(0,1,1)], cls + ' fg'); face(g, [P(1,0,0), P(1,0,1), P(1,1,1), P(1,1,0)], cls + ' fd'); face(g, [P(0,1,0), P(1,1,0), P(1,1,1), P(0,1,1)], cls + ' ft');
+  };
+  const roue = (g, x, z) => { const [cx, cy] = iso(x, .32, z); g.append(el('ellipse', {cx, cy, rx:.3, ry:.33, class:'roue'})); };
+  // Un camion : arrière (plancher, paroi du fond, paroi gauche), cartons, puis avant (cabine, roues, arêtes de la caisse)
+  function camion(t){
+    const x0 = -t * ESP, z0 = 0, y0 = .6;
+    const g = el('g', {class:'cm'}), fond = el('g'), charge = el('g'), devant = el('g');
+    const P = (x, y, z) => iso(x0 + x, y0 + y, z0 + z);
+    bloc(fond, x0 - .1, .2, z0 + .15, LC + .1, .4, PC - .3, 'chassis');   // sous la caisse : dessiné avant le chargement
+    face(fond, [P(0,0,0), P(LC,0,0), P(LC,0,PC), P(0,0,PC)], 'plancher-c');
+    face(fond, [P(0,0,0), P(LC,0,0), P(LC,HC,0), P(0,HC,0)], 'paroi');
+    face(fond, [P(0,0,0), P(0,0,PC), P(0,HC,PC), P(0,HC,0)], 'paroi p2');
+    bloc(devant, x0 + LC + .05, .2, z0 + .1, 1.5, 1.85, PC - .2, 'cabine');
+    bloc(devant, x0 + LC + .95, 1.2, z0 + .12, .5, .6, PC - .24, 'vitre');
+    roue(devant, x0 + .8, z0 + PC); roue(devant, x0 + LC - .3, z0 + PC); roue(devant, x0 + LC + .9, z0 + PC);
+    devant.append(el('polyline', {points: poly([P(0,HC,PC), P(LC,HC,PC), P(LC,0,PC), P(0,0,PC), P(0,HC,PC), P(0,HC,0), P(LC,HC,0), P(LC,HC,PC)]), class:'arete'}));
+    g.append(fond, charge, devant);
+    const cartons = [];
+    for (let i = 0; i < NX; i++) for (let j = 0; j < NY; j++) for (let k = 0; k < NZ; k++) {
+      const c = el('g', {class:'ct'}), x = i * C, y = j * C, z = k * C, h = Math.abs(Math.sin((t * 300 + cartons.length) * 12.9898) * 43758.5453 % 1);
+      const Q = (a, b, d) => P(x + a * C, y + b * C, z + d * C);
+      face(c, [Q(0,1,0), Q(1,1,0), Q(1,1,1), Q(0,1,1)], 'f-top'); c.lastChild.style.setProperty('--h', h);
+      face(c, [Q(0,0,1), Q(1,0,1), Q(1,1,1), Q(0,1,1)], 'f-g'); face(c, [Q(1,0,0), Q(1,0,1), Q(1,1,1), Q(1,1,0)], 'f-d');
+      c.dataset.ordre = (i + k) * 100 + j; c.dataset.rang = i * NY * NZ + j * NZ + k;   // chargé du fond vers les portes, du bas vers le haut
+      cartons.push(c);
+    }
+    // ordre de chargement : depuis la cabine (x grand) vers l'arrière, couche par couche
+    cartons.sort((a, b) => (NX - 1 - Math.floor(a.dataset.rang / (NY * NZ))) * 1000 + (a.dataset.rang % (NY * NZ)) - ((NX - 1 - Math.floor(b.dataset.rang / (NY * NZ))) * 1000 + (b.dataset.rang % (NY * NZ))));
+    return { g, charge, cartons, plein: 0 };
+  }
+  const camions = [];
+  let vol = 0;
+  function dessiner(v){
+    vol = v;
+    const nb = Math.max(1, Math.ceil(v / CAP - 1e-9));
+    while (camions.length < nb) { const c = camion(camions.length); camions.push(c); }
+    camions.forEach((c, t) => {
+      if (t >= nb) { c.g.remove(); return; }
+      const part = Math.min(1, Math.max(0, (v - t * CAP) / CAP)), n = Math.round(part * PLACES);
+      const avant = c.plein;
+      c.cartons.forEach((ct, k) => {
+        if (k < n && !ct.isConnected) { ct.style.setProperty('--d', Math.min(40, k - avant) * 10 + 'ms'); ct.classList.add('entre'); }
+        if (k >= n && ct.isConnected) ct.remove();
+      });
+      c.cartons.slice(0, n).sort((a, b) => a.dataset.ordre - b.dataset.ordre).forEach(ct => c.charge.append(ct));
+      c.plein = n;
+    });
+    // Ordre des camions : celui du fond d'abord, celui de devant par-dessus
+    camions.slice(0, nb).reverse().forEach(c => monde.append(c.g));
+    const xmin = -(nb - 1) * ESP - .4;
+    const xs = [iso(xmin, 0, PC + .3)[0], iso(LC + 1.8, 0, -.2)[0]], ys = [iso(xmin, HC + .9, 0)[1], iso(LC + 1.6, 0, PC + .4)[1]];
+    const w = xs[1] - xs[0], h = ys[1] - ys[0], e = Math.min(820 / w, 460 / h, 110);
+    monde.style.transform = `translate(${450 - (xs[0] + w / 2) * e}px, ${260 - (ys[0] + h / 2) * e}px) scale(${e})`;
+    zone.querySelector('[data-m3]').textContent = fmt(v);
+    zone.querySelector('[data-equiv]').textContent = T.comme.replace('{x}', T.equiv.find(([max]) => v <= max)[1]);
+    zone.querySelector('[data-camions]').textContent = v <= CAP ? T.un : T.lourd;
+    range.value = Math.round(v);
+    zone.querySelectorAll('.vol-presets .chip').forEach(b => b.setAttribute('aria-pressed', Number(b.dataset.v) === Math.round(v)));
+  }
+  let mien = 0;
+  try { mien = parseFloat(localStorage.getItem('swissdem-volume')) || 0; } catch (e) {}
+  if (mien > 0) {
+    const b = document.createElement('button');
+    b.className = 'chip mien'; b.type = 'button'; b.dataset.v = Math.round(mien); b.textContent = `${T.mon} · ${fmt(mien)} m³`;
+    zone.querySelector('.vol-presets').prepend(b);
+  }
+  zone.querySelectorAll('.vol-presets .chip').forEach(b => b.addEventListener('click', () => dessiner(b.classList.contains('mien') ? mien : Number(b.dataset.v))));
+  range.addEventListener('input', () => dessiner(Number(range.value)));
+  zone.querySelector('[data-camion-go]').addEventListener('click', () => {
+    const f = document.querySelector('.cartouche form');
+    if (!f) return;
+    if (f.elements.volume) f.elements.volume.value = fmt(vol);
+    document.getElementById('devis').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'});
+    setTimeout(() => f.querySelector('input[name="npa_depart"]').focus({preventScroll:true}), 600);
+  });
+  dessiner(mien > 0 ? mien : 32);
+})();
+
 // Entreprises (v7) : les postes de travail dessinés en rangées (vue isométrique), une couleur d'étiquette par rangée
 // comme sur le plan de transfert ; nombre de postes et type de locaux donnent un volume et une organisation indicatifs.
 (function(){
