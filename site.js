@@ -529,6 +529,7 @@
     });
     // Dates : chaque étape commence N jours avant le jour J (après le déménagement : N jours après)
     const v = champDate.value, aujourd = jour(new Date());
+    outils.classList.toggle('a-date', !!v);   // à l'impression, le cadre n'apparaît qu'avec une date
     let courante = null;
     etapes.forEach((e, i) => {
       const q = e.querySelector('.quand');
