@@ -559,7 +559,7 @@
   // Icônes : longueur de trait normalisée pour le dessin
   document.querySelectorAll('.atouts .ico svg *').forEach(f => { if (f.getTotalLength) f.setAttribute('pathLength', 1); });
 
-  // Chiffres de la barre de preuves : « 3 000+ », « 15 ans », « 5,0 »
+  // Chiffres de la barre de preuves : « 5,0 », « 24 h »
   const compter = b => {
     const m = b.textContent.match(/^(\d{1,3}(?:[\s\u202f\u00a0']\d{3})*)(?:,(\d))?(.*)$/);
     if (!m) return;
