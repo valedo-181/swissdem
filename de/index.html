@@ -14,6 +14,23 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="manifest" href="../site.webmanifest">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<!-- Die 3D-Engine wird schon beim Lesen des Kopfs geladen, ohne auf den Rest der Seite zu warten -->
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" crossorigin>
+<link rel="canonical" href="https://swissdem.vercel.app/de/">
+<link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/">
+<link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://swissdem.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SwissDem Transports">
+<meta property="og:locale" content="de_CH">
+<meta property="og:title" content="SwissDem Transports – Umzug in Neuenburg und Freiburg">
+<meta property="og:url" content="https://swissdem.vercel.app/de/">
+<meta property="og:image" content="https://swissdem.vercel.app/og-swissdem.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="Umzug, Endreinigung und Möbellager in den Kantonen Neuenburg und Freiburg. Offertpreis garantiert, festangestelltes Team, Gratis-Offerte innert 24 Stunden an Werktagen.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MovingCompany", "name": "SwissDem Transports", "url": "https://swissdem.vercel.app/de/", "logo": "https://swissdem.vercel.app/marque/logo-swissdem.webp", "image": "https://swissdem.vercel.app/og-swissdem.jpg", "areaServed": [{"@type": "AdministrativeArea", "name": "Canton de Neuchâtel"}, {"@type": "AdministrativeArea", "name": "Canton de Fribourg"}], "knowsLanguage": ["fr", "de"], "department": [{"@type": "MovingCompany", "name": "SwissDem Transports Neuchâtel", "telephone": "+41325604925", "email": "neuchatel@swissdem.ch", "address": {"@type": "PostalAddress", "addressLocality": "Neuchâtel", "addressRegion": "NE", "addressCountry": "CH"}}, {"@type": "MovingCompany", "name": "SwissDem Transports Fribourg", "telephone": "+41265611025", "email": "fribourg@swissdem.ch", "address": {"@type": "PostalAddress", "addressLocality": "Fribourg", "addressRegion": "FR", "addressCountry": "CH"}}]}</script>
 </head>
 <body>
 
@@ -43,7 +60,7 @@
         <p class="lead">Dasselbe festangestellte Team besichtigt, packt ein, transportiert, reinigt und lagert. Der Preis in der Offerte ist der Preis, den Sie bezahlen.</p>
       </div>
       <figure class="stage" data-camion data-label="Der SwissDem-Lastwagen in 3D. Ziehen oder die Pfeiltasten verwenden, um ihn zu drehen." data-services="Umzug|Reinigung|Möbellager" data-site="swissdem.ch" data-logo="../marque/logo-swissdem.webp">
-        <img hidden src="../images/swissdem-camion.webp" alt="Ein SwissDem-Lastwagen vor einem Altbau">
+        <img width="1020" height="1020" class="poster" src="../images/swissdem-camion.webp" alt="Ein SwissDem-Lastwagen vor einem Altbau" fetchpriority="high">
         <figcaption class="hint" aria-hidden="true">Ziehen zum Drehen</figcaption>
       </figure>
       <div class="cartouche" id="devis">
@@ -155,7 +172,7 @@
           <p class="how">Preis nach Volumen in m³, bekannt, bevor Sie unterschreiben.</p>
           <a class="more" href="umzug.html">Der Umzug im Detail</a>
         </div>
-        <figure><img src="../images/swissdem-camion.webp" alt="Ein SwissDem-Lastwagen vor einem Altbau" loading="lazy"></figure>
+        <figure><img width="1020" height="1020" src="../images/swissdem-camion.webp" alt="Ein SwissDem-Lastwagen vor einem Altbau" loading="lazy"></figure>
       </article>
       <article class="trade">
         <div>
@@ -165,7 +182,7 @@
           <p class="how">Feste Pauschale nach Zimmerzahl.</p>
           <a class="more" href="endreinigung.html">Die Endreinigung im Detail</a>
         </div>
-        <figure><img src="../images/nettoyage-fenetre.jpg" alt="Eine Mitarbeiterin mit Handschuhen reinigt ein Fenster" loading="lazy"><figcaption>Provisorisches Foto, wird durch ein Foto von SwissDem ersetzt.</figcaption></figure>
+        <figure><img width="1400" height="933" src="../images/nettoyage-fenetre.jpg" alt="Eine Mitarbeiterin mit Handschuhen reinigt ein Fenster" loading="lazy"></figure>
       </article>
       <article class="trade">
         <div>
@@ -175,7 +192,7 @@
           <p class="how">Monatspreis pro gelagertem m³.</p>
           <a class="more" href="moebellager.html">Das Möbellager im Detail</a>
         </div>
-        <figure><img src="../images/garde-meubles-etageres.jpg" alt="Regale voller Kartons in einem Lager" loading="lazy"><figcaption>Provisorisches Foto, wird durch ein Foto von SwissDem ersetzt.</figcaption></figure>
+        <figure><img width="1800" height="1200" src="../images/garde-meubles-etageres.jpg" alt="Regale voller Kartons in einem Lager" loading="lazy"></figure>
       </article>
     </div>
   </section>
@@ -226,7 +243,6 @@
         <figure><blockquote lang="fr">« Du premier contact à la fin du déménagement, tout s'est déroulé parfaitement. »</blockquote><figcaption><b>Julien M.</b>, Umzug</figcaption></figure>
       </div>
       <!-- En production : <div data-titanor-avis="JETON-AVIS-SWISSDEM" data-lang="de" data-max="4"></div><script src="https://www.titanor.app/widget-avis.js" async></script> -->
-      <p class="slot">Platz für das Bewertungs-Widget von Titanor: Die neuesten Google-Bewertungen ersetzen diese Auszüge automatisch. Der Link « Alle Bewertungen auf Google lesen » wird mit dem Google-Profil von SwissDem verbunden.</p>
     </div>
   </section>
 
@@ -234,9 +250,10 @@
   <section id="agences">
     <div class="shell">
       <h2>Ihre Filiale, Ihr Kanton</h2>
+      <div class="carte" data-carte hidden></div>
       <div class="agencies">
         <article class="agency">
-          <img src="../images/agence-neuchatel-lac.jpg" alt="Neuenburg am See, die Alpen am Horizont" loading="lazy">
+          <img width="1400" height="1050" src="../images/agence-neuchatel-lac.jpg" alt="Neuenburg am See, die Alpen am Horizont" loading="lazy">
           <div class="in">
             <h3>Neuenburg</h3>
             <a class="tel" href="tel:+41325604925">032 560 49 25</a>
@@ -246,7 +263,7 @@
           </div>
         </article>
         <article class="agency">
-          <img src="../images/agence-fribourg.jpg" alt="Die Altstadt von Freiburg und die Kathedrale über der Saane" loading="lazy">
+          <img width="1400" height="933" src="../images/agence-fribourg.jpg" alt="Die Altstadt von Freiburg und die Kathedrale über der Saane" loading="lazy">
           <div class="in">
             <h3>Freiburg</h3>
             <a class="tel" href="tel:+41265611025">026 561 10 25</a>

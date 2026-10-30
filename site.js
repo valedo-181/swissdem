@@ -360,6 +360,144 @@
   maj();
 })();
 
+// Carte des deux cantons (v7) : les communes desservies, placées par leurs coordonnées réelles.
+// Les agences, responsables, téléphones et communes sont lus dans les fiches .agency de la page (donc déjà traduits) ;
+// les lacs sont tracés à main levée : la carte est schématique. Toucher une commune affiche son agence et le trajet.
+(function(){
+  const zone = document.querySelector('[data-carte]');
+  const fiches = [...document.querySelectorAll('#agences .agency')];
+  if (!zone || fiches.length < 2) return;
+  const de = document.documentElement.lang.startsWith('de');
+  const T = de ? {
+    titre: 'Wählen Sie Ihre Gemeinde', aide: 'Tippen Sie auf einen Punkt der Karte: Sie sehen die zuständige Filiale und ihren Verantwortlichen.',
+    agence: v => `Filiale ${v}`, siege: 'Filiale', km: k => `${k} km Luftlinie von der Filiale`, ici: 'Hier befindet sich die Filiale',
+    voir: c => `Umzug in ${c}`, legende: 'Schematische Karte, Gemeinden nach ihren tatsächlichen Koordinaten platziert.',
+    lacs: ['Neuenburgersee', 'Murtensee', 'Greyerzersee'],
+  } : {
+    titre: 'Choisissez votre commune', aide: "Touchez un point de la carte : vous voyez l'agence qui s'en occupe et son responsable.",
+    agence: v => `Agence de ${v}`, siege: 'Agence', km: k => `à ${k} km à vol d'oiseau de l'agence`, ici: "C'est ici que se trouve l'agence",
+    voir: c => `Déménager à ${c}`, legende: 'Carte schématique, communes placées selon leurs coordonnées réelles.',
+    lacs: ['Lac de Neuchâtel', 'Lac de Morat', 'Lac de la Gruyère'],
+  };
+  // Coordonnées (longitude, latitude), par nom de page de commune
+  const GEO = {
+    'neuchatel':[6.931,46.992], 'la-chaux-de-fonds':[6.826,47.100], 'le-locle':[6.749,47.057], 'peseux':[6.889,46.987],
+    'corcelles':[6.873,46.984], 'boudry':[6.838,46.950], 'marin-epagnier':[7.003,47.012], 'cortaillod':[6.845,46.941],
+    'val-de-ruz':[6.902,47.058], 'val-de-travers':[6.583,46.903], 'hauterive':[6.972,47.010], 'saint-blaise':[6.988,47.015],
+    'fribourg':[7.161,46.806], 'bulle':[7.057,46.619], 'morat':[7.117,46.928], 'murten':[7.117,46.928],
+    'estavayer-le-lac':[6.846,46.849], 'villars-sur-glane':[7.118,46.791], 'dudingen':[7.190,46.849], 'duedingen':[7.190,46.849],
+    'marly':[7.161,46.777], 'romont':[6.919,46.697], 'chatel-saint-denis':[6.901,46.527], 'givisiez':[7.126,46.812],
+    'belfaux':[7.106,46.822], 'kerzers':[7.195,46.976],
+  };
+  const LACS = [
+    [[6.64,46.79],[6.72,46.835],[6.80,46.885],[6.85,46.93],[6.90,46.968],[6.95,46.99],[7.03,47.008],[7.035,46.998],[6.98,46.965],[6.93,46.928],[6.87,46.875],[6.80,46.83],[6.73,46.792],[6.66,46.772]],
+    [[7.035,46.898],[7.06,46.922],[7.10,46.945],[7.125,46.952],[7.118,46.936],[7.075,46.912],[7.045,46.894]],
+    [[7.065,46.628],[7.085,46.66],[7.105,46.698],[7.118,46.728],[7.104,46.724],[7.083,46.685],[7.06,46.642]],
+  ];
+  const W = 640, H = 760, LON = [6.52, 7.28], LAT = [46.47, 47.15];
+  const k = Math.cos(46.8 * Math.PI / 180);
+  const ech = Math.min(W / ((LON[1] - LON[0]) * k), H / (LAT[1] - LAT[0]));
+  const ox = (W - (LON[1] - LON[0]) * k * ech) / 2, oy = (H - (LAT[1] - LAT[0]) * ech) / 2;
+  const xy = ([lon, lat]) => [ox + (lon - LON[0]) * k * ech, oy + (LAT[1] - lat) * ech];
+  const kmEntre = (a, b) => Math.round(Math.hypot((a[0] - b[0]) * k * 111.32, (a[1] - b[1]) * 110.57));
+  const slug = a => a.getAttribute('href').split('/').pop().replace('.html', '');
+
+  // Agences et communes, depuis les fiches
+  const agences = fiches.map((f, i) => {
+    const nom = f.querySelector('h3').textContent.trim();
+    const liens = [...f.querySelectorAll('.towns a')].filter(a => GEO[slug(a)]);
+    return { i, nom, tel: f.querySelector('.tel'), mail: f.querySelector('.mail'), resp: f.querySelector('.resp')?.textContent.trim(),
+             communes: liens.map(a => ({ nom: a.textContent.trim(), href: a.getAttribute('href'), geo: GEO[slug(a)], lien: a })) };
+  });
+  agences.forEach(a => { a.siege = a.communes[0]; });   // la première commune de chaque fiche est la ville de l'agence
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, at = {}, txt) => { const n = document.createElementNS(NS, tag); for (const c in at) n.setAttribute(c, at[c]); if (txt != null) n.textContent = txt; return n; };
+  const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, class: 'carte-svg', role: 'group', 'aria-label': T.titre });
+  // Zones desservies : l'enveloppe des communes de chaque agence, arrondie par un trait épais
+  const enveloppe = pts => {
+    const p = [...pts].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    const x = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const bas = [], haut = [];
+    for (const q of p) { while (bas.length > 1 && x(bas[bas.length - 2], bas[bas.length - 1], q) <= 0) bas.pop(); bas.push(q); }
+    for (const q of p.reverse()) { while (haut.length > 1 && x(haut[haut.length - 2], haut[haut.length - 1], q) <= 0) haut.pop(); haut.push(q); }
+    return bas.slice(0, -1).concat(haut.slice(0, -1));
+  };
+  agences.forEach(a => {
+    const pts = enveloppe(a.communes.map(c => xy(c.geo)));
+    a.zone = el('path', { d: 'M' + pts.map(p => p.map(v => v.toFixed(1)).join(' ')).join('L') + 'Z', class: 'zone' });
+    svg.append(a.zone);
+  });
+  LACS.forEach((l, i) => {
+    const pts = l.map(xy);
+    svg.append(el('path', { d: 'M' + pts.map(p => p.map(v => v.toFixed(1)).join(' ')).join('L') + 'Z', class: 'lac' }));
+    if (i < 2) { const [cx, cy] = pts.reduce((s, p) => [s[0] + p[0] / pts.length, s[1] + p[1] / pts.length], [0, 0]);
+      const t = el('text', { x: cx, y: cy, class: 'lac-t' + (i ? ' l2' : ''), 'text-anchor': 'middle', transform: `rotate(${i ? -32 : -38} ${cx} ${cy})` }, T.lacs[i]);
+      svg.append(t); }
+  });
+  const trajet = el('path', { class: 'trajet', pathLength: 1 });
+  svg.append(trajet);
+  // Une seule étiquette par grappe de communes voisines : les autres apparaissent au survol ou à la sélection
+  const toujours = new Set(['neuchatel', 'la-chaux-de-fonds', 'le-locle', 'val-de-travers', 'boudry', 'fribourg', 'bulle', 'morat', 'murten', 'estavayer-le-lac', 'romont', 'chatel-saint-denis', 'kerzers', 'dudingen', 'duedingen', 'val-de-ruz']);
+  // Sur téléphone, ces noms-là ne s'affichent qu'au toucher, faute de place
+  const petit = matchMedia('(max-width: 560px)').matches;   // sur téléphone, la carte est réduite : points plus gros
+  const mineurs = new Set(['le-locle', 'val-de-ruz', 'boudry', 'kerzers', 'dudingen', 'duedingen', 'chatel-saint-denis']);
+  const points = [];
+  agences.forEach(a => a.communes.forEach((c, j) => {
+    const [x, y] = xy(c.geo), siege = j === 0, s = slug(c.lien);
+    const g = el('g', { class: 'pt' + (siege ? ' siege' : '') + (toujours.has(s) ? ' nomme' : '') + (mineurs.has(s) ? ' mineur' : ''), tabindex: 0, role: 'button', 'aria-label': c.nom,
+                        style: `--d:${kmEntre(c.geo, a.siege.geo)}` });
+    if (siege) g.append(el('circle', { cx: x, cy: y, r: petit ? 22 : 15, class: 'halo' }));
+    g.append(el('circle', { cx: x, cy: y, r: (siege ? 8 : 6) * (petit ? 1.5 : 1), class: 'dot' }));
+    const gauche = x > W * .62;
+    const ecart = petit ? 17 : 12;
+    g.append(el('text', { x: x + (gauche ? -ecart : ecart), y: y + (petit ? 8 : 4), class: 'nom', 'text-anchor': gauche ? 'end' : 'start' }, c.nom));
+    svg.append(g);
+    const p = { g, c, a, x, y };
+    points.push(p);
+    g.addEventListener('click', () => choisir(p));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choisir(p); } });
+    g.addEventListener('mouseenter', () => g.classList.add('survol'));
+    g.addEventListener('mouseleave', () => g.classList.remove('survol'));
+    c.lien.addEventListener('mouseenter', () => g.classList.add('survol'));
+    c.lien.addEventListener('mouseleave', () => g.classList.remove('survol'));
+  }));
+  // Les grappes passent au-dessus des zones et des lacs, les agences au-dessus de tout
+  points.filter(p => p.g.classList.contains('siege')).forEach(p => svg.append(p.g));
+
+  const panneau = document.createElement('div');
+  panneau.className = 'carte-info';
+  panneau.setAttribute('aria-live', 'polite');
+  const accueil = () => {
+    panneau.innerHTML = `<p class="t">${T.titre}</p><p class="aide">${T.aide}</p>` + agences.map(a =>
+      `<div class="ag"><b>${T.agence(a.nom)}</b><span>${a.resp || ''}</span><a href="${a.tel.getAttribute('href')}">${a.tel.textContent}</a></div>`).join('');
+  };
+  let actif = null;
+  function choisir(p){
+    if (actif) actif.g.classList.remove('on');
+    actif = p; p.g.classList.add('on');
+    agences.forEach(a => a.zone.classList.toggle('on', a === p.a));
+    const s = xy(p.a.siege.geo), km = kmEntre(p.c.geo, p.a.siege.geo);
+    // Trajet : une courbe douce de l'agence à la commune, qui se dessine
+    const mx = (s[0] + p.x) / 2 + (p.y - s[1]) * .18, my = (s[1] + p.y) / 2 - (p.x - s[0]) * .18;
+    trajet.setAttribute('d', `M${s[0].toFixed(1)} ${s[1].toFixed(1)}Q${mx.toFixed(1)} ${my.toFixed(1)} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`);
+    trajet.classList.remove('trace'); void trajet.getBBox(); trajet.classList.toggle('trace', km > 0);
+    panneau.innerHTML = `<p class="t">${p.c.nom}</p><p class="dist">${km ? T.km(km) : T.ici}</p>
+      <div class="ag on"><b>${T.agence(p.a.nom)}</b><span>${p.a.resp || ''}</span>
+      <a class="tel" href="${p.a.tel.getAttribute('href')}">${p.a.tel.textContent}</a>
+      <a class="mail" href="${p.a.mail.getAttribute('href')}">${p.a.mail.textContent}</a></div>
+      <a class="more" href="${p.c.href}">${T.voir(p.c.nom)}</a>`;
+    // Sur téléphone, la fiche est sous la carte : on l'amène à l'écran
+    if (matchMedia('(max-width: 900px)').matches) panneau.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest'});
+  }
+  accueil();
+  const fig = document.createElement('figure');
+  fig.className = 'carte-fig';
+  fig.append(svg, Object.assign(document.createElement('figcaption'), { textContent: T.legende }));
+  zone.append(fig, panneau);
+  zone.hidden = false;
+})();
+
 // Mouvement (v7) : barre d'avancement, en-tête compact, titres mot par mot, blocs en cascade,
 // chiffres qui défilent, étapes qui s'allument, cartes inclinées à la souris.
 // Avec « réduire les animations », seuls la barre (sans transition) et l'en-tête compact restent.
@@ -407,7 +545,7 @@
 
   // Blocs révélés, avec un décalage dans chaque groupe
   const groupes = ['.head .intro', '.copy .lead', '.proof > span', '.situations > *', '.recap', '.nomenclature > li', '.trade', '.cote > li',
-    '.atouts > li', '.quotes > *', '.agency', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
+    '.atouts > li', '.quotes > *', '.carte', '.agency', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
   const vus = new Set();
   groupes.forEach(sel => document.querySelectorAll(sel).forEach(el => {
     if (vus.has(el) || el.closest('.stage')) return;

@@ -13,6 +13,23 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<!-- Le moteur 3D se télécharge dès la lecture de l'en-tête, sans attendre le reste de la page -->
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" crossorigin>
+<link rel="canonical" href="https://swissdem.vercel.app/">
+<link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/">
+<link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/">
+<link rel="alternate" hreflang="x-default" href="https://swissdem.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SwissDem Transports">
+<meta property="og:locale" content="fr_CH">
+<meta property="og:title" content="SwissDem Transports – Déménagement à Neuchâtel et Fribourg">
+<meta property="og:url" content="https://swissdem.vercel.app/">
+<meta property="og:image" content="https://swissdem.vercel.app/og-swissdem.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="Déménagement, nettoyage de fin de bail et garde-meubles dans les cantons de Neuchâtel et Fribourg. Prix du devis garanti, équipe salariée, devis gratuit sous 24 heures ouvrables.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MovingCompany", "name": "SwissDem Transports", "url": "https://swissdem.vercel.app/", "logo": "https://swissdem.vercel.app/marque/logo-swissdem.webp", "image": "https://swissdem.vercel.app/og-swissdem.jpg", "areaServed": [{"@type": "AdministrativeArea", "name": "Canton de Neuchâtel"}, {"@type": "AdministrativeArea", "name": "Canton de Fribourg"}], "knowsLanguage": ["fr", "de"], "department": [{"@type": "MovingCompany", "name": "SwissDem Transports Neuchâtel", "telephone": "+41325604925", "email": "neuchatel@swissdem.ch", "address": {"@type": "PostalAddress", "addressLocality": "Neuchâtel", "addressRegion": "NE", "addressCountry": "CH"}}, {"@type": "MovingCompany", "name": "SwissDem Transports Fribourg", "telephone": "+41265611025", "email": "fribourg@swissdem.ch", "address": {"@type": "PostalAddress", "addressLocality": "Fribourg", "addressRegion": "FR", "addressCountry": "CH"}}]}</script>
 </head>
 <body>
 
@@ -42,7 +59,7 @@
         <p class="lead">La même équipe salariée visite, emballe, transporte, nettoie et stocke. Le prix inscrit sur le devis est celui que vous payez.</p>
       </div>
       <figure class="stage" data-camion data-label="Le camion SwissDem en 3D. Glissez ou utilisez les flèches pour le faire pivoter." data-services="Déménagement|Nettoyage|Garde-meubles" data-site="swissdem.ch" data-logo="marque/logo-swissdem.webp">
-        <img hidden src="images/swissdem-camion.webp" alt="Un camion SwissDem garé devant un immeuble ancien">
+        <img width="1020" height="1020" class="poster" src="images/swissdem-camion.webp" alt="Un camion SwissDem garé devant un immeuble ancien" fetchpriority="high">
         <figcaption class="hint" aria-hidden="true">Glissez pour faire pivoter</figcaption>
       </figure>
       <div class="cartouche" id="devis">
@@ -154,7 +171,7 @@
           <p class="how">Prix calculé sur le volume en m³, annoncé avant de signer.</p>
           <a class="more" href="demenagement.html">Le déménagement en détail</a>
         </div>
-        <figure><img src="images/swissdem-camion.webp" alt="Un camion SwissDem garé devant un immeuble ancien" loading="lazy"></figure>
+        <figure><img width="1020" height="1020" src="images/swissdem-camion.webp" alt="Un camion SwissDem garé devant un immeuble ancien" loading="lazy"></figure>
       </article>
       <article class="trade">
         <div>
@@ -164,7 +181,7 @@
           <p class="how">Forfait fixe selon le nombre de pièces.</p>
           <a class="more" href="nettoyage.html">Le nettoyage en détail</a>
         </div>
-        <figure><img src="images/nettoyage-fenetre.jpg" alt="Une employée gantée nettoie une fenêtre" loading="lazy"><figcaption>Photo provisoire, à remplacer par une photo de SwissDem.</figcaption></figure>
+        <figure><img width="1400" height="933" src="images/nettoyage-fenetre.jpg" alt="Une employée gantée nettoie une fenêtre" loading="lazy"></figure>
       </article>
       <article class="trade">
         <div>
@@ -174,7 +191,7 @@
           <p class="how">Tarif mensuel au m³ stocké.</p>
           <a class="more" href="garde-meubles.html">Le garde-meubles en détail</a>
         </div>
-        <figure><img src="images/garde-meubles-etageres.jpg" alt="Étagères chargées de cartons dans un dépôt" loading="lazy"><figcaption>Photo provisoire, à remplacer par une photo de SwissDem.</figcaption></figure>
+        <figure><img width="1800" height="1200" src="images/garde-meubles-etageres.jpg" alt="Étagères chargées de cartons dans un dépôt" loading="lazy"></figure>
       </article>
     </div>
   </section>
@@ -224,7 +241,6 @@
         <figure><blockquote>« Du premier contact à la fin du déménagement, tout s'est déroulé parfaitement. »</blockquote><figcaption><b>Julien M.</b>, déménagement</figcaption></figure>
       </div>
       <!-- En production : <div data-titanor-avis="JETON-AVIS-SWISSDEM" data-lang="fr" data-max="4"></div><script src="https://www.titanor.app/widget-avis.js" async></script> -->
-      <p class="slot">Emplacement du widget d'avis Titanor : les derniers avis Google remplaceront ces extraits automatiquement. Le lien « Lire tous les avis sur Google » sera branché sur le profil Google de SwissDem.</p>
     </div>
   </section>
 
@@ -232,9 +248,10 @@
   <section id="agences">
     <div class="shell">
       <h2>Votre agence, votre canton</h2>
+      <div class="carte" data-carte hidden></div>
       <div class="agencies">
         <article class="agency">
-          <img src="images/agence-neuchatel-lac.jpg" alt="Neuchâtel au bord du lac, les Alpes à l'horizon" loading="lazy">
+          <img width="1400" height="1050" src="images/agence-neuchatel-lac.jpg" alt="Neuchâtel au bord du lac, les Alpes à l'horizon" loading="lazy">
           <div class="in">
             <h3>Neuchâtel</h3>
             <a class="tel" href="tel:+41325604925">032 560 49 25</a>
@@ -244,7 +261,7 @@
           </div>
         </article>
         <article class="agency">
-          <img src="images/agence-fribourg.jpg" alt="La vieille ville de Fribourg et la cathédrale au-dessus de la Sarine" loading="lazy">
+          <img width="1400" height="933" src="images/agence-fribourg.jpg" alt="La vieille ville de Fribourg et la cathédrale au-dessus de la Sarine" loading="lazy">
           <div class="in">
             <h3>Fribourg</h3>
             <a class="tel" href="tel:+41265611025">026 561 10 25</a>
