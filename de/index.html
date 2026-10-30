@@ -9,6 +9,7 @@
 <meta name="description" content="Umzug, Endreinigung und Möbellager in den Kantonen Neuenburg und Freiburg. Offertpreis garantiert, festangestelltes Team, Gratis-Offerte innert 24 Stunden an Werktagen.">
 <link rel="preload" href="../fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../site.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
 
@@ -30,22 +31,18 @@
 </header>
 
 <main>
-  <!-- Planche : le logement en plan, la demande de devis dans le cartouche -->
-  <div class="board">
+  <!-- Erster Bildschirm: der SwissDem-Lastwagen in 3D, die Offertanfrage darunter -->
+  <div class="board hero">
     <div class="shell board-in">
       <div class="copy">
+        <p class="eyebrow"><span class="dots" aria-hidden="true"><i class="m"></i><i class="c"></i><i class="s"></i></span>Neuenburg · Freiburg</p>
         <h1>Ihr Umzug, Raum für Raum.</h1>
         <p class="lead">Dasselbe festangestellte Team besichtigt, packt ein, transportiert, reinigt und lagert. Der Preis in der Offerte ist der Preis, den Sie bezahlen.</p>
       </div>
-      <ul class="legend" aria-label="Was wir übernehmen, auf dem Plan anzeigen">
-        <li><button type="button" data-svc="m" aria-pressed="false"><span class="num" aria-hidden="true">1</span><span class="sw move" aria-hidden="true"></span><span><b>Umzug</b><small>Einpacken, Abbau, Transport, Aufbau</small></span></button></li>
-        <li><button type="button" data-svc="c" aria-pressed="false"><span class="num" aria-hidden="true">2</span><span class="sw clean" aria-hidden="true"></span><span><b>Endreinigung</b><small>Mit Abnahmegarantie gegenüber der Verwaltung</small></span></button></li>
-        <li><button type="button" data-svc="s" aria-pressed="false"><span class="num" aria-hidden="true">3</span><span class="sw store" aria-hidden="true"></span><span><b>Möbellager</b><small>Geschlossenes Lager, Inventar beim Einlagern</small></span></button></li>
-      </ul>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-plan='{"pieces":{"piece":"Wohnraum","hall":"Korridor","sejour":"Wohnzimmer","chambre":"Zimmer","cuisine":"Küche","bains":"Bad","cave":"Keller","galetas":"Estrich","open":"Grossraumbüro","reunion":"Sitzungszimmer","bureau":"Büro","archives":"Archiv","sanitaires":"WC"},"notes":{"m":"Verpackt, abgebaut, erfasst","c":"Gereinigt, Abgabe unterschrieben","s":"Eingelagert, Fotoinventar"},"echelle":"Massstab indikativ"}'><title id="plan-t">Beispielplan Ihrer Wohnung, jeder Raum in der Farbe der Dienstleistung, die sich darum kümmert</title></svg>
-        <p class="plan-cap">Beispielplan und -masse: Sie folgen der Wohnung, die Sie in der Offerte wählen.</p>
-      </div>
+      <figure class="stage" data-camion data-label="Der SwissDem-Lastwagen in 3D. Ziehen oder die Pfeiltasten verwenden, um ihn zu drehen." data-services="Umzug|Reinigung|Möbellager" data-site="swissdem.ch" data-logo="../marque/logo-swissdem.webp">
+        <img hidden src="../images/swissdem-camion.webp" alt="Ein SwissDem-Lastwagen vor einem Altbau">
+        <figcaption class="hint" aria-hidden="true">Ziehen zum Drehen</figcaption>
+      </figure>
       <div class="cartouche" id="devis">
         <!-- Le formulaire ouvre la demande Titanor de SwissDem (jeton à renseigner) -->
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -71,6 +68,27 @@
       <span>Filialen in <b>Neuenburg</b> und <b>Freiburg</b></span>
     </p>
   </div>
+
+  <!-- Der Plan: jeder Raum in der Farbe des zuständigen Service -->
+  <section id="plan">
+    <div class="shell">
+      <div class="head">
+        <h2>Jeder Raum, der richtige Service</h2>
+        <p class="intro">Tippen Sie auf einen Service, um die Räume zu sehen, um die er sich kümmert. Der Plan folgt der Wohnung, die Sie in der Offerte wählen.</p>
+      </div>
+      <div class="plan-card">
+      <ul class="legend" aria-label="Was wir übernehmen, auf dem Plan anzeigen">
+        <li><button type="button" data-svc="m" aria-pressed="false"><span class="num" aria-hidden="true">1</span><span class="sw move" aria-hidden="true"></span><span><b>Umzug</b><small>Einpacken, Abbau, Transport, Aufbau</small></span></button></li>
+        <li><button type="button" data-svc="c" aria-pressed="false"><span class="num" aria-hidden="true">2</span><span class="sw clean" aria-hidden="true"></span><span><b>Endreinigung</b><small>Mit Abnahmegarantie gegenüber der Verwaltung</small></span></button></li>
+        <li><button type="button" data-svc="s" aria-pressed="false"><span class="num" aria-hidden="true">3</span><span class="sw store" aria-hidden="true"></span><span><b>Möbellager</b><small>Geschlossenes Lager, Inventar beim Einlagern</small></span></button></li>
+      </ul>
+      <div class="plan-wrap">
+        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-plan='{"pieces":{"piece":"Wohnraum","hall":"Korridor","sejour":"Wohnzimmer","chambre":"Zimmer","cuisine":"Küche","bains":"Bad","cave":"Keller","galetas":"Estrich","open":"Grossraumbüro","reunion":"Sitzungszimmer","bureau":"Büro","archives":"Archiv","sanitaires":"WC"},"notes":{"m":"Verpackt, abgebaut, erfasst","c":"Gereinigt, Abgabe unterschrieben","s":"Eingelagert, Fotoinventar"},"echelle":"Massstab indikativ"}'><title id="plan-t">Beispielplan Ihrer Wohnung, jeder Raum in der Farbe der Dienstleistung, die sich darum kümmert</title></svg>
+        <p class="plan-cap">Beispielplan und -masse: Sie folgen der Wohnung, die Sie in der Offerte wählen.</p>
+      </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Engagements : un engagement vérifiable chacun -->
   <section class="band-white">
@@ -225,5 +243,6 @@
 <div class="callbar"><a class="btn move" href="#devis">Gratis-Offerte</a><a class="btn line" href="tel:+41265611025">Anrufen</a></div>
 
 <script src="../site.js"></script>
+<script type="module" src="../camion3d.js"></script>
 </body>
 </html>

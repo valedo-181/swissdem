@@ -8,6 +8,7 @@
 <meta name="description" content="Déménagement, nettoyage de fin de bail et garde-meubles dans les cantons de Neuchâtel et Fribourg. Prix du devis garanti, équipe salariée, devis gratuit sous 24 heures ouvrables.">
 <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
 
@@ -29,22 +30,18 @@
 </header>
 
 <main>
-  <!-- Planche : le logement en plan, la demande de devis dans le cartouche -->
-  <div class="board">
+  <!-- Premier écran : le camion SwissDem en 3D sur son plateau, la demande de devis posée dessous -->
+  <div class="board hero">
     <div class="shell board-in">
       <div class="copy">
+        <p class="eyebrow"><span class="dots" aria-hidden="true"><i class="m"></i><i class="c"></i><i class="s"></i></span>Neuchâtel · Fribourg</p>
         <h1>Votre déménagement, pièce par pièce.</h1>
         <p class="lead">La même équipe salariée visite, emballe, transporte, nettoie et stocke. Le prix inscrit sur le devis est celui que vous payez.</p>
       </div>
-      <ul class="legend" aria-label="Ce que nous prenons en charge, à afficher sur le plan">
-        <li><button type="button" data-svc="m" aria-pressed="false"><span class="num" aria-hidden="true">1</span><span class="sw move" aria-hidden="true"></span><span><b>Déménagement</b><small>Emballage, démontage, transport, remontage</small></span></button></li>
-        <li><button type="button" data-svc="c" aria-pressed="false"><span class="num" aria-hidden="true">2</span><span class="sw clean" aria-hidden="true"></span><span><b>Nettoyage de fin de bail</b><small>Avec garantie de restitution face à la régie</small></span></button></li>
-        <li><button type="button" data-svc="s" aria-pressed="false"><span class="num" aria-hidden="true">3</span><span class="sw store" aria-hidden="true"></span><span><b>Garde-meubles</b><small>Dépôt fermé, inventaire à l'entrée</small></span></button></li>
-      </ul>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-plan='{"pieces":{"piece":"Pièce principale","hall":"Hall","sejour":"Séjour","chambre":"Chambre","cuisine":"Cuisine","bains":"Bains","cave":"Cave","galetas":"Galetas","open":"Open space","reunion":"Salle de réunion","bureau":"Bureau","archives":"Archives","sanitaires":"Sanitaires"},"notes":{"m":"Emballé, démonté, inventorié","c":"Nettoyé, état des lieux signé","s":"Stocké au dépôt, inventaire photo"},"echelle":"Échelle indicative"}'><title id="plan-t">Plan d'exemple de votre logement, chaque pièce colorée selon le service qui s'en occupe</title></svg>
-        <p class="plan-cap">Plan et cotes d'exemple : ils suivent le logement choisi dans le devis.</p>
-      </div>
+      <figure class="stage" data-camion data-label="Le camion SwissDem en 3D. Glissez ou utilisez les flèches pour le faire pivoter." data-services="Déménagement|Nettoyage|Garde-meubles" data-site="swissdem.ch" data-logo="marque/logo-swissdem.webp">
+        <img hidden src="images/swissdem-camion.webp" alt="Un camion SwissDem garé devant un immeuble ancien">
+        <figcaption class="hint" aria-hidden="true">Glissez pour faire pivoter</figcaption>
+      </figure>
       <div class="cartouche" id="devis">
         <!-- Le formulaire ouvre la demande Titanor de SwissDem (jeton à renseigner) -->
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -70,6 +67,27 @@
       <span>Agences à <b>Neuchâtel</b> et à <b>Fribourg</b></span>
     </p>
   </div>
+
+  <!-- Le plan : chaque pièce colorée selon le service qui s'en occupe -->
+  <section id="plan">
+    <div class="shell">
+      <div class="head">
+        <h2>Chaque pièce, le bon service</h2>
+        <p class="intro">Touchez un service pour voir les pièces dont il s'occupe. Le plan suit le logement choisi dans le devis.</p>
+      </div>
+      <div class="plan-card">
+      <ul class="legend" aria-label="Ce que nous prenons en charge, à afficher sur le plan">
+        <li><button type="button" data-svc="m" aria-pressed="false"><span class="num" aria-hidden="true">1</span><span class="sw move" aria-hidden="true"></span><span><b>Déménagement</b><small>Emballage, démontage, transport, remontage</small></span></button></li>
+        <li><button type="button" data-svc="c" aria-pressed="false"><span class="num" aria-hidden="true">2</span><span class="sw clean" aria-hidden="true"></span><span><b>Nettoyage de fin de bail</b><small>Avec garantie de restitution face à la régie</small></span></button></li>
+        <li><button type="button" data-svc="s" aria-pressed="false"><span class="num" aria-hidden="true">3</span><span class="sw store" aria-hidden="true"></span><span><b>Garde-meubles</b><small>Dépôt fermé, inventaire à l'entrée</small></span></button></li>
+      </ul>
+      <div class="plan-wrap">
+        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-plan='{"pieces":{"piece":"Pièce principale","hall":"Hall","sejour":"Séjour","chambre":"Chambre","cuisine":"Cuisine","bains":"Bains","cave":"Cave","galetas":"Galetas","open":"Open space","reunion":"Salle de réunion","bureau":"Bureau","archives":"Archives","sanitaires":"Sanitaires"},"notes":{"m":"Emballé, démonté, inventorié","c":"Nettoyé, état des lieux signé","s":"Stocké au dépôt, inventaire photo"},"echelle":"Échelle indicative"}'><title id="plan-t">Plan d'exemple de votre logement, chaque pièce colorée selon le service qui s'en occupe</title></svg>
+        <p class="plan-cap">Plan et cotes d'exemple : ils suivent le logement choisi dans le devis.</p>
+      </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Engagements : un engagement vérifiable chacun -->
   <section class="band-white">
@@ -223,5 +241,6 @@
 <div class="callbar"><a class="btn move" href="#devis">Devis gratuit</a><a class="btn line" href="tel:+41325604925">Appeler</a></div>
 
 <script src="site.js"></script>
+<script type="module" src="camion3d.js"></script>
 </body>
 </html>
