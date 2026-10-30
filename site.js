@@ -557,6 +557,22 @@
   maj();
 })();
 
+// Vidéos (v7) : muettes et en boucle, chargées seulement à l'approche et mises en pause hors de l'écran.
+// Avec « réduire les animations », pas de lecture automatique : la photo reste affichée avec les commandes de lecture.
+(function(){
+  const videos = [...document.querySelectorAll('video.video-auto[data-src]')];
+  if (!videos.length) return;
+  const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const charger = v => { if (!v.src) { v.src = v.dataset.src; v.preload = 'auto'; } };
+  if (reduit || !('IntersectionObserver' in window)) { videos.forEach(v => { v.controls = true; v.preload = 'none'; v.src = v.dataset.src; }); return; }
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { charger(v); v.play().catch(() => { v.controls = true; }); }
+    else if (!v.paused) v.pause();
+  }), {rootMargin: '200px 0px'});
+  videos.forEach(v => io.observe(v));
+})();
+
 // Mouvement (v7) : barre d'avancement, en-tête compact, titres mot par mot, blocs en cascade,
 // chiffres qui défilent, étapes qui s'allument, cartes inclinées à la souris.
 // Avec « réduire les animations », seuls la barre (sans transition) et l'en-tête compact restent.
