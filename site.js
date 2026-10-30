@@ -711,6 +711,7 @@
   document.body.append(barre);
   const cote = !reduit && document.querySelector('.cote');
   const etapes = cote ? [...cote.children] : [];
+  const cartes = reduit ? [] : [...document.querySelectorAll('.panels > li')];
 
   let attente = false;
   function defiler(){
@@ -718,6 +719,13 @@
     const h = document.documentElement.scrollHeight - innerHeight;
     barre.style.setProperty('--p', h > 0 ? (scrollY / h).toFixed(4) : 0);
     if (top) top.classList.toggle('compact', scrollY > 40);
+    // « Ce qui est compris » : en descendant, les cartes s'allument l'une après l'autre, dans l'ordre de lecture
+    if (cartes.length) {
+      const r = cartes[0].parentElement.getBoundingClientRect();
+      const p = (innerHeight * .8 - r.top) / (r.height + innerHeight * .3);
+      const i = p > 0 && p < 1 ? Math.min(cartes.length - 1, Math.floor(p * cartes.length)) : -1;
+      cartes.forEach((c, k) => c.classList.toggle('actif', k === i));
+    }
     if (cote) {
       // 0 quand le haut des étapes passe à 80 % de l'écran, 1 quand il atteint 30 %
       const r = cote.getBoundingClientRect(), p = Math.min(1, Math.max(0, (innerHeight * .8 - r.top) / (innerHeight * .5)));
@@ -748,7 +756,7 @@
 
   // Blocs révélés, avec un décalage dans chaque groupe
   const groupes = ['.head .intro', '.copy .lead', '.proof > span', '.situations > *', '.recap', '.nomenclature > li', '.trade', '.cote > li',
-    '.atouts > li', '.quotes > *', '.carte', '.agency', '.check > li', '.marque-geante', '.situ', '.inv', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
+    '.atouts > li', '.quotes > *', '.carte', '.agency', '.check > li', '.marque-geante', '.situ', '.inv', '.panels > li', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
   const vus = new Set();
   groupes.forEach(sel => document.querySelectorAll(sel).forEach(el => {
     if (vus.has(el) || el.closest('.stage')) return;

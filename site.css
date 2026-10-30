@@ -810,3 +810,25 @@ section h2::after{content:"";display:block;width:76px;height:5px;margin-top:22px
   .inv td.out{grid-column:3;grid-row:1 / span 2}
   .inv-t{flex-wrap:wrap}
 }
+
+/* « Ce qui est compris » (v7) : entrée en cascade, coche qui se dessine, carte du milieu de l'écran mise en avant */
+.panels[data-svc="move"]{--svc:var(--move);--svc-tint:var(--move-tint)}
+.panels[data-svc="clean"]{--svc:var(--clean);--svc-tint:#dcf1e1}
+.panels[data-svc="store"]{--svc:var(--store);--svc-tint:var(--store-tint)}
+.panels li{position:relative;overflow:hidden;padding-right:72px;transition:box-shadow .35s var(--ease),transform .35s var(--ease)}
+.panels li::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:0 4px 4px 0;background:var(--svc,var(--ink));transform:scaleY(0);transition:transform .45s var(--ease)}
+.panels .coche{position:absolute;top:24px;right:24px;width:34px;height:34px;border-radius:50%;background:var(--svc-tint,var(--soft));transition:background .35s var(--ease)}
+.panels .coche svg{width:100%;height:100%;fill:none;stroke:var(--svc,var(--ink));stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.panels .coche circle{stroke-width:1.5;opacity:.45}
+.panels li.actif{box-shadow:var(--sh-3);transform:translateY(-3px)}
+.panels li.actif::before{transform:scaleY(1)}
+.panels li.actif .coche{background:var(--svc,var(--ink))}
+.panels li.actif .coche svg{stroke:var(--white)}
+.anim .panels .coche circle,.anim .panels .coche path{stroke-dasharray:1;stroke-dashoffset:1}
+.anim .panels li.vu .coche circle{stroke-dashoffset:0;transition:stroke-dashoffset .8s var(--ease) calc(var(--d,0) * 80ms + .2s)}
+.anim .panels li.vu .coche path{stroke-dashoffset:0;transition:stroke-dashoffset .45s var(--ease) calc(var(--d,0) * 80ms + .7s)}
+.anim .panels li.rv:nth-child(odd){transform:translate(-24px,28px)}
+.anim .panels li.rv:nth-child(even){transform:translate(24px,28px)}
+.anim .panels li.rv.vu{transform:none}
+.anim .panels li.rv.vu.actif{transform:translateY(-3px)}
+@media (prefers-reduced-motion:reduce){.panels li,.panels li::before{transition:none}}
