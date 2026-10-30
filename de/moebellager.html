@@ -54,9 +54,14 @@
         <h1 class="fit" style="--n:9">Ihre Möbel sicher gelagert, so lange wie nötig</h1>
         <p class="lead">Zwischen zwei Mietverträgen, während eines Umbaus oder für mehrere Monate: Wir laden, lagern in einem geschlossenen Lager und liefern an Ihre neue Adresse.</p>
       </div>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="p35" data-iso="s" data-plan='{"pieces":{"piece":"Wohnraum","hall":"Korridor","sejour":"Wohnzimmer","chambre":"Zimmer","cuisine":"Küche","bains":"Bad","cave":"Keller","galetas":"Estrich","open":"Grossraumbüro","reunion":"Sitzungszimmer","bureau":"Büro","archives":"Archiv","sanitaires":"WC"},"notes":{"m":"Verpackt, abgebaut, erfasst","c":"Gereinigt, Abgabe unterschrieben","s":"Eingelagert, Fotoinventar"},"echelle":"Massstab indikativ"}'><title id="plan-t">Beispielplan einer Wohnung, farbig die Räume, um die sich diese Dienstleistung kümmert</title></svg>
-        <p class="plan-cap">Beispielplan und -masse: farbig die Räume, um die sich diese Dienstleistung kümmert.</p>
+      <div class="plan-wrap volume-wrap" data-volume='{&quot;sol&quot;: &quot;≈ {l} m × {p} m Grundfläche&quot;, &quot;haut&quot;: &quot;auf {h} m Höhe&quot;, &quot;equiv&quot;: [[4, &quot;ein paar Möbel und Kartons&quot;], [12, &quot;ein Studio&quot;], [27, &quot;eine 2,5-Zimmer-Wohnung&quot;], [36, &quot;eine 3,5-Zimmer-Wohnung&quot;], [45, &quot;eine 4,5-Zimmer-Wohnung&quot;], [999, &quot;eine 5,5-Zimmer-Wohnung oder ein Haus&quot;]], &quot;comme&quot;: &quot;Wie {x}&quot;, &quot;mon&quot;: &quot;Mein Inventar&quot;, &quot;personne&quot;: &quot;Silhouette von 1,75 m, als Massstab&quot;}'>
+        <div class="vol-tete"><p class="t">Ihr Volumen, wie es wirklich ist</p><p class="vol-m3"><b data-m3>23</b> m³</p></div>
+        <svg class="vol-svg" viewBox="0 0 900 520" role="img" aria-label="Ziehen Sie den Regler: So viel Platz brauchen Ihre Sachen im Lager, gestapelt auf 2,4 m Höhe."></svg>
+        <p class="vol-info"><span data-equiv></span><span data-sol></span></p>
+        <label class="vol-range"><span>Einzulagerndes Volumen</span><input type="range" min="1" max="50" step="1" value="23"></label>
+        <div class="vol-presets"><button class="chip" type="button" data-v="3">Ein paar Kartons</button><button class="chip" type="button" data-v="9">Studio</button><button class="chip" type="button" data-v="23">2,5 Zimmer</button><button class="chip" type="button" data-v="32">3,5 Zimmer</button><button class="chip" type="button" data-v="41">4,5 Zimmer</button></div>
+        <div class="vol-actions"><a class="more" href="index.html#volume">Volumen Raum für Raum berechnen</a><button class="btn" type="button" data-vol-go>Lager-Offerte vorbereiten</button></div>
+        <p class="plan-cap">Ziehen Sie den Regler: So viel Platz brauchen Ihre Sachen im Lager, gestapelt auf 2,4 m Höhe. Unverbindliche Schätzung: Das tatsächliche Volumen wird bei der Einlagerung gemessen.</p>
       </div>
       <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -67,6 +72,7 @@
           <label>Wohnung<select name="pieces"><option>Studio</option><option>2,5 Zimmer</option><option selected>3,5 Zimmer</option><option>4,5 Zimmer</option><option>5,5 Zimmer und mehr</option><option>Haus</option><option>Büro</option></select></label>
           <label>Wunschtermin<input type="date" name="date"></label>
           <input type="hidden" name="lang" value="de">
+          <input type="hidden" name="volume" value="">
           <div class="go"><button class="btn move" type="submit">Anfrage fortsetzen</button></div>
           <p class="note"><span class="err" role="alert">Bitte beide vierstelligen PLZ angeben. </span>Kostenlos und unverbindlich. Oder rufen Sie an: <a href="tel:+41325604925">032 560 49 25</a> oder <a href="tel:+41265611025">026 561 10 25</a>.</p>
         </form>
@@ -85,6 +91,19 @@
   <section>
     <div class="shell">
       <div class="head">
+        <h2 class="fit" style="--n:10">Für welche Situation?</h2>
+        <p class="intro">Jede Einlagerung hat ihren Grund. Nennen Sie uns Ihren: Dauer, Zugang und Lieferung richten sich danach.</p>
+      </div>
+      <div class="situ" data-situations>
+        <div class="situ-tabs" role="tablist" hidden><button type="button" role="tab" data-situ="entre-baux">Zwischen zwei Mietverträgen</button><button type="button" role="tab" data-situ="travaux">Während einer Renovation</button><button type="button" role="tab" data-situ="etranger">Aufenthalt im Ausland</button><button type="button" role="tab" data-situ="succession">Erbschaft oder Verkauf</button><button type="button" role="tab" data-situ="entreprise">Firmen und Archive</button></div>
+        <div class="situ-panneaux"><article class="situ-p" data-situ="entre-baux"><h3>Zwischen zwei Mietverträgen</h3><p>Die alte Wohnung wird frei, bevor die neue bereit ist. Wir laden am Auszugstag, lagern ein und liefern, sobald Sie die Schlüssel haben.</p><p class="situ-d"><span>Übliche Dauer</span><b>Ein paar Tage bis einige Monate</b></p></article><article class="situ-p" data-situ="travaux"><h3>Während einer Renovation</h3><p>Renovation, Malerarbeiten oder Wasserschaden: Die Räume werden geleert, Ihre Möbel warten im Trockenen und kommen nach der Baustelle zurück.</p><p class="situ-d"><span>Übliche Dauer</span><b>So lange wie die Baustelle</b></p></article><article class="situ-p" data-situ="etranger"><h3>Aufenthalt im Ausland</h3><p>Ein Auslandseinsatz oder ein Sabbatjahr: Sie behalten Ihre Möbel, ohne dafür eine Wohnung zu behalten, mit Zugang nach Vereinbarung.</p><p class="situ-d"><span>Übliche Dauer</span><b>Mehrere Monate</b></p></article><article class="situ-p" data-situ="succession"><h3>Erbschaft oder Verkauf</h3><p>Die Wohnung muss abgegeben oder verkauft werden, bevor alles geteilt ist. Das Fotoinventar hilft der Familie, in Ruhe zu entscheiden.</p><p class="situ-d"><span>Übliche Dauer</span><b>So lange, bis entschieden ist</b></p></article><article class="situ-p" data-situ="entreprise"><h3>Firmen und Archive</h3><p>Büromöbel während eines Firmenumzugs, saisonale Ware, Archive: Abholung und Lieferung Arbeitsplatz für Arbeitsplatz.</p><p class="situ-d"><span>Übliche Dauer</span><b>Nach Bedarf</b></p></article></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
         <h2 class="fit" style="--n:11">Was inbegriffen ist</h2>
         <p class="intro">Sie wissen jederzeit, was gelagert ist, wo, und zu welchen Bedingungen.</p>
       </div>
@@ -97,6 +116,20 @@
         <li><h3>Zugang nach Vereinbarung</h3><p>Brauchen Sie unterwegs einen Karton? Wir holen ihn nach Vereinbarung für Sie heraus.</p></li>
       </ul>
       <figure class="plate-wide"><img width="1800" height="1200" src="../images/garde-meubles-etageres.jpg" alt="Regale mit Kartons in einem Lager" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
+        <h2 class="fit" style="--n:9">Ihr Inventar, Stück für Stück</h2>
+        <p class="intro">Bei der Einlagerung erhält jeder Gegenstand eine Nummer, ein Foto und eine Zustandsbeschreibung. Sie erhalten dieses Inventar, und es gilt bei der Auslagerung.</p>
+      </div>
+      <div class="inv" data-inventaire='{&quot;sortir&quot;: &quot;{n} Gegenstände herauszuholen&quot;, &quot;sortir1&quot;: &quot;1 Gegenstand herauszuholen&quot;, &quot;sortir0&quot;: &quot;Kreuzen Sie an, was Sie während der Einlagerung brauchen könnten.&quot;}'>
+        <p class="inv-t"><span class="inv-badge">Beispielinventar</span><span>SwissDem · Möbellager</span></p>
+        <div class="inv-scroll"><table><thead><tr><th>Nr.</th><th>Gegenstand</th><th>Zustand bei Einlagerung</th><th>Foto</th><th>Herausholen</th></tr></thead><tbody><tr><td class="n">001</td><td>Sofa 3-plätzig, mit Schutzhülle</td><td>Guter Zustand, leichte Abnutzung an der linken Armlehne</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Foto vorhanden</span></td><td class="out"><input type="checkbox" aria-label="Herausholen : Sofa 3-plätzig, mit Schutzhülle"></td></tr><tr><td class="n">002</td><td>Esstisch, Platte demontiert</td><td>Kratzer auf der Platte, Fensterseite</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Foto vorhanden</span></td><td class="out"><input type="checkbox" aria-label="Herausholen : Esstisch, Platte demontiert"></td></tr><tr><td class="n">003</td><td>Schrank 2-türig, in 6 Teilen</td><td>Guter Zustand</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Foto vorhanden</span></td><td class="out"><input type="checkbox" aria-label="Herausholen : Schrank 2-türig, in 6 Teilen"></td></tr><tr><td class="n">014</td><td>Karton «Küche – Gläser», zerbrechlich</td><td>Verschlossen und verklebt</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Foto vorhanden</span></td><td class="out"><input type="checkbox" aria-label="Herausholen : Karton «Küche – Gläser», zerbrechlich"></td></tr><tr><td class="n">027</td><td>Stadtvelo</td><td>Guter Zustand</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Foto vorhanden</span></td><td class="out"><input type="checkbox" aria-label="Herausholen : Stadtvelo"></td></tr><tr><td class="n">031</td><td>Karton «Bücher»</td><td>Verschlossen und verklebt</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Foto vorhanden</span></td><td class="out"><input type="checkbox" aria-label="Herausholen : Karton «Bücher»"></td></tr></tbody></table></div>
+        <div class="inv-pied"><p aria-live="polite" data-sortir>Kreuzen Sie an, was Sie während der Einlagerung brauchen könnten.</p><p class="inv-rdv" hidden>Vereinbaren Sie einen Termin: Die Filiale bereitet diese Gegenstände für Sie vor oder liefert sie Ihnen. <a href="tel:+41325604925">032 560 49 25</a> · <a href="tel:+41265611025">026 561 10 25</a></p></div>
+      </div>
     </div>
   </section>
 

@@ -54,9 +54,14 @@
         <h1 class="fit" style="--n:7">Vos meubles en lieu sûr, le temps qu'il faut</h1>
         <p class="lead">Entre deux baux, pendant des travaux ou pour plusieurs mois : nous chargeons, stockons dans un dépôt fermé et livrons à votre nouvelle adresse.</p>
       </div>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="p35" data-iso="s" data-plan='{"pieces":{"piece":"Pièce principale","hall":"Hall","sejour":"Séjour","chambre":"Chambre","cuisine":"Cuisine","bains":"Bains","cave":"Cave","galetas":"Galetas","open":"Open space","reunion":"Salle de réunion","bureau":"Bureau","archives":"Archives","sanitaires":"Sanitaires"},"notes":{"m":"Emballé, démonté, inventorié","c":"Nettoyé, état des lieux signé","s":"Stocké au dépôt, inventaire photo"},"echelle":"Échelle indicative"}'><title id="plan-t">Plan d'exemple d'un logement, en couleur les pièces dont s'occupe ce service</title></svg>
-        <p class="plan-cap">Plan et cotes d'exemple : en couleur, les pièces dont s'occupe ce service.</p>
+      <div class="plan-wrap volume-wrap" data-volume='{&quot;sol&quot;: &quot;≈ {l} m × {p} m au sol&quot;, &quot;haut&quot;: &quot;sur {h} m de haut&quot;, &quot;equiv&quot;: [[4, &quot;quelques meubles et cartons&quot;], [12, &quot;un studio&quot;], [27, &quot;un 2,5 pièces&quot;], [36, &quot;un 3,5 pièces&quot;], [45, &quot;un 4,5 pièces&quot;], [999, &quot;un 5,5 pièces ou une maison&quot;]], &quot;comme&quot;: &quot;Comme {x}&quot;, &quot;mon&quot;: &quot;Mon inventaire&quot;, &quot;personne&quot;: &quot;Silhouette de 1,75 m, pour l&#x27;échelle&quot;}'>
+        <div class="vol-tete"><p class="t">Votre volume, en vrai</p><p class="vol-m3"><b data-m3>23</b> m³</p></div>
+        <svg class="vol-svg" viewBox="0 0 900 520" role="img" aria-label="Glissez pour voir la place qu'occupent vos affaires au dépôt, empilées sur 2,4 m de haut."></svg>
+        <p class="vol-info"><span data-equiv></span><span data-sol></span></p>
+        <label class="vol-range"><span>Volume à stocker</span><input type="range" min="1" max="50" step="1" value="23"></label>
+        <div class="vol-presets"><button class="chip" type="button" data-v="3">Quelques cartons</button><button class="chip" type="button" data-v="9">Studio</button><button class="chip" type="button" data-v="23">2,5 pièces</button><button class="chip" type="button" data-v="32">3,5 pièces</button><button class="chip" type="button" data-v="41">4,5 pièces</button></div>
+        <div class="vol-actions"><a class="more" href="index.html#volume">Calculer mon volume pièce par pièce</a><button class="btn" type="button" data-vol-go>Préparer mon devis de stockage</button></div>
+        <p class="plan-cap">Glissez pour voir la place qu'occupent vos affaires au dépôt, empilées sur 2,4 m de haut. Estimation indicative : le volume réel est mesuré à l'entrée au dépôt.</p>
       </div>
       <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -67,6 +72,7 @@
           <label>Logement<select name="pieces"><option>Studio</option><option>2,5 pièces</option><option selected>3,5 pièces</option><option>4,5 pièces</option><option>5,5 pièces et plus</option><option>Maison</option><option>Bureaux</option></select></label>
           <label>Date souhaitée<input type="date" name="date"></label>
           <input type="hidden" name="lang" value="fr">
+          <input type="hidden" name="volume" value="">
           <div class="go"><button class="btn move" type="submit">Continuer ma demande</button></div>
           <p class="note"><span class="err" role="alert">Indiquez les deux NPA à 4 chiffres pour continuer. </span>Gratuit et sans engagement. Ou appelez le <a href="tel:+41325604925">032 560 49 25</a> ou le <a href="tel:+41265611025">026 561 10 25</a>.</p>
         </form>
@@ -85,6 +91,19 @@
   <section>
     <div class="shell">
       <div class="head">
+        <h2 class="fit" style="--n:9">Pour quelle situation ?</h2>
+        <p class="intro">Chaque stockage a sa raison. Dites-nous la vôtre : la durée, l'accès et la livraison s'organisent autour.</p>
+      </div>
+      <div class="situ" data-situations>
+        <div class="situ-tabs" role="tablist" hidden><button type="button" role="tab" data-situ="entre-baux">Entre deux baux</button><button type="button" role="tab" data-situ="travaux">Pendant des travaux</button><button type="button" role="tab" data-situ="etranger">Séjour à l'étranger</button><button type="button" role="tab" data-situ="succession">Succession ou vente</button><button type="button" role="tab" data-situ="entreprise">Entreprises et archives</button></div>
+        <div class="situ-panneaux"><article class="situ-p" data-situ="entre-baux"><h3>Entre deux baux</h3><p>Votre ancien logement se libère avant le nouveau. Nous chargeons le jour du départ, stockons, et livrons dès que vous avez les clés.</p><p class="situ-d"><span>Durée habituelle</span><b>Quelques jours à quelques mois</b></p></article><article class="situ-p" data-situ="travaux"><h3>Pendant des travaux</h3><p>Rénovation, peinture ou dégât d'eau : les pièces sont vidées, vos meubles attendent au sec et reviennent une fois le chantier terminé.</p><p class="situ-d"><span>Durée habituelle</span><b>Le temps du chantier</b></p></article><article class="situ-p" data-situ="etranger"><h3>Séjour à l'étranger</h3><p>Une mission ou une année sabbatique : vous gardez vos meubles sans garder un logement pour eux, avec un accès sur rendez-vous.</p><p class="situ-d"><span>Durée habituelle</span><b>Plusieurs mois</b></p></article><article class="situ-p" data-situ="succession"><h3>Succession ou vente</h3><p>Le logement doit être rendu ou vendu avant que tout soit partagé. L'inventaire photo aide la famille à décider, à son rythme.</p><p class="situ-d"><span>Durée habituelle</span><b>Le temps de décider</b></p></article><article class="situ-p" data-situ="entreprise"><h3>Entreprises et archives</h3><p>Mobilier de bureau pendant un déménagement d'entreprise, stock saisonnier, archives : enlèvement et livraison poste par poste.</p><p class="situ-d"><span>Durée habituelle</span><b>Selon vos besoins</b></p></article></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
         <h2 class="fit" style="--n:7">Ce qui est compris</h2>
         <p class="intro">Vous savez à tout moment ce qui est stocké, où, et à quelles conditions.</p>
       </div>
@@ -97,6 +116,20 @@
         <li><h3>Accès sur rendez-vous</h3><p>Besoin d'un carton en cours de route ? Nous le sortons pour vous, sur rendez-vous.</p></li>
       </ul>
       <figure class="plate-wide"><img width="1800" height="1200" src="images/garde-meubles-etageres.jpg" alt="Étagères de cartons dans un dépôt" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
+        <h2 class="fit" style="--n:11">Votre inventaire, objet par objet</h2>
+        <p class="intro">À l'entrée au dépôt, chaque objet reçoit un numéro, une photo et la description de son état. Vous recevez cet inventaire, et il fait foi à la sortie.</p>
+      </div>
+      <div class="inv" data-inventaire='{&quot;sortir&quot;: &quot;{n} objets à sortir&quot;, &quot;sortir1&quot;: &quot;1 objet à sortir&quot;, &quot;sortir0&quot;: &quot;Cochez ce dont vous auriez besoin pendant le stockage.&quot;}'>
+        <p class="inv-t"><span class="inv-badge">Exemple d'inventaire</span><span>SwissDem · Garde-meubles</span></p>
+        <div class="inv-scroll"><table><thead><tr><th>N°</th><th>Objet</th><th>État à l'entrée</th><th>Photo</th><th>À sortir</th></tr></thead><tbody><tr><td class="n">001</td><td>Canapé 3 places, sous housse</td><td>Bon état, légère usure à l'accoudoir gauche</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Photo jointe</span></td><td class="out"><input type="checkbox" aria-label="À sortir : Canapé 3 places, sous housse"></td></tr><tr><td class="n">002</td><td>Table à manger, plateau démonté</td><td>Rayure sur le plateau, côté fenêtre</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Photo jointe</span></td><td class="out"><input type="checkbox" aria-label="À sortir : Table à manger, plateau démonté"></td></tr><tr><td class="n">003</td><td>Armoire 2 portes, en 6 éléments</td><td>Bon état</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Photo jointe</span></td><td class="out"><input type="checkbox" aria-label="À sortir : Armoire 2 portes, en 6 éléments"></td></tr><tr><td class="n">014</td><td>Carton « Cuisine – verres », fragile</td><td>Fermé et scotché</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Photo jointe</span></td><td class="out"><input type="checkbox" aria-label="À sortir : Carton « Cuisine – verres », fragile"></td></tr><tr><td class="n">027</td><td>Vélo de ville</td><td>Bon état</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Photo jointe</span></td><td class="out"><input type="checkbox" aria-label="À sortir : Vélo de ville"></td></tr><tr><td class="n">031</td><td>Carton « Livres »</td><td>Fermé et scotché</td><td class="ph"><span class="ico-photo" aria-hidden="true"></span><span class="sr">Photo jointe</span></td><td class="out"><input type="checkbox" aria-label="À sortir : Carton « Livres »"></td></tr></tbody></table></div>
+        <div class="inv-pied"><p aria-live="polite" data-sortir>Cochez ce dont vous auriez besoin pendant le stockage.</p><p class="inv-rdv" hidden>Prenez rendez-vous : l'agence prépare ces objets pour vous, ou vous les livre. <a href="tel:+41325604925">032 560 49 25</a> · <a href="tel:+41265611025">026 561 10 25</a></p></div>
+      </div>
     </div>
   </section>
 

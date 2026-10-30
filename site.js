@@ -330,7 +330,7 @@
   }
   let dernier = -1;
   function maj(type){
-    try { localStorage.setItem(CLE, JSON.stringify(n)); } catch (e) {}
+    try { localStorage.setItem(CLE, JSON.stringify(n)); localStorage.setItem('swissdem-volume', String(Math.round(total() * 10) / 10)); } catch (e) {}
     const focus = document.activeElement && document.activeElement.getAttribute('aria-label');
     dessiner();
     if (focus) { const b = liste.querySelector(`[aria-label="${CSS.escape(focus)}"]`); if (b && !b.disabled) b.focus(); }
@@ -573,6 +573,133 @@
   videos.forEach(v => io.observe(v));
 })();
 
+// Garde-meubles (v7) : le volume à stocker dessiné en cartons empilés (vue isométrique, 2,4 m de haut),
+// une silhouette de 1,75 m pour l'échelle ; curseur, volumes types et inventaire de l'estimateur ; le volume rejoint le devis.
+(function(){
+  const zone = document.querySelector('.volume-wrap[data-volume]');
+  if (!zone) return;
+  const T = JSON.parse(zone.dataset.volume);
+  const de = document.documentElement.lang.startsWith('de');
+  const svg = zone.querySelector('.vol-svg'), range = zone.querySelector('input[type=range]');
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, at) => { const n = document.createElementNS(NS, tag); for (const k in at) n.setAttribute(k, at[k]); return n; };
+  const C = .6, D = 4, H = 4, PAR = D * H;            // carton de 0,6 m ; 4 en profondeur et 4 en hauteur = 2,4 m × 2,4 m
+  const A = Math.cos(Math.PI / 6), B = .5;            // projection isométrique
+  const iso = (x, y, z) => [(x - z) * A, (x + z) * B - y];
+  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(de ? 'de-CH' : 'fr-CH', {maximumFractionDigits:1});
+  const monde = el('g', {class:'vol-monde'}), sol = el('g', {class:'vol-sol'}), pile = el('g', {class:'vol-pile'}), gens = el('g', {class:'vol-gens'});
+  monde.append(sol, pile, gens); svg.append(monde);
+  const poly = pts => pts.map(p => p.map(v => v.toFixed(2)).join(',')).join(' ');
+  function carton(k){
+    const i = Math.floor(k / PAR), j = Math.floor((k % PAR) / D), l = k % D;
+    const x = i * C, y = j * C, z = l * C, h = Math.abs(Math.sin(k * 12.9898) * 43758.5453 % 1);
+    const P = (a, b, c) => iso(x + a * C, y + b * C, z + c * C);
+    const g = el('g', {class:'ct'});
+    g.append(el('polygon', {points: poly([P(0,1,0), P(1,1,0), P(1,1,1), P(0,1,1)]), class:'f-top', style:`--h:${h}`}),
+             el('polygon', {points: poly([P(0,0,1), P(1,0,1), P(1,1,1), P(0,1,1)]), class:'f-g'}),
+             el('polygon', {points: poly([P(1,0,0), P(1,0,1), P(1,1,1), P(1,1,0)]), class:'f-d'}),
+             el('polyline', {points: poly([P(.5,1,0), P(.5,1,1)]), class:'scotch'}));
+    g.dataset.ordre = (i + l) * 100 + j;   // ordre du peintre : de l'arrière vers l'avant, du bas vers le haut
+    return g;
+  }
+  const cartons = [];
+  let n = 0, vol = 0;
+  function dessiner(v){
+    vol = v;
+    const cible = Math.max(1, Math.round(v / (C * C * C)));
+    const avant = n;
+    for (let k = cartons.length; k < cible; k++) cartons.push(carton(k));
+    cartons.forEach((g, k) => {
+      if (k < cible && !g.isConnected) { g.style.setProperty('--d', Math.min(40, k - avant) * 8 + 'ms'); g.classList.remove('sort'); g.classList.add('entre'); }
+      if (k < cible) g.classList.remove('sort');
+    });
+    const visibles = cartons.slice(0, cible).sort((a, b) => a.dataset.ordre - b.dataset.ordre);
+    // Les cartons en trop s'effacent puis quittent le dessin
+    cartons.slice(cible).forEach(g => { if (g.isConnected) { g.classList.add('sort'); setTimeout(() => { if (g.classList.contains('sort')) g.remove(); }, 260); } });
+    visibles.forEach(g => pile.append(g));
+    n = cible;
+    // Sol et cotes
+    const tranches = Math.ceil(cible / PAR), largeur = tranches * C, prof = D * C, haut = Math.min(H, Math.ceil(cible / D)) * C;
+    sol.replaceChildren(
+      el('polygon', {points: poly([iso(-.3,0,-.3), iso(largeur + .3,0,-.3), iso(largeur + .3,0,prof + .3), iso(-.3,0,prof + .3)]), class:'plancher'}));
+    const tx = (a, b, txt, cls) => { const [x1, y1] = a, [x2, y2] = b, t = el('text', {x:(x1 + x2) / 2, y:(y1 + y2) / 2, class:'cote-t ' + cls}); t.textContent = txt; return t; };
+    sol.append(tx(iso(0,0,prof + .55), iso(largeur,0,prof + .55), fmt(largeur) + ' m', 'cx'), tx(iso(largeur + .55,0,0), iso(largeur + .55,0,prof), fmt(prof) + ' m', 'cz'));
+    // Silhouette de 1,75 m, debout devant la pile, à gauche
+    const [px, py] = iso(-.7, 0, prof + .1);
+    const perso = el('g', {class:'perso'});
+    perso.append(el('title', {}), el('circle', {cx:px, cy:py - 1.63, r:.12}), el('rect', {x:px - .21, y:py - 1.48, width:.42, height:.7, rx:.12}),
+                 el('rect', {x:px - .16, y:py - .86, width:.32, height:.86, rx:.06}));
+    perso.firstChild.textContent = T.personne;
+    gens.replaceChildren(perso);
+    // Cadrage : tout le dessin tient dans la vue, avec une transition douce
+    const xs = [iso(-.9,0,prof + .4)[0], iso(largeur + .9,0,-.3)[0]], ys = [iso(0,2.6,0)[1], iso(largeur,0,prof + .9)[1]];
+    const w = xs[1] - xs[0], h = ys[1] - ys[0], e = Math.min(820 / w, 460 / h, 95);
+    monde.style.transform = `translate(${450 - (xs[0] + w / 2) * e}px, ${260 - (ys[0] + h / 2) * e}px) scale(${e})`;
+    // Textes
+    zone.querySelector('[data-m3]').textContent = fmt(v);
+    const eq = T.equiv.find(([max]) => v <= max)[1];
+    zone.querySelector('[data-equiv]').textContent = T.comme.replace('{x}', eq);
+    zone.querySelector('[data-sol]').textContent = T.sol.replace('{l}', fmt(largeur)).replace('{p}', fmt(prof)) + ', ' + T.haut.replace('{h}', fmt(haut));
+    range.value = Math.round(v);
+    zone.querySelectorAll('.vol-presets .chip').forEach(b => b.setAttribute('aria-pressed', Number(b.dataset.v) === Math.round(v)));
+  }
+  // Volume de l'estimateur, s'il a été rempli sur cet appareil
+  let mien = 0;
+  try { mien = parseFloat(localStorage.getItem('swissdem-volume')) || 0; } catch (e) {}
+  if (mien > 0) {
+    const b = document.createElement('button');
+    b.className = 'chip mien'; b.type = 'button'; b.dataset.v = Math.round(mien); b.textContent = `${T.mon} · ${fmt(mien)} m³`;
+    zone.querySelector('.vol-presets').prepend(b);
+  }
+  zone.querySelectorAll('.vol-presets .chip').forEach(b => b.addEventListener('click', () => dessiner(b.classList.contains('mien') ? mien : Number(b.dataset.v))));
+  range.addEventListener('input', () => dessiner(Number(range.value)));
+  zone.querySelector('[data-vol-go]').addEventListener('click', () => {
+    const f = document.querySelector('.cartouche form');
+    if (!f) return;
+    if (f.elements.volume) f.elements.volume.value = fmt(vol);
+    document.getElementById('devis').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center'});
+    setTimeout(() => f.querySelector('input[name="npa_depart"]').focus({preventScroll:true}), 600);
+  });
+  dessiner(mien > 0 ? mien : 23);
+})();
+
+// Garde-meubles (v7) : situations en onglets (sans JavaScript, toutes restent affichées)
+(function(){
+  const zone = document.querySelector('[data-situations]');
+  if (!zone) return;
+  const tabs = zone.querySelector('.situ-tabs'), boutons = [...tabs.querySelectorAll('button')], panneaux = [...zone.querySelectorAll('.situ-p')];
+  const montrer = k => {
+    boutons.forEach(b => b.setAttribute('aria-selected', b.dataset.situ === k));
+    panneaux.forEach(p => { p.hidden = p.dataset.situ !== k; });
+  };
+  boutons.forEach((b, i) => {
+    b.addEventListener('click', () => montrer(b.dataset.situ));
+    b.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault(); const c = boutons[(i + d + boutons.length) % boutons.length]; c.focus(); montrer(c.dataset.situ);
+    });
+  });
+  tabs.hidden = false;
+  zone.classList.add('onglets');
+  montrer(boutons[0].dataset.situ);
+})();
+
+// Garde-meubles (v7) : inventaire d'exemple, cocher ce qu'on voudrait sortir pendant le stockage
+(function(){
+  const zone = document.querySelector('[data-inventaire]');
+  if (!zone) return;
+  const T = JSON.parse(zone.dataset.inventaire);
+  const cases = [...zone.querySelectorAll('tbody input')], msg = zone.querySelector('[data-sortir]'), rdv = zone.querySelector('.inv-rdv');
+  const maj = () => {
+    const c = cases.filter(x => x.checked).length;
+    msg.textContent = c > 1 ? T.sortir.replace('{n}', c) : c ? T.sortir1 : T.sortir0;
+    rdv.hidden = !c;
+    cases.forEach(x => x.closest('tr').classList.toggle('on', x.checked));
+  };
+  cases.forEach(x => x.addEventListener('change', maj));
+})();
+
 // Mouvement (v7) : barre d'avancement, en-tête compact, titres mot par mot, blocs en cascade,
 // chiffres qui défilent, étapes qui s'allument, cartes inclinées à la souris.
 // Avec « réduire les animations », seuls la barre (sans transition) et l'en-tête compact restent.
@@ -621,7 +748,7 @@
 
   // Blocs révélés, avec un décalage dans chaque groupe
   const groupes = ['.head .intro', '.copy .lead', '.proof > span', '.situations > *', '.recap', '.nomenclature > li', '.trade', '.cote > li',
-    '.atouts > li', '.quotes > *', '.carte', '.agency', '.check > li', '.marque-geante', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
+    '.atouts > li', '.quotes > *', '.carte', '.agency', '.check > li', '.marque-geante', '.situ', '.inv', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
   const vus = new Set();
   groupes.forEach(sel => document.querySelectorAll(sel).forEach(el => {
     if (vus.has(el) || el.closest('.stage')) return;
