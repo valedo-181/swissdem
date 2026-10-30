@@ -8,6 +8,10 @@
 <meta name="description" content="Déménagement, nettoyage de fin de bail et garde-meubles dans les cantons de Neuchâtel et Fribourg. Prix du devis garanti, équipe salariée, devis gratuit sous 24 heures ouvrables.">
 <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
@@ -52,6 +56,8 @@
           <label>Date souhaitée<input type="date" name="date"></label>
           <input type="hidden" name="lang" value="fr">
           <input type="hidden" name="formule" value="">
+          <input type="hidden" name="volume" value="">
+          <input type="hidden" name="inventaire" value="">
           <div class="go"><button class="btn move" type="submit">Continuer ma demande</button></div>
           <p class="note"><span class="err" role="alert">Indiquez les deux NPA à 4 chiffres pour continuer. </span>Gratuit et sans engagement. Ou appelez le <a href="tel:+41325604925">032 560 49 25</a> ou le <a href="tel:+41265611025">026 561 10 25</a>.</p>
         </form>
@@ -103,6 +109,17 @@
           <div class="recap-go"><a class="btn move" href="#devis" data-preparer>Préparer mon devis</a><p>Gratuit et sans engagement. Réponse sous 24 heures ouvrables.</p></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Estimez votre volume : objets pièce par pièce, total en m³ ; le choix est joint à la demande de devis. Construit par site.js (caché sans JavaScript). -->
+  <section id="volume" hidden>
+    <div class="shell">
+      <div class="head">
+        <h2>Estimez votre volume</h2>
+        <p class="intro">Comptez vos meubles pièce par pièce : le volume en m³ est la base de votre devis. Joignez-le à votre demande, le responsable de l'agence le confirme à la visite.</p>
+      </div>
+      <div class="estim" data-estim></div>
     </div>
   </section>
 

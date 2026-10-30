@@ -9,6 +9,10 @@
 <meta name="description" content="Umzug, Endreinigung und Möbellager in den Kantonen Neuenburg und Freiburg. Offertpreis garantiert, festangestelltes Team, Gratis-Offerte innert 24 Stunden an Werktagen.">
 <link rel="preload" href="../fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../site.css">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
@@ -53,6 +57,8 @@
           <label>Wunschtermin<input type="date" name="date"></label>
           <input type="hidden" name="lang" value="de">
           <input type="hidden" name="formule" value="">
+          <input type="hidden" name="volume" value="">
+          <input type="hidden" name="inventaire" value="">
           <div class="go"><button class="btn move" type="submit">Anfrage fortsetzen</button></div>
           <p class="note"><span class="err" role="alert">Bitte beide vierstelligen PLZ angeben. </span>Kostenlos und unverbindlich. Oder rufen Sie an: <a href="tel:+41265611025">026 561 10 25</a> oder <a href="tel:+41325604925">032 560 49 25</a>.</p>
         </form>
@@ -104,6 +110,17 @@
           <div class="recap-go"><a class="btn move" href="#devis" data-preparer>Offerte vorbereiten</a><p>Kostenlos und unverbindlich. Antwort innert 24 Stunden an Werktagen.</p></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Volumen schätzen: Möbel Raum für Raum, Total in m³; das Ergebnis wird der Offertanfrage beigefügt. Von site.js aufgebaut (ohne JavaScript verborgen). -->
+  <section id="volume" hidden>
+    <div class="shell">
+      <div class="head">
+        <h2>Schätzen Sie Ihr Volumen</h2>
+        <p class="intro">Zählen Sie Ihre Möbel Raum für Raum: Das Volumen in m³ ist die Grundlage Ihrer Offerte. Fügen Sie es Ihrer Anfrage bei, der Verantwortliche der Filiale bestätigt es bei der Besichtigung.</p>
+      </div>
+      <div class="estim" data-estim></div>
     </div>
   </section>
 

@@ -180,6 +180,186 @@
   dessiner(svg.dataset.layout || lire(), false);
 })();
 
+// Volume (v7) : le logement choisi dans le cartouche ou l'inventaire de l'estimateur donne un volume en m³,
+// affiché sur le plateau et transmis au camion 3D (événement « swissdem:volume ») qui se charge en conséquence.
+// Repères : 9 m³ par pièce ; un camion 3,5 t prend environ 20 m³. Aucun prix n'est affiché : il vient du devis.
+(function(){
+  const de = document.documentElement.lang.startsWith('de');
+  const T = de ? {
+    m3: v => `≈ ${v} m³`, camion: 'Ein 3,5-t-Lastwagen', lourd: 'Lastwagen oder zwei Fahrten', visite: 'Volumen bei der Besichtigung',
+    plateau: 'nach Ihrer Wohnung', inventaire: 'nach Ihrem Inventar', types: 'Von einer typischen Wohnung ausgehen:', vider: 'Leeren',
+    total: 'Ihr geschätztes Volumen', joindre: 'Zur Offertanfrage hinzufügen', joint: 'Hinzugefügt ✓',
+    note: 'Unverbindliche Schätzung. Der Verantwortliche bestätigt das Volumen bei der Besichtigung; der Preis steht in der Offerte.',
+    vide: 'Zählen Sie Ihre Möbel oder wählen Sie oben eine typische Wohnung.', moins: 'Weniger', plus: 'Mehr',
+    pieces: {sejour:'Wohnzimmer', chambres:'Schlafzimmer', cuisine:'Küche, Waschküche', cave:'Keller, Balkon', cartons:'Kartons'},
+    typesNoms: {studio:'Studio', p25:'2,5 Zimmer', p35:'3,5 Zimmer', p45:'4,5 Zimmer', p55:'5,5 Zimmer'},
+  } : {
+    m3: v => `≈ ${v} m³`, camion: 'Un camion 3,5 t', lourd: 'Poids lourd ou deux voyages', visite: 'Volume confirmé à la visite',
+    plateau: 'selon votre logement', inventaire: 'selon votre inventaire', types: "Partir d'un logement type :", vider: 'Vider',
+    total: 'Votre volume estimé', joindre: 'Joindre à ma demande de devis', joint: 'Joint à votre demande ✓',
+    note: "Estimation indicative et sans engagement. Le responsable de l'agence confirme le volume à la visite ; le prix figure sur le devis.",
+    vide: 'Comptez vos meubles, ou choisissez un logement type ci-dessus.', moins: 'Retirer', plus: 'Ajouter',
+    pieces: {sejour:'Séjour', chambres:'Chambres', cuisine:'Cuisine, buanderie', cave:'Cave, balcon', cartons:'Cartons'},
+    typesNoms: {studio:'Studio', p25:'2,5 pièces', p35:'3,5 pièces', p45:'4,5 pièces', p55:'5,5 pièces'},
+  };
+  // [clé, pièce, m³, français, allemand, pas]
+  const OBJETS = [
+    ['canape3','sejour',1.5,'Canapé 3 places','Sofa 3-plätzig'], ['canape2','sejour',1,'Canapé 2 places','Sofa 2-plätzig'],
+    ['fauteuil','sejour',.6,'Fauteuil','Sessel'], ['tablebasse','sejour',.3,'Table basse','Salontisch'],
+    ['meubletv','sejour',.6,'Meuble TV','TV-Möbel'], ['tv','sejour',.2,'Télévision','Fernseher'],
+    ['biblio','sejour',1,'Bibliothèque','Bücherregal'], ['buffet','sejour',1.2,'Buffet, vaisselier','Buffet, Sideboard'],
+    ['tablemanger','sejour',.8,'Table à manger','Esstisch'], ['chaise','sejour',.2,'Chaise','Stuhl'],
+    ['litdouble','chambres',1.8,'Lit double','Doppelbett'], ['litsimple','chambres',1,'Lit simple','Einzelbett'],
+    ['litenfant','chambres',.7,"Lit d'enfant",'Kinderbett'], ['armoire2','chambres',1.5,'Armoire 2 portes','Schrank 2-türig'],
+    ['armoire3','chambres',2.2,'Armoire 3 portes','Schrank 3-türig'], ['commode','chambres',.8,'Commode','Kommode'],
+    ['chevet','chambres',.2,'Table de nuit','Nachttisch'], ['bureau','chambres',.8,'Bureau','Schreibtisch'],
+    ['chaisebureau','chambres',.3,'Chaise de bureau','Bürostuhl'],
+    ['tablecuisine','cuisine',.5,'Table de cuisine','Küchentisch'], ['chaisecuisine','cuisine',.15,'Chaise de cuisine','Küchenstuhl'],
+    ['frigo','cuisine',.8,'Réfrigérateur','Kühlschrank'], ['lavelinge','cuisine',.6,'Lave-linge','Waschmaschine'],
+    ['seche','cuisine',.6,'Sèche-linge','Tumbler'], ['microondes','cuisine',.1,'Micro-ondes','Mikrowelle'],
+    ['velo','cave',.8,'Vélo','Velo'], ['etagere','cave',.6,'Étagère','Regal'],
+    ['jardin','cave',1,'Meubles de jardin ou de balcon','Garten- oder Balkonmöbel'], ['sport','cave',.3,'Skis, équipement de sport','Ski, Sportausrüstung'],
+    ['poussette','cave',.4,'Poussette','Kinderwagen'], ['valise','cave',.15,'Valise','Koffer'],
+    ['carton','cartons',.08,'Carton standard','Umzugskarton',5], ['penderie','cartons',.3,'Carton penderie','Kleiderbox'],
+  ];
+  // Inventaires types, calés sur la règle des 9 m³ par pièce
+  const TYPES = {
+    studio:{canape2:1,tablebasse:1,meubletv:1,tv:1,litdouble:1,armoire2:1,chevet:1,tablecuisine:1,chaisecuisine:2,microondes:1,etagere:1,valise:2,carton:20},
+    p25:{canape3:1,fauteuil:1,tablebasse:1,meubletv:1,tv:1,biblio:1,buffet:1,tablemanger:1,chaise:4,litdouble:1,armoire3:1,chevet:2,commode:1,bureau:1,chaisebureau:1,tablecuisine:1,chaisecuisine:2,microondes:1,lavelinge:1,velo:1,etagere:1,jardin:1,sport:1,valise:2,carton:50,penderie:1},
+    p35:{canape3:1,fauteuil:2,tablebasse:1,meubletv:1,tv:1,biblio:1,buffet:1,tablemanger:1,chaise:4,litdouble:1,armoire3:1,chevet:3,commode:2,bureau:1,chaisebureau:1,tablecuisine:1,chaisecuisine:2,microondes:1,lavelinge:1,velo:2,etagere:2,jardin:1,sport:2,valise:3,carton:70,penderie:2,litsimple:1,armoire2:1},
+    p45:{canape3:1,fauteuil:2,tablebasse:1,meubletv:1,tv:1,biblio:2,buffet:1,tablemanger:1,chaise:6,litdouble:1,armoire3:1,chevet:4,commode:3,bureau:1,chaisebureau:1,tablecuisine:1,chaisecuisine:2,microondes:1,lavelinge:1,velo:3,etagere:3,jardin:1,sport:2,valise:3,carton:90,penderie:3,litsimple:1,armoire2:2,litenfant:1,poussette:1,seche:1},
+    p55:{canape3:1,fauteuil:2,tablebasse:1,meubletv:1,tv:1,biblio:2,buffet:1,tablemanger:1,chaise:6,litdouble:1,armoire3:1,chevet:5,commode:4,bureau:2,chaisebureau:2,tablecuisine:1,chaisecuisine:2,microondes:1,lavelinge:1,velo:4,etagere:4,jardin:2,sport:3,valise:3,carton:110,penderie:4,litsimple:2,armoire2:3,litenfant:1,poussette:1,seche:1,canape2:1},
+  };
+  const CAMION = 20, PAR_LOGEMENT = [9, 23, 32, 41, 50, null, null];   // ordre des options « Logement » du cartouche
+  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(de ? 'de-CH' : 'fr-CH', {maximumFractionDigits:1});
+  const annoncer = m3 => { window.swissdemVolume = m3; document.dispatchEvent(new CustomEvent('swissdem:volume', {detail:{m3}})); };
+  const form = document.querySelector('.cartouche form');
+
+  // Plateau : une étiquette sous l'indication de rotation, mise à jour avec le logement ou l'inventaire
+  const stage = document.querySelector('[data-camion]');
+  let badge = null;
+  if (stage) {
+    badge = document.createElement('p');
+    badge.className = 'volume-badge'; badge.setAttribute('aria-live', 'polite');
+    stage.append(badge);
+  }
+  function afficher(m3, source){
+    if (!badge) return;
+    badge.innerHTML = m3 == null ? `<b>${T.visite}</b>`
+      : `<b>${T.m3(fmt(m3))}</b><span>${source} · ${m3 <= CAMION ? T.camion : T.lourd}</span>`;
+    badge.classList.add('on');
+  }
+  const sel = form && form.elements.pieces;
+  if (sel) {
+    const logement = () => {
+      const v = PAR_LOGEMENT[sel.selectedIndex];
+      afficher(v, T.plateau);
+      annoncer(v ?? 60);
+      if (form.elements.volume) form.elements.volume.value = '';
+    };
+    sel.addEventListener('change', logement);
+    const v = PAR_LOGEMENT[sel.selectedIndex];
+    window.swissdemVolume = v ?? 60;
+    afficher(v, T.plateau);
+  }
+
+  // Estimateur pièce par pièce (accueil)
+  const zone = document.querySelector('[data-estim]');
+  if (!zone) return;
+  zone.closest('section').hidden = false;
+  const CLE = 'swissdem-inventaire';
+  let n = {};
+  try { n = JSON.parse(localStorage.getItem(CLE)) || {}; } catch (e) {}
+  let onglet = 'sejour';
+  const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+
+  const types = el('div', 'estim-types');
+  types.append(el('span', null, T.types));
+  Object.keys(TYPES).forEach(k => {
+    const b = el('button', 'chip', T.typesNoms[k]); b.type = 'button';
+    b.addEventListener('click', () => { n = {...TYPES[k]}; maj(true); });
+    types.append(b);
+  });
+  const vider = el('button', 'chip ghost', T.vider); vider.type = 'button';
+  vider.addEventListener('click', () => { n = {}; maj(true); });
+  types.append(vider);
+
+  const tabs = el('div', 'estim-tabs'); tabs.setAttribute('role', 'tablist');
+  const liste = el('ul', 'estim-liste'); liste.id = 'estim-liste'; liste.setAttribute('role', 'tabpanel');
+  Object.entries(T.pieces).forEach(([k, nom]) => {
+    const b = el('button', null); b.type = 'button'; b.setAttribute('role', 'tab'); b.dataset.piece = k;
+    b.setAttribute('aria-controls', 'estim-liste');
+    b.append(el('span', null, nom), el('em'));
+    b.addEventListener('click', () => { onglet = k; dessiner(true); });
+    tabs.append(b);
+  });
+
+  const aside = el('aside', 'estim-total');
+  aside.innerHTML = `<p class="t">${T.total}</p><p class="m3" aria-live="polite"><b>0</b> m³</p><div class="flotte" aria-hidden="true"></div><p class="camion"></p>`;
+  const go = el('button', 'btn move', T.joindre); go.type = 'button';
+  aside.append(go, el('p', 'note', T.note));
+  const gauche = el('div', 'estim-pieces');
+  // Sur téléphone, le total reste visible en haut de la liste pendant qu'on compte
+  const mini = el('p', 'estim-mini'); mini.setAttribute('aria-hidden', 'true');
+  gauche.append(mini, types, tabs, liste);
+  zone.append(gauche, aside);
+
+  const total = () => OBJETS.reduce((s, o) => s + (n[o[0]] || 0) * o[2], 0);
+  const camionSvg = p => `<svg viewBox="0 0 120 58"><rect x="3" y="5" width="78" height="38" rx="5" class="cx"/><rect x="6" y="8" width="${(72 * p).toFixed(1)}" height="32" rx="3" class="ch"/><path d="M84 17h17l12 13v13H84z" class="cb"/><circle cx="24" cy="47" r="7" class="rw"/><circle cx="98" cy="47" r="7" class="rw"/></svg>`;
+  function dessiner(entree){
+    liste.classList.toggle('entree', !!entree);
+    tabs.querySelectorAll('button').forEach(b => {
+      const k = b.dataset.piece, c = OBJETS.filter(o => o[1] === k).reduce((s, o) => s + (n[o[0]] || 0), 0);
+      b.setAttribute('aria-selected', k === onglet);
+      b.querySelector('em').textContent = c || '';
+    });
+    liste.replaceChildren(...OBJETS.filter(o => o[1] === onglet).map(([k, , m3, fr, al, pas = 1]) => {
+      const li = el('li'), c = n[k] || 0, nom = de ? al : fr;
+      li.classList.toggle('on', c > 0);
+      const lab = el('span', 'nom', nom); lab.append(el('small', null, `${fmt(m3 * pas)} m³${pas > 1 ? ` / ${pas}` : ''}`));
+      const moins = el('button', 'pas', '−'), val = el('output', null, c), plus = el('button', 'pas', '+');
+      moins.type = plus.type = 'button';
+      moins.setAttribute('aria-label', `${T.moins} : ${nom}`); plus.setAttribute('aria-label', `${T.plus} : ${nom}`);
+      moins.disabled = !c;
+      moins.addEventListener('click', () => { n[k] = Math.max(0, c - pas); maj(); });
+      plus.addEventListener('click', () => { n[k] = c + pas; maj(); });
+      li.append(lab, el('span', 'cpt'));
+      li.lastChild.append(moins, val, plus);
+      return li;
+    }));
+  }
+  let dernier = -1;
+  function maj(type){
+    try { localStorage.setItem(CLE, JSON.stringify(n)); } catch (e) {}
+    const focus = document.activeElement && document.activeElement.getAttribute('aria-label');
+    dessiner();
+    if (focus) { const b = liste.querySelector(`[aria-label="${CSS.escape(focus)}"]`); if (b && !b.disabled) b.focus(); }
+    const v = total();
+    aside.querySelector('.m3 b').textContent = fmt(v);
+    mini.innerHTML = `<b>${T.m3(fmt(v))}</b><span>${v ? (v <= CAMION ? T.camion : T.lourd) : ''}</span>`;
+    const camions = Math.max(1, Math.ceil(v / CAMION - 1e-9)), flotte = aside.querySelector('.flotte');
+    if (flotte.children.length !== Math.min(3, camions) || dernier < 0) flotte.innerHTML = Array.from({length:Math.min(3, camions)}, () => camionSvg(0)).join('');
+    [...flotte.querySelectorAll('.ch')].forEach((r, i) => r.setAttribute('width', (72 * Math.min(1, Math.max(0, (v - i * CAMION) / CAMION))).toFixed(1)));
+    aside.querySelector('.camion').textContent = v ? (v <= CAMION ? T.camion : T.lourd) : T.vide;
+    go.disabled = !v; go.textContent = T.joindre;
+    if (type) aside.classList.remove('pulse'), void aside.offsetWidth, aside.classList.add('pulse');
+    dernier = v;
+  }
+  go.addEventListener('click', () => {
+    const v = total();
+    if (!v || !form) return;
+    if (form.elements.volume) form.elements.volume.value = fmt(v);
+    if (form.elements.inventaire) form.elements.inventaire.value = OBJETS.filter(o => n[o[0]]).map(o => `${de ? o[4] : o[3]} × ${n[o[0]]}`).join('; ');
+    afficher(v, T.inventaire);
+    annoncer(v);
+    go.textContent = T.joint;
+    // On remonte au plateau : le camion se charge sous les yeux du visiteur, le cartouche juste dessous
+    (stage || document.getElementById('devis')).scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+    setTimeout(() => form.querySelector('input[name="npa_depart"]').focus({preventScroll:true}), 700);
+  });
+  maj();
+})();
+
 // Mouvement (v7) : barre d'avancement, en-tête compact, titres mot par mot, blocs en cascade,
 // chiffres qui défilent, étapes qui s'allument, cartes inclinées à la souris.
 // Avec « réduire les animations », seuls la barre (sans transition) et l'en-tête compact restent.

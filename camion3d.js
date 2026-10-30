@@ -139,12 +139,45 @@ async function demarrer(el) {
   tangage.add(corps);
   camion.add(tangage);
 
-  // Caisson et décors
-  corps.add(boite(4.1, 2.3, 2.2, .08, blanc, -1.05, 1.95));
+  // Caisson et décors. Leurs matières deviennent transparentes (« vue en coupe ») quand le chargement change.
+  const caisse = blanc.clone();
+  const coupe = [caisse, decor, decorArr];
+  coupe.forEach(m => { m.transparent = true; });
+  corps.add(boite(4.1, 2.3, 2.2, .08, caisse, -1.05, 1.95));
   const cote = new THREE.PlaneGeometry(3.96, 2.14);
   const fd = new THREE.Mesh(cote, decor); fd.position.set(-1.05, 1.95, 1.102); corps.add(fd);
   const fg = new THREE.Mesh(cote, decor); fg.position.set(-1.05, 1.95, -1.102); fg.rotation.y = Math.PI; corps.add(fg);
   const ar = new THREE.Mesh(new THREE.PlaneGeometry(2.04, 2.14), decorArr); ar.position.set(-3.102, 1.95, 0); ar.rotation.y = -Math.PI / 2; corps.add(ar);
+  // Intérieur, caché tant que le caisson est opaque : plancher et paroi du fond
+  const interieur = new THREE.MeshStandardMaterial({ color: 0xe9ecf0, roughness: .8 });
+  corps.add(boite(3.9, .04, 2.0, .01, new THREE.MeshStandardMaterial({ color: 0xb9a888, roughness: .9 }), -1.05, .86));
+  corps.add(boite(3.9, 2.1, .03, .01, interieur, -1.05, 1.95, -1.03));
+  corps.add(boite(.03, 2.1, 2.0, .01, interieur, .88, 1.95));
+
+  // Chargement : des cartons rangés tranche par tranche, de la cabine vers l'arrière, du bas vers le haut.
+  // 128 places de 0,48 m : le caisson plein correspond à 20 m³ (un camion 3,5 t).
+  const NX = 8, NY = 4, NZ = 4, CELL = .48, CAPACITE = 20;
+  const carton = new THREE.InstancedMesh(new RoundedBoxGeometry(.44, .44, .44, 2, .03), new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: .85 }), NX * NY * NZ);
+  const places = [], teinte = new THREE.Color();
+  for (let i = 0; i < NX; i++) for (let j = 0; j < NY; j++) for (let k = 0; k < NZ; k++) {
+    const n = places.length, h = Math.sin(n * 12.9898) * 43758.5453 % 1;   // hasard fixe, le même à chaque visite
+    places.push({ x: .86 - CELL / 2 - i * CELL, y: .88 + CELL / 2 + j * CELL, z: -CELL * 1.5 + k * CELL, r: h * .12 - .06, p: 0, t: 0, depuis: 0 });
+    carton.setColorAt(n, teinte.setHSL(.085 + Math.abs(h) * .02, .55, .36 + Math.abs(h) * .08));
+  }
+  carton.count = places.length;
+  corps.add(carton);
+  const ranger = () => {
+    const m = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), s = new THREE.Vector3(), v = new THREE.Vector3();
+    places.forEach((c, n) => {
+      const a = 1 - Math.pow(1 - c.p, 3);
+      s.setScalar(c.p > 0 ? .55 + .45 * a : 0);
+      v.set(c.x, c.y + (1 - a) * 1.1, c.z);
+      m.compose(v, q.setFromEuler(e.set(0, c.r, 0)), s);
+      carton.setMatrixAt(n, m);
+    });
+    carton.instanceMatrix.needsUpdate = true;
+  };
+  ranger();
 
   // Cabine : profil extrudé sur la largeur
   const cabine = new THREE.Group();
@@ -236,8 +269,40 @@ async function demarrer(el) {
   cadrer();
   if (!reduit) { S.depart = -(demiLargeur + 5); S.x = S.depart; S.yaw = 0; }
 
+  // Vue en coupe et chargement : site.js annonce le volume (logement choisi ou inventaire) par l'événement « swissdem:volume »
+  const C = { xr: 0, cible: 0, jusqua: 0, attente: null, bouge: false };
+  function remplir(m3, now = performance.now()) {
+    if (S.phase !== "libre") { C.attente = m3; return; }
+    const n = Math.round(Math.min(1, Math.max(0, m3) / CAPACITE) * places.length);
+    let nouveaux = 0;
+    places.forEach((c, k) => {
+      const t = k < n ? 1 : 0;
+      if (t === c.t) return;
+      c.t = t;
+      c.depuis = now + (t ? nouveaux++ * 14 : (places.length - k) * 4);
+      if (reduit) c.p = t;
+    });
+    C.cible = 1; C.jusqua = now + 6500; C.bouge = true;
+    if (reduit) { C.xr = 1; ranger(); }
+    relancer();
+  }
+  function pasChargement(dt, now) {
+    if (now > C.jusqua) C.cible = 0;
+    C.xr += (C.cible - C.xr) * Math.min(1, dt * (reduit ? 60 : 5));
+    coupe.forEach(m => { m.opacity = 1 - .86 * C.xr; m.depthWrite = C.xr < .02; });
+    let bouge = Math.abs(C.cible - C.xr) > 1e-3;
+    places.forEach(c => {
+      if (c.p === c.t || now < c.depuis) { if (c.p !== c.t) bouge = true; return; }
+      c.p = c.t ? Math.min(1, c.p + dt * 3.2) : Math.max(0, c.p - dt * 5);
+      bouge = true;
+    });
+    if (bouge || C.bouge) ranger();
+    C.bouge = bouge || now < C.jusqua + 100;
+  }
+  document.addEventListener("swissdem:volume", e => remplir(e.detail.m3));
+
   let enCours = false, visible = true, avant = 0;
-  const actif = () => S.phase !== "libre" || S.tire || Math.abs(S.yawV) > 1e-3 || Math.abs(S.pitch) > 1e-4 || Math.abs(S.pitchV) > 1e-4
+  const actif = () => S.phase !== "libre" || S.tire || C.bouge || Math.abs(S.yawV) > 1e-3 || Math.abs(S.pitch) > 1e-4 || Math.abs(S.pitchV) > 1e-4
     || Math.abs(S.camX - S.px) > 1e-3 || Math.abs(S.camY - S.py) > 1e-3 || (performance.now() - S.dernier > 3500 && Math.abs(S.yaw - POSE) > 1e-3);
 
   function pas(dt, now) {
@@ -251,7 +316,13 @@ async function demarrer(el) {
     } else if (S.phase === "tour") {
       S.t += dt;
       S.yaw = POSE * easeInOut(Math.min(1, S.t / TOUR));
-      if (S.t >= TOUR) { S.phase = "libre"; S.dernier = now; }
+      if (S.t >= TOUR) {
+        S.phase = "libre"; S.dernier = now;
+        // Première présentation : le camion se charge pour le logement choisi dans le devis
+        const m3 = C.attente ?? window.swissdemVolume;
+        C.attente = null;
+        if (m3 != null) remplir(m3, now);
+      }
     } else if (!S.tire) {
       if (now - S.dernier > 3500) S.yawV += ((POSE - S.yaw) * 10 - S.yawV * 5.5) * dt;   // retour à la pose
       else S.yawV *= Math.exp(-dt * 3.2);                                                    // inertie
@@ -279,6 +350,7 @@ async function demarrer(el) {
     const dt = Math.min(.05, (now - avant) / 1000 || .016);
     avant = now;
     pas(dt, now);
+    pasChargement(dt, now);
     rendu();
     if (visible && actif()) requestAnimationFrame(boucle);
     else enCours = false;
