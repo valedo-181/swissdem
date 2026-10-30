@@ -621,7 +621,7 @@
 
   // Blocs révélés, avec un décalage dans chaque groupe
   const groupes = ['.head .intro', '.copy .lead', '.proof > span', '.situations > *', '.recap', '.nomenclature > li', '.trade', '.cote > li',
-    '.atouts > li', '.quotes > *', '.carte', '.agency', '.check > li', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
+    '.atouts > li', '.quotes > *', '.carte', '.agency', '.check > li', '.marque-geante', '.faq details, main details', '.others a', '.towns-list li', '.fiche', '.plan-wrap'];
   const vus = new Set();
   groupes.forEach(sel => document.querySelectorAll(sel).forEach(el => {
     if (vus.has(el) || el.closest('.stage')) return;

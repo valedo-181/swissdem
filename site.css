@@ -719,3 +719,9 @@ section h2::after{content:"";display:block;width:76px;height:5px;margin-top:22px
 .trade figure video{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;background:var(--soft);border-radius:var(--r-3)}
 .plate-wide video{display:block;width:100%;height:auto;aspect-ratio:21/8;object-fit:cover;background:var(--soft);border-radius:var(--r-3)}
 @media (max-width:560px){.plate-wide video{aspect-ratio:4/3}}
+/* Pied de page : le nom en très grand, sur toute la largeur, à la place du logo */
+.foot .shell{container-type:inline-size}
+.marque-geante{margin:clamp(28px,4vw,56px) 0 0;font-size:8.05cqi;font-weight:700;font-stretch:125%;letter-spacing:-.045em;line-height:.8;color:var(--ink);white-space:nowrap;text-align:center;user-select:none}
+.anim .marque-geante.rv{transform:translateY(24%)}
+.anim .marque-geante.rv.vu{transform:none;transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+@media (max-width:560px){.marque-geante{font-size:15.2cqi;white-space:normal;text-align:left;line-height:.86}}
