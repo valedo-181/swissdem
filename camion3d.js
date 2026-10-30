@@ -47,9 +47,9 @@ async function flanc(THREE, el) {
   el.dataset.services.split("|").forEach((s, i) => {
     const y = 370 + i * 86;
     g.fillStyle = couleurs[i]; g.beginPath(); g.arc(102, y - 17, 16, 0, Math.PI * 2); g.fill();
-    g.fillStyle = "#16181b"; g.font = "600 50px Archivo, sans-serif"; g.fillText(s, 140, y);
+    g.fillStyle = "#0f1319"; g.font = "600 50px Archivo, sans-serif"; g.fillText(s, 140, y);
   });
-  g.fillStyle = "#41464c"; g.font = "500 40px Archivo, sans-serif"; g.fillText(el.dataset.site, 84, 660);
+  g.fillStyle = "#3d4450"; g.font = "500 40px Archivo, sans-serif"; g.fillText(el.dataset.site, 84, 660);
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
   return { flanc: t, logo };

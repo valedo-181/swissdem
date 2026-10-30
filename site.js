@@ -1,4 +1,4 @@
-// SwissDem v5 : menu mobile, cartouche de devis, barre d'appel et plan interactif, communs à toutes les pages.
+// SwissDem v6 : menu mobile, cartouche de devis, barre d'appel et plan interactif, communs à toutes les pages.
 // Menu mobile
 (function(){
   const top = document.querySelector('.top'), b = top && top.querySelector('.menu-btn');
@@ -44,7 +44,9 @@
   const T = JSON.parse(svg.dataset.plan);
   const titre = svg.querySelector('title');
   const NS = 'http://www.w3.org/2000/svg';
-  const INK = '#16181b';
+  // Couleurs : les jetons de site.css, pour que le plan suive la palette
+  const css = getComputedStyle(document.documentElement), jeton = n => css.getPropertyValue(n).trim();
+  const INK = jeton('--ink'), BLANC = jeton('--white');
   const el = (tag, a, txt) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); if (txt) n.textContent = txt; return n; };
   // Pièces : [x, y, l, h, clé du nom, service] dans un cadre de 800 × 500 (m = déménagement, c = nettoyage, s = garde-meubles)
   const L = {
@@ -64,9 +66,9 @@
     const pieces = L[cle];
     const defs = el('defs');
     const pat = el('pattern', {id:'hach', width:7, height:7, patternUnits:'userSpaceOnUse', patternTransform:'rotate(45)'});
-    pat.append(el('rect', {width:7, height:7, fill:'#fff'}), el('line', {x1:0, y1:0, x2:0, y2:7, stroke:'#1f9a3e', 'stroke-width':2}));
+    pat.append(el('rect', {width:7, height:7, fill:BLANC}), el('line', {x1:0, y1:0, x2:0, y2:7, stroke:jeton('--clean'), 'stroke-width':2}));
     defs.append(pat); svg.append(defs);
-    const fond = {m:'#fdf1bf', c:'url(#hach)', s:'#dbe6f6'};
+    const fond = {m:jeton('--move-tint'), c:'url(#hach)', s:jeton('--store-tint')};
     const groupes = [];
     pieces.forEach(([x,y,w,h,nom,s], i) => {
       const g = el('g', {class:'room', 'data-svc':s, style:`--i:${i}`});
@@ -79,13 +81,13 @@
     // Fenêtres sur la façade (trois traits)
     for (const [x,y,w,h] of pieces) {
       if (y === 0) { const l = Math.min(w * .45, 130), x0 = X + x + (w - l) / 2;
-        svg.append(el('rect', {x:x0, y:Y-5.5, width:l, height:11, fill:'#fff', stroke:INK, 'stroke-width':1}), el('line', {x1:x0, y1:Y, x2:x0+l, y2:Y, stroke:INK, 'stroke-width':1})); }
+        svg.append(el('rect', {x:x0, y:Y-5.5, width:l, height:11, fill:BLANC, stroke:INK, 'stroke-width':1}), el('line', {x1:x0, y1:Y, x2:x0+l, y2:Y, stroke:INK, 'stroke-width':1})); }
       if (x === 0 && h >= 180) { const l = Math.min(h * .4, 110), y0 = Y + y + (h - l) / 2;
-        svg.append(el('rect', {x:X-5.5, y:y0, width:11, height:l, fill:'#fff', stroke:INK, 'stroke-width':1}), el('line', {x1:X, y1:y0, x2:X, y2:y0+l, stroke:INK, 'stroke-width':1})); }
+        svg.append(el('rect', {x:X-5.5, y:y0, width:11, height:l, fill:BLANC, stroke:INK, 'stroke-width':1}), el('line', {x1:X, y1:y0, x2:X, y2:y0+l, stroke:INK, 'stroke-width':1})); }
     }
     // Portes : une ouverture et un battant par pièce
     for (const [x,y,w,h,,s] of pieces) {
-      const bg = s === 'c' ? '#fff' : fond[s], R = 42;
+      const bg = s === 'c' ? BLANC : fond[s], R = 42;
       if (x > 0) { const xb = X + x, yb = Y + y + h - 14;
         svg.append(el('line', {x1:xb, y1:yb-R, x2:xb, y2:yb, stroke:bg, 'stroke-width':5}), el('line', {x1:xb, y1:yb, x2:xb+R, y2:yb, stroke:INK, 'stroke-width':1.5}), el('path', {d:`M${xb} ${yb-R} A${R} ${R} 0 0 1 ${xb+R} ${yb}`, fill:'none', stroke:INK, 'stroke-width':1}));
       } else if (y > 0) { const xb = X + x + 14, yb = Y + y;
@@ -96,14 +98,14 @@
     pieces.forEach(([x,y,w,h,nom,s], i) => {
       // Une porte dans le mur du haut (pièce contre la façade gauche) : le nom passe après son battant
       const lb = el('text', {x:X+x+(x === 0 && y > 0 ? 70 : 16), y:Y+y+32, class:'lbl'}, T.pieces[nom]);
-      if (s === 'c') lb.setAttribute('style', 'paint-order:stroke;stroke:#fff;stroke-width:6px');
+      if (s === 'c') lb.setAttribute('style', `paint-order:stroke;stroke:${BLANC};stroke-width:6px`);
       groupes[i].append(lb);
     });
     ['m','c','s'].forEach((s, i) => {
       const k = pieces.findIndex(q => q[5] === s);
       if (k < 0) return;
       const [x,y,w,h] = pieces[k], cx = X + x + w / 2, cy = Y + y + h / 2 + 8;
-      groupes[k].append(el('circle', {cx, cy, r:17, class:'key', fill:'#fff', stroke:INK, 'stroke-width':1.5}), el('text', {x:cx, y:cy, dy:'.35em', 'text-anchor':'middle', class:'key-t'}, String(i + 1)));
+      groupes[k].append(el('circle', {cx, cy, r:17, class:'key', fill:BLANC, stroke:INK, 'stroke-width':1.5}), el('text', {x:cx, y:cy, dy:'.35em', 'text-anchor':'middle', class:'key-t'}, String(i + 1)));
     });
     // Cotes d'exemple, en mètres
     const cote = (horiz, bornes, total, max) => {
