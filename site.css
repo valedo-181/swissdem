@@ -245,6 +245,16 @@ figcaption,.cap{font-size:.82rem;color:var(--mute);margin-top:10px}
 .cote p{color:var(--ink-2);font-size:.97rem}
 .cote .delai{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--soft);font-size:.8rem;font-weight:600;color:var(--ink-2)}
 
+/* Suivi en ligne : six avantages pour le client, chacun avec son moment */
+.atouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px;list-style:none}
+.atouts li{display:flex;flex-direction:column;padding:26px 26px 30px;background:var(--white);border-radius:var(--r-3);box-shadow:var(--sh-2)}
+.atouts .l1{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:30px}
+.atouts .ico{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--soft);color:var(--ink)}
+.atouts .ico svg{width:25px;height:25px}
+.atouts .etape{padding:6px 12px;border-radius:999px;background:var(--soft);font-size:.8rem;font-weight:600;color:var(--ink-2)}
+.atouts h3{font-size:clamp(1.15rem,1.5vw,1.35rem);margin-bottom:10px}
+.atouts li > p:last-child{color:var(--ink-2);font-size:.98rem}
+
 /* Avis */
 .rv-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
 .score{font-size:clamp(1.2rem,1.8vw,1.5rem);font-weight:600;padding:10px 18px;border-radius:999px;background:var(--white);box-shadow:var(--sh-1)}
@@ -347,7 +357,7 @@ details p{padding:0 0 22px;max-width:64ch;color:var(--ink-2)}
   .cartouche .go{grid-column:1/-1}
   .cartouche .go .btn{width:100%;min-height:54px}
   .cartouche label:nth-of-type(5){grid-column:span 2}
-  .nomenclature,.notes,.cote{grid-template-columns:1fr 1fr}
+  .nomenclature,.notes,.cote,.atouts{grid-template-columns:1fr 1fr}
   .panels{grid-template-columns:1fr 1fr}
   .zones{grid-template-columns:1fr 1fr}
 }
@@ -384,7 +394,7 @@ details p{padding:0 0 22px;max-width:64ch;color:var(--ink-2)}
   .cartouche label:nth-of-type(1){grid-column:1/-1}
   .cartouche label:nth-of-type(5){grid-column:auto}
   .cartouche .t span:last-child{display:none}
-  .nomenclature,.notes,.panels,.zones,.quotes,.cote{grid-template-columns:minmax(0,1fr)}
+  .nomenclature,.notes,.panels,.zones,.quotes,.cote,.atouts{grid-template-columns:minmax(0,1fr)}
   .nomenclature .num{margin-bottom:22px}
   .bloc dl{grid-template-columns:minmax(0,1fr)}
   .recap-go .btn{width:100%}
