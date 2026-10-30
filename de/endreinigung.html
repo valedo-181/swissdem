@@ -54,9 +54,12 @@
         <h1 class="fit" style="--n:9">Wohnungs&shy;abgabe beim ersten Mal unter&shy;schrieben</h1>
         <p class="lead">Eine Reinigung Raum für Raum nach den Anforderungen der Verwaltungen in Neuenburg und Freiburg. Wir sind bei der Abgabe dabei und kommen zurück, wenn die Verwaltung es verlangt.</p>
       </div>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="p35" data-iso="c" data-plan='{"pieces":{"piece":"Wohnraum","hall":"Korridor","sejour":"Wohnzimmer","chambre":"Zimmer","cuisine":"Küche","bains":"Bad","cave":"Keller","galetas":"Estrich","open":"Grossraumbüro","reunion":"Sitzungszimmer","bureau":"Büro","archives":"Archiv","sanitaires":"WC"},"notes":{"m":"Verpackt, abgebaut, erfasst","c":"Gereinigt, Abgabe unterschrieben","s":"Eingelagert, Fotoinventar"},"echelle":"Massstab indikativ"}'><title id="plan-t">Beispielplan einer Wohnung, farbig die Räume, um die sich diese Dienstleistung kümmert</title></svg>
-        <p class="plan-cap">Beispielplan und -masse: farbig die Räume, um die sich diese Dienstleistung kümmert.</p>
+      <div class="plan-wrap volume-wrap pieces-wrap" data-pieces='{&quot;taches&quot;: {&quot;vie&quot;: [&quot;Fenster und Rahmen, innen und aussen&quot;, &quot;Storen Lamelle für Lamelle&quot;, &quot;Heizkörper, zwischen den Rippen&quot;, &quot;Steckdosen, Schalter und Griffe&quot;, &quot;Sockelleisten und Türen&quot;, &quot;Böden gesaugt und feucht gereinigt, Schienen inbegriffen&quot;], &quot;cuisine&quot;: [&quot;Dampfabzug entfettet, Filter inbegriffen&quot;, &quot;Backofen, Bleche und Kochfeld&quot;, &quot;Kühlschrank und Tiefkühler abgetaut, offen gelassen&quot;, &quot;Geschirrspüler, Filter gereinigt&quot;, &quot;Schränke innen und aussen&quot;, &quot;Wasserhahn und Strahlregler entkalkt&quot;], &quot;bains&quot;: [&quot;Kalk entfernt: Duschwand, Badewanne, Plättli&quot;, &quot;Silikonfugen gereinigt&quot;, &quot;WC entkalkt, Befestigungen inbegriffen&quot;, &quot;Armaturen und Brause entkalkt&quot;, &quot;Spiegel und Spiegelschrank&quot;, &quot;Lüftungsgitter&quot;], &quot;cave&quot;: [&quot;Gründlich gewischt&quot;, &quot;Spinnweben entfernt&quot;, &quot;Regale abgestaubt&quot;], &quot;balcon&quot;: [&quot;Boden gereinigt, Spuren von Töpfen entfernt&quot;, &quot;Geländer&quot;, &quot;Aussenstoren&quot;]}, &quot;compte&quot;: &quot;{n} von {t} Räumen durchgesehen&quot;, &quot;tout&quot;: &quot;Die ganze Wohnung ist bereit für die Abgabe&quot;, &quot;choisir&quot;: &quot;Wählen Sie einen Raum&quot;, &quot;balcon&quot;: &quot;Balkon&quot;, &quot;noms&quot;: {&quot;piece&quot;: &quot;Wohnraum&quot;, &quot;hall&quot;: &quot;Korridor&quot;, &quot;sejour&quot;: &quot;Wohnzimmer&quot;, &quot;chambre&quot;: &quot;Zimmer&quot;, &quot;cuisine&quot;: &quot;Küche&quot;, &quot;bains&quot;: &quot;Bad&quot;, &quot;cave&quot;: &quot;Keller&quot;, &quot;galetas&quot;: &quot;Estrich&quot;, &quot;open&quot;: &quot;Grossraumbüro&quot;, &quot;reunion&quot;: &quot;Sitzungszimmer&quot;, &quot;bureau&quot;: &quot;Büro&quot;, &quot;archives&quot;: &quot;Archiv&quot;, &quot;sanitaires&quot;: &quot;WC&quot;}}'>
+        <div class="vol-tete"><p class="t">Ihre Wohnung, Raum für Raum</p><p class="pc-compte" data-compte></p></div>
+        <svg class="pc-plan" viewBox="0 0 860 660" role="group" aria-label="Tippen Sie auf einen Raum im Plan: Sie sehen alles, was wir dort reinigen."></svg>
+        <div class="vol-presets"><button class="chip" type="button" data-type="studio" aria-pressed="false">Studio</button><button class="chip" type="button" data-type="p25" aria-pressed="false">2,5 Zimmer</button><button class="chip" type="button" data-type="p35" aria-pressed="true">3,5 Zimmer</button><button class="chip" type="button" data-type="p45" aria-pressed="false">4,5 Zimmer</button></div>
+        <div class="pc-taches" aria-live="polite"><p class="pc-t" data-piece>Wählen Sie einen Raum</p><ul></ul></div>
+        <p class="plan-cap">Tippen Sie auf einen Raum im Plan: Sie sehen alles, was wir dort reinigen. Grundliste: Besichtigung oder Ihre Fotos zeigen, was Ihre Verwaltung kontrolliert.</p>
       </div>
       <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -86,6 +89,19 @@
   <section>
     <div class="shell">
       <div class="head">
+        <h2 class="fit" style="--n:10">Welche Reinigung?</h2>
+        <p class="intro">Der Abgabetermin bestimmt alles. Der Rest richtet sich danach.</p>
+      </div>
+      <div class="situ" data-situations>
+        <div class="situ-tabs" role="tablist" hidden><button type="button" role="tab" data-situ="fin-bail">Endreinigung mit Wohnungsabgabe</button><button type="button" role="tab" data-situ="enchaine">Nach einem Umzug mit SwissDem</button><button type="button" role="tab" data-situ="maison">Haus oder grosse Wohnung</button><button type="button" role="tab" data-situ="petit">Studio oder kleine Wohnung</button></div>
+        <div class="situ-panneaux"><article class="situ-p" data-situ="fin-bail"><h3>Endreinigung mit Wohnungsabgabe</h3><p>Die Wohnung wird am Vortag oder am Morgen gereinigt, und unser Verantwortlicher ist bei der Schlüsselübergabe dabei.</p><p class="situ-d"><span>Was wir vorsehen</span><b>Anwesenheit bei der Abgabe</b></p></article><article class="situ-p" data-situ="enchaine"><h3>Nach einem Umzug mit SwissDem</h3><p>Die Möbel gehen, die Reinigung folgt: ein Team zu koordinieren, eine Offerte.</p><p class="situ-d"><span>Was wir vorsehen</span><b>Reinigung direkt nach dem Umzug</b></p></article><article class="situ-p" data-situ="maison"><h3>Haus oder grosse Wohnung</h3><p>Keller, Estrich, Garage, Balkon oder Terrasse: Alles, was die Verwaltung kontrolliert, wird bei der Anfrage gezählt.</p><p class="situ-d"><span>Was wir vorsehen</span><b>Nebenräume und Aussenbereich inbegriffen</b></p></article><article class="situ-p" data-situ="petit"><h3>Studio oder kleine Wohnung</h3><p>Eine Pauschale nach Zimmerzahl, im Voraus bekannt, auch für ein Studio.</p><p class="situ-d"><span>Was wir vorsehen</span><b>Feste Pauschale</b></p></article></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
         <h2 class="fit" style="--n:8">Die Abnahme&shy;garantie</h2>
         <p class="intro">Der Unterschied zu einer gewöhnlichen Reinigung: Wir bleiben verantwortlich, bis das Abgabeprotokoll unterschrieben ist.</p>
       </div>
@@ -98,6 +114,20 @@
         <li><span class="coche" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg></span><h3>Balkon, Keller und Estrich</h3><p>Auf Wunsch, mit den Nebenräumen, die die Verwaltung ebenfalls kontrolliert.</p></li>
       </ul>
       <figure class="plate-wide"><img width="1400" height="933" src="../images/nettoyage-fenetre.jpg" alt="Reinigung eines Fensters" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
+        <h2 class="fit" style="--n:12">Die Kontrolle der Verwaltung, ohne Überraschung</h2>
+        <p class="intro">Verwaltungen kontrollieren immer dieselben heiklen Punkte. Wir prüfen sie vor Ihnen, und kommt trotzdem eine Beanstandung, kommen wir auf unsere Kosten zurück.</p>
+      </div>
+      <div class="inv" data-inventaire='{&quot;sortir&quot;: &quot;{n} Beanstandungen der Verwaltung&quot;, &quot;sortir1&quot;: &quot;1 Beanstandung der Verwaltung&quot;, &quot;sortir0&quot;: &quot;Kreuzen Sie eine mögliche Beanstandung der Verwaltung an.&quot;}'>
+        <p class="inv-t"><span class="inv-badge">Beispiel einer Abgabekontrolle</span><span>SwissDem · Endreinigung</span></p>
+        <div class="inv-scroll"><table><thead><tr><th>Nr.</th><th>Raum</th><th>Kontrollpunkt</th><th>Was die Verwaltung erwartet</th><th>Beanstandung der Verwaltung</th></tr></thead><tbody><tr><td class="n">1</td><td>Küche</td><td>Dampfabzug und Filter</td><td>Keine Fettspuren</td><td class="out"><input type="checkbox" aria-label="Beanstandung der Verwaltung : Küche"></td></tr><tr><td class="n">2</td><td>Küche</td><td>Backofen und Blech</td><td>Keine Brandspuren</td><td class="out"><input type="checkbox" aria-label="Beanstandung der Verwaltung : Küche"></td></tr><tr><td class="n">3</td><td>Bad</td><td>Duschwand</td><td>Kein Kalk spürbar</td><td class="out"><input type="checkbox" aria-label="Beanstandung der Verwaltung : Bad"></td></tr><tr><td class="n">4</td><td>Bad</td><td>Silikonfugen</td><td>Keine schwarzen Punkte</td><td class="out"><input type="checkbox" aria-label="Beanstandung der Verwaltung : Bad"></td></tr><tr><td class="n">5</td><td>Wohnzimmer</td><td>Storen</td><td>Lamellen sauber, eine um die andere</td><td class="out"><input type="checkbox" aria-label="Beanstandung der Verwaltung : Wohnzimmer"></td></tr><tr><td class="n">6</td><td>Balkon</td><td>Boden</td><td>Keine Topfspuren</td><td class="out"><input type="checkbox" aria-label="Beanstandung der Verwaltung : Balkon"></td></tr></tbody></table></div>
+        <div class="inv-pied"><p aria-live="polite" data-sortir>Kreuzen Sie eine mögliche Beanstandung der Verwaltung an.</p><p class="inv-rdv" hidden>Abgabegarantie: Wir kommen auf unsere Kosten zurück und beheben sie, bis das Protokoll unterschrieben ist. Sprechen wir darüber: <a href="tel:+41325604925">032 560 49 25</a> · <a href="tel:+41265611025">026 561 10 25</a></p></div>
+      </div>
     </div>
   </section>
 

@@ -663,6 +663,71 @@
   dessiner(mien > 0 ? mien : 23);
 })();
 
+// Nettoyage (v7) : le plan du logement, pièce par pièce. Toucher une pièce affiche ce que l'équipe y nettoie,
+// coché ligne après ligne ; la pièce passe au vert. Quand toutes ont été vues, le logement est « prêt pour l'état des lieux ».
+(function(){
+  const zone = document.querySelector('.pieces-wrap[data-pieces]');
+  if (!zone) return;
+  const T = JSON.parse(zone.dataset.pieces);
+  const svg = zone.querySelector('.pc-plan'), liste = zone.querySelector('.pc-taches ul'), titre = zone.querySelector('[data-piece]');
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, at, txt) => { const n = document.createElementNS(NS, tag); for (const k in at) n.setAttribute(k, at[k]); if (txt != null) n.textContent = txt; return n; };
+  // Mêmes plans que les pages de service (cadre de 800 × 500), plus un balcon sous la façade
+  const PLANS = {
+    studio: [[0,0,500,320,'piece'],[500,0,300,320,'hall'],[0,320,300,180,'cuisine'],[300,320,200,180,'bains'],[500,320,300,180,'cave']],
+    p25: [[0,0,430,320,'sejour'],[430,0,370,320,'chambre'],[0,320,300,180,'cuisine'],[300,320,200,180,'bains'],[500,320,300,180,'cave']],
+    p35: [[0,0,380,320,'sejour'],[380,0,210,210,'chambre'],[590,0,210,210,'chambre'],[380,210,420,110,'hall'],[0,320,280,180,'cuisine'],[280,320,190,180,'bains'],[470,320,330,180,'cave']],
+    p45: [[0,0,340,300,'sejour'],[340,0,230,200,'chambre'],[570,0,230,200,'chambre'],[340,200,460,100,'hall'],[0,300,230,200,'chambre'],[230,300,210,200,'cuisine'],[440,300,150,200,'bains'],[590,300,210,200,'cave']],
+  };
+  const SORTE = {piece:'vie', sejour:'vie', chambre:'vie', hall:'vie', cuisine:'cuisine', bains:'bains', cave:'cave', galetas:'cave', balcon:'balcon'};
+  const X = 30, Y = 30;
+  let vues = new Set(), active = null, pieces = [];
+  function dessiner(type){
+    svg.replaceChildren(); vues = new Set(); active = null;
+    const plan = PLANS[type].concat([[0, 530, type === 'studio' ? 300 : 430, 90, 'balcon']]);
+    pieces = plan.map(([x, y, w, h, cle], i) => {
+      const nom = cle === 'balcon' ? T.balcon : T.noms[cle];
+      const g = el('g', {class:'pc ' + SORTE[cle], tabindex:0, role:'button', 'aria-label':nom});
+      g.append(el('rect', {x:X + x, y:Y + y, width:w, height:h, class:'pc-fond'}),
+               el('text', {x:X + x + 16, y:Y + y + 30, class:'pc-nom'}, nom));
+      const cx = X + x + w - 28, cy = Y + y + 28;
+      const ok = el('g', {class:'pc-ok', transform:`translate(${cx} ${cy})`});
+      ok.append(el('circle', {r:14}), el('path', {d:'M-6 0.5l4 4 8-8'}));
+      g.append(ok);
+      g.style.setProperty('--i', i);
+      const p = { g, cle, nom };
+      g.addEventListener('click', () => choisir(p));
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choisir(p); } });
+      svg.append(g);
+      return p;
+    });
+    // Murs : le contour du logement, épais, par-dessus les pièces
+    svg.append(el('rect', {x:X, y:Y, width:800, height:500, class:'pc-mur'}));
+    titre.textContent = T.choisir; liste.replaceChildren();
+    compter();
+  }
+  function compter(){
+    const n = vues.size, t = pieces.length;
+    zone.querySelector('[data-compte]').textContent = n === t ? T.tout : T.compte.replace('{n}', n).replace('{t}', t);
+    zone.classList.toggle('pret', n === t);
+  }
+  function choisir(p){
+    if (active) active.g.classList.remove('on');
+    active = p; p.g.classList.add('on', 'fait');
+    vues.add(p);
+    titre.textContent = p.nom;
+    liste.replaceChildren(...T.taches[SORTE[p.cle]].map((t, i) => {
+      const li = document.createElement('li'); li.textContent = t; li.style.setProperty('--i', i); return li;
+    }));
+    compter();
+  }
+  zone.querySelectorAll('.vol-presets .chip').forEach(b => b.addEventListener('click', () => {
+    zone.querySelectorAll('.vol-presets .chip').forEach(c => c.setAttribute('aria-pressed', c === b));
+    dessiner(b.dataset.type);
+  }));
+  dessiner('p35');
+})();
+
 // Déménagement (v7) : le volume chargé dans des camions 3,5 t (vue isométrique, environ 20 m³ par camion) ;
 // au-delà, un second camion apparaît. Logements types, inventaire de l'estimateur, volume transmis au devis.
 (function(){

@@ -54,9 +54,12 @@
         <h1 class="fit" style="--n:7">Un état des lieux signé du premier coup</h1>
         <p class="lead">Un nettoyage pièce par pièce selon les exigences des régies de Neuchâtel et de Fribourg. Nous sommes présents à l'état des lieux, et nous revenons si la régie le demande.</p>
       </div>
-      <div class="plan-wrap">
-        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="p35" data-iso="c" data-plan='{"pieces":{"piece":"Pièce principale","hall":"Hall","sejour":"Séjour","chambre":"Chambre","cuisine":"Cuisine","bains":"Bains","cave":"Cave","galetas":"Galetas","open":"Open space","reunion":"Salle de réunion","bureau":"Bureau","archives":"Archives","sanitaires":"Sanitaires"},"notes":{"m":"Emballé, démonté, inventorié","c":"Nettoyé, état des lieux signé","s":"Stocké au dépôt, inventaire photo"},"echelle":"Échelle indicative"}'><title id="plan-t">Plan d'exemple d'un logement, en couleur les pièces dont s'occupe ce service</title></svg>
-        <p class="plan-cap">Plan et cotes d'exemple : en couleur, les pièces dont s'occupe ce service.</p>
+      <div class="plan-wrap volume-wrap pieces-wrap" data-pieces='{&quot;taches&quot;: {&quot;vie&quot;: [&quot;Fenêtres et cadres, dedans et dehors&quot;, &quot;Stores lavés lamelle par lamelle&quot;, &quot;Radiateurs, entre les éléments&quot;, &quot;Prises, interrupteurs et poignées&quot;, &quot;Plinthes et portes&quot;, &quot;Sols aspirés et lavés, rails compris&quot;], &quot;cuisine&quot;: [&quot;Hotte dégraissée, filtres compris&quot;, &quot;Four, plaques et lèchefrite&quot;, &quot;Frigo et congélateur dégivrés, laissés ouverts&quot;, &quot;Lave-vaisselle, filtres nettoyés&quot;, &quot;Armoires dedans et dehors&quot;, &quot;Robinet et mousseur détartrés&quot;], &quot;bains&quot;: [&quot;Calcaire retiré : parois, baignoire, carrelage&quot;, &quot;Joints de silicone nettoyés&quot;, &quot;WC détartré, fixations comprises&quot;, &quot;Robinets et pommeau détartrés&quot;, &quot;Miroir et armoire de toilette&quot;, &quot;Grille d&#x27;aération&quot;], &quot;cave&quot;: [&quot;Balayée à fond&quot;, &quot;Toiles d&#x27;araignée retirées&quot;, &quot;Étagères dépoussiérées&quot;], &quot;balcon&quot;: [&quot;Sol lavé, traces de pots retirées&quot;, &quot;Garde-corps&quot;, &quot;Stores extérieurs&quot;]}, &quot;compte&quot;: &quot;{n} sur {t} pièces passées en revue&quot;, &quot;tout&quot;: &quot;Tout le logement est prêt pour l&#x27;état des lieux&quot;, &quot;choisir&quot;: &quot;Choisissez une pièce&quot;, &quot;balcon&quot;: &quot;Balcon&quot;, &quot;noms&quot;: {&quot;piece&quot;: &quot;Pièce principale&quot;, &quot;hall&quot;: &quot;Hall&quot;, &quot;sejour&quot;: &quot;Séjour&quot;, &quot;chambre&quot;: &quot;Chambre&quot;, &quot;cuisine&quot;: &quot;Cuisine&quot;, &quot;bains&quot;: &quot;Bains&quot;, &quot;cave&quot;: &quot;Cave&quot;, &quot;galetas&quot;: &quot;Galetas&quot;, &quot;open&quot;: &quot;Open space&quot;, &quot;reunion&quot;: &quot;Salle de réunion&quot;, &quot;bureau&quot;: &quot;Bureau&quot;, &quot;archives&quot;: &quot;Archives&quot;, &quot;sanitaires&quot;: &quot;Sanitaires&quot;}}'>
+        <div class="vol-tete"><p class="t">Votre logement, pièce par pièce</p><p class="pc-compte" data-compte></p></div>
+        <svg class="pc-plan" viewBox="0 0 860 660" role="group" aria-label="Touchez une pièce du plan : vous voyez tout ce que nous y nettoyons."></svg>
+        <div class="vol-presets"><button class="chip" type="button" data-type="studio" aria-pressed="false">Studio</button><button class="chip" type="button" data-type="p25" aria-pressed="false">2,5 pièces</button><button class="chip" type="button" data-type="p35" aria-pressed="true">3,5 pièces</button><button class="chip" type="button" data-type="p45" aria-pressed="false">4,5 pièces</button></div>
+        <div class="pc-taches" aria-live="polite"><p class="pc-t" data-piece>Choisissez une pièce</p><ul></ul></div>
+        <p class="plan-cap">Touchez une pièce du plan : vous voyez tout ce que nous y nettoyons. Liste de base : la visite ou vos photos précisent ce que votre régie contrôle.</p>
       </div>
       <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
@@ -86,6 +89,19 @@
   <section>
     <div class="shell">
       <div class="head">
+        <h2 class="fit" style="--n:9">Quel nettoyage ?</h2>
+        <p class="intro">La date de l'état des lieux décide de tout. Le reste s'organise autour.</p>
+      </div>
+      <div class="situ" data-situations>
+        <div class="situ-tabs" role="tablist" hidden><button type="button" role="tab" data-situ="fin-bail">Fin de bail avec état des lieux</button><button type="button" role="tab" data-situ="enchaine">Après un déménagement SwissDem</button><button type="button" role="tab" data-situ="maison">Maison ou grand appartement</button><button type="button" role="tab" data-situ="petit">Studio ou petit logement</button></div>
+        <div class="situ-panneaux"><article class="situ-p" data-situ="fin-bail"><h3>Fin de bail avec état des lieux</h3><p>Le logement est nettoyé la veille ou le matin, et notre responsable est présent à la remise des clés.</p><p class="situ-d"><span>Ce que nous prévoyons</span><b>Présence à l'état des lieux</b></p></article><article class="situ-p" data-situ="enchaine"><h3>Après un déménagement SwissDem</h3><p>Les meubles partent, le nettoyage suit : une seule équipe à coordonner, un seul devis.</p><p class="situ-d"><span>Ce que nous prévoyons</span><b>Nettoyage enchaîné au déménagement</b></p></article><article class="situ-p" data-situ="maison"><h3>Maison ou grand appartement</h3><p>Cave, galetas, garage, balcon ou terrasse : tout ce que la régie contrôle est compté à la demande.</p><p class="situ-d"><span>Ce que nous prévoyons</span><b>Annexes et extérieurs compris</b></p></article><article class="situ-p" data-situ="petit"><h3>Studio ou petit logement</h3><p>Un forfait selon le nombre de pièces, connu d'avance, même pour un studio.</p><p class="situ-d"><span>Ce que nous prévoyons</span><b>Forfait fixe</b></p></article></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
         <h2 class="fit" style="--n:11">La garantie de restitution</h2>
         <p class="intro">Ce qui fait la différence avec un nettoyage ordinaire : nous restons responsables jusqu'à la signature de l'état des lieux.</p>
       </div>
@@ -98,6 +114,20 @@
         <li><span class="coche" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg></span><h3>Balcon, cave et galetas</h3><p>Sur demande, avec les annexes que la régie contrôle aussi.</p></li>
       </ul>
       <figure class="plate-wide"><img width="1400" height="933" src="images/nettoyage-fenetre.jpg" alt="Nettoyage d'une fenêtre" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell">
+      <div class="head">
+        <h2 class="fit" style="--n:8">Le contrôle de la régie, sans surprise</h2>
+        <p class="intro">Les régies contrôlent toujours les mêmes points sensibles. Nous les vérifions avant vous, et si une remarque tombe quand même, nous revenons à nos frais.</p>
+      </div>
+      <div class="inv" data-inventaire='{&quot;sortir&quot;: &quot;{n} remarques de la régie&quot;, &quot;sortir1&quot;: &quot;1 remarque de la régie&quot;, &quot;sortir0&quot;: &quot;Cochez une remarque que la régie pourrait faire.&quot;}'>
+        <p class="inv-t"><span class="inv-badge">Exemple de contrôle d'état des lieux</span><span>SwissDem · Nettoyage de fin de bail</span></p>
+        <div class="inv-scroll"><table><thead><tr><th>N°</th><th>Pièce</th><th>Point contrôlé</th><th>Ce que la régie attend</th><th>Remarque de la régie</th></tr></thead><tbody><tr><td class="n">1</td><td>Cuisine</td><td>Hotte et filtres</td><td>Aucune trace de graisse</td><td class="out"><input type="checkbox" aria-label="Remarque de la régie : Cuisine"></td></tr><tr><td class="n">2</td><td>Cuisine</td><td>Four et lèchefrite</td><td>Aucune trace de brûlé</td><td class="out"><input type="checkbox" aria-label="Remarque de la régie : Cuisine"></td></tr><tr><td class="n">3</td><td>Bains</td><td>Paroi de douche</td><td>Aucun calcaire au toucher</td><td class="out"><input type="checkbox" aria-label="Remarque de la régie : Bains"></td></tr><tr><td class="n">4</td><td>Bains</td><td>Joints de silicone</td><td>Aucun point noir</td><td class="out"><input type="checkbox" aria-label="Remarque de la régie : Bains"></td></tr><tr><td class="n">5</td><td>Séjour</td><td>Stores</td><td>Lamelles propres, une à une</td><td class="out"><input type="checkbox" aria-label="Remarque de la régie : Séjour"></td></tr><tr><td class="n">6</td><td>Balcon</td><td>Sol</td><td>Aucune trace de pots</td><td class="out"><input type="checkbox" aria-label="Remarque de la régie : Balcon"></td></tr></tbody></table></div>
+        <div class="inv-pied"><p aria-live="polite" data-sortir>Cochez une remarque que la régie pourrait faire.</p><p class="inv-rdv" hidden>Garantie de restitution : nous revenons la corriger à nos frais, jusqu'à la signature. Pour en parler : <a href="tel:+41325604925">032 560 49 25</a> · <a href="tel:+41265611025">026 561 10 25</a></p></div>
+      </div>
     </div>
   </section>
 

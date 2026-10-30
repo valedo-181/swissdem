@@ -863,3 +863,29 @@ main{overflow-x:clip}
 .vol-svg .vitre.ft,.vol-svg .vitre.fg,.vol-svg .vitre.fd{fill:#10151b;opacity:.85}
 .vol-svg .roue{fill:#202326;stroke:#c9cdd2;stroke-width:.06}
 .vol-svg .cm .ct polygon{stroke:#8a6236;stroke-width:.012;stroke-linejoin:round}
+
+/* ---------- v7 : page nettoyage, plan cliquable ---------- */
+.pc-compte{font-size:.9rem;font-weight:600;color:var(--clean);text-align:right}
+.pc-plan{display:block;width:100%;height:auto;border-radius:var(--r-2);background:var(--soft)}
+.pc-plan .pc{cursor:pointer;outline:none}
+.pc-plan .pc-fond{fill:var(--white);stroke:var(--ink);stroke-width:3;transition:fill .35s var(--ease)}
+.pc-plan .pc:hover .pc-fond{fill:#eef7f0}
+.pc-plan .pc.fait .pc-fond{fill:#dcf1e1}
+.pc-plan .pc.on .pc-fond{fill:#bfe6c9}
+.pc-plan .pc:focus-visible .pc-fond{stroke:var(--store);stroke-width:5}
+.pc-plan .pc-nom{font-size:22px;font-weight:600;fill:var(--ink);pointer-events:none}
+.pc-plan .pc-ok circle{fill:var(--white);stroke:var(--line-2);stroke-width:2;transition:fill .3s var(--ease),stroke .3s var(--ease)}
+.pc-plan .pc-ok path{fill:none;stroke:var(--white);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.pc-plan .pc.fait .pc-ok circle{fill:var(--clean);stroke:var(--clean)}
+.pc-plan .pc-mur{fill:none;stroke:var(--ink);stroke-width:10;pointer-events:none}
+.pc-plan .balcon .pc-fond{stroke-dasharray:10 7}
+.pieces-wrap.pret .pc-plan{box-shadow:0 0 0 3px var(--clean)}
+.pc-taches{min-height:170px;padding:16px 18px;border-radius:var(--r-2);background:var(--soft)}
+.pc-t{font-weight:600;margin-bottom:8px}
+.pc-taches ul{list-style:none;display:grid;gap:6px}
+.pc-taches li{position:relative;padding-left:30px;font-size:.94rem;color:var(--ink-2);animation:tache-in .4s var(--ease) both;animation-delay:calc(var(--i) * 110ms)}
+.pc-taches li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:var(--clean) center/12px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");animation:coche-in .35s var(--ease) both;animation-delay:calc(var(--i) * 110ms + .15s)}
+@keyframes tache-in{from{opacity:0;transform:translateX(-8px)}}
+@keyframes coche-in{from{transform:scale(0)}}
+@media (prefers-reduced-motion:reduce){.pc-taches li,.pc-taches li::before{animation:none}}
+@media (max-width:560px){.pc-plan .pc-nom{font-size:32px}.pc-plan .pc-ok{scale:1.4}}
