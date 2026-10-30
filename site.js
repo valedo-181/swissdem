@@ -381,7 +381,7 @@
   };
   // Coordonnées (longitude, latitude), par nom de page de commune
   const GEO = {
-    'neuchatel':[6.931,46.992], 'la-chaux-de-fonds':[6.826,47.100], 'le-locle':[6.749,47.057], 'peseux':[6.889,46.987],
+    'neuchatel':[6.931,46.992], 'neuenburg':[6.931,46.992], 'freiburg':[7.161,46.806], 'la-chaux-de-fonds':[6.826,47.100], 'le-locle':[6.749,47.057], 'peseux':[6.889,46.987],
     'corcelles':[6.873,46.984], 'boudry':[6.838,46.950], 'marin-epagnier':[7.003,47.012], 'cortaillod':[6.845,46.941],
     'val-de-ruz':[6.902,47.058], 'val-de-travers':[6.583,46.903], 'hauterive':[6.972,47.010], 'saint-blaise':[6.988,47.015],
     'fribourg':[7.161,46.806], 'bulle':[7.057,46.619], 'morat':[7.117,46.928], 'murten':[7.117,46.928],
@@ -438,7 +438,7 @@
   const trajet = el('path', { class: 'trajet', pathLength: 1 });
   svg.append(trajet);
   // Une seule étiquette par grappe de communes voisines : les autres apparaissent au survol ou à la sélection
-  const toujours = new Set(['neuchatel', 'la-chaux-de-fonds', 'le-locle', 'val-de-travers', 'boudry', 'fribourg', 'bulle', 'morat', 'murten', 'estavayer-le-lac', 'romont', 'chatel-saint-denis', 'kerzers', 'dudingen', 'duedingen', 'val-de-ruz']);
+  const toujours = new Set(['neuchatel', 'neuenburg', 'freiburg', 'la-chaux-de-fonds', 'le-locle', 'val-de-travers', 'boudry', 'fribourg', 'bulle', 'morat', 'murten', 'estavayer-le-lac', 'romont', 'chatel-saint-denis', 'kerzers', 'dudingen', 'duedingen', 'val-de-ruz']);
   // Sur téléphone, ces noms-là ne s'affichent qu'au toucher, faute de place
   const petit = matchMedia('(max-width: 560px)').matches;   // sur téléphone, la carte est réduite : points plus gros
   const mineurs = new Set(['le-locle', 'val-de-ruz', 'boudry', 'kerzers', 'dudingen', 'duedingen', 'chatel-saint-denis']);
