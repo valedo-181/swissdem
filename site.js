@@ -549,6 +549,10 @@
   champDate.addEventListener('change', () => { etat.date = champDate.value; garder(); maj(); });
   outils.querySelector('[data-vider]').addEventListener('click', () => { cases.forEach(c => { c.checked = false; }); etat.cases = []; garder(); maj(); });
   outils.querySelector('[data-imprimer]').addEventListener('click', () => print());
+  // Le navigateur nomme le PDF d'après le titre de la page : on le remplace le temps de l'impression
+  const titre = document.title;
+  addEventListener('beforeprint', () => { document.title = 'Checklist_SwissDem_Transports'; });
+  addEventListener('afterprint', () => { document.title = titre; });
   outils.hidden = false;
   maj();
 })();
