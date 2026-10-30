@@ -13,7 +13,7 @@
 
 <header class="top">
   <div class="shell">
-    <a class="logo" href="index.html"><img src="../marque/logo-swissdem.webp" width="131" height="44" alt="SwissDem Transports, Startseite"></a>
+    <a class="logo" href="index.html"><img src="../marque/logo-swissdem.webp" width="119" height="40" alt="SwissDem Transports, Startseite"></a>
     <nav id="nav-main" aria-label="Hauptnavigation">
       <a href="umzug.html">Umzug</a>
       <a href="firmenumzug.html">Firmen</a>
@@ -22,103 +22,99 @@
       <a href="index.html#agences">Gemeinden</a>
       <a href="index.html#avis">Bewertungen</a>
     </nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-main"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg><span>Menü</span></button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-main"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg><span>Menü</span></button>
     <a class="lang" href="../nettoyage.html" lang="fr" hreflang="fr" aria-label="Français">FR</a>
     <a class="btn" href="#devis">Gratis-Offerte</a>
   </div>
 </header>
 
 <main>
-  <div class="sheet flank">
-    <div class="shell flank-in">
-      <div>
+  <div class="board">
+    <div class="shell board-in">
+      <div class="copy">
         <nav class="crumbs" aria-label="Brotkrümelnavigation"><ol><li><a href="index.html">Startseite</a></li><li aria-current="page">Endreinigung</li></ol></nav>
-        <h1 class="wide fit" style="--n:9">Wohnungs&shy;abgabe beim ersten Mal unter&shy;schrieben</h1>
+        <h1 class="fit" style="--n:9">Wohnungs&shy;abgabe beim ersten Mal unter&shy;schrieben</h1>
         <p class="lead">Eine Reinigung Raum für Raum nach den Anforderungen der Verwaltungen in Neuenburg und Freiburg. Wir sind bei der Abgabe dabei und kommen zurück, wenn die Verwaltung es verlangt.</p>
       </div>
-      <div class="livery">
-        <figure class="decal"><img src="../images/nettoyage-fenetre.jpg" alt="Reinigung eines Fensters" fetchpriority="high"><span class="tag">Provisorisches Foto</span></figure>
+      <div class="plan-wrap">
+        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="p35" data-iso="c" data-plan='{"pieces":{"piece":"Wohnraum","hall":"Korridor","sejour":"Wohnzimmer","chambre":"Zimmer","cuisine":"Küche","bains":"Bad","cave":"Keller","galetas":"Estrich","open":"Grossraumbüro","reunion":"Sitzungszimmer","bureau":"Büro","archives":"Archiv","sanitaires":"WC"},"notes":{"m":"Verpackt, abgebaut, erfasst","c":"Gereinigt, Abgabe unterschrieben","s":"Eingelagert, Fotoinventar"},"echelle":"Massstab indikativ"}'><title id="plan-t">Beispielplan einer Wohnung, farbig die Räume, um die sich diese Dienstleistung kümmert</title></svg>
+        <p class="plan-cap">Beispielplan und -masse: farbig die Räume, um die sich diese Dienstleistung kümmert.</p>
       </div>
-
-      <span class="bands focus clean" aria-hidden="true"><i></i><i></i><i></i></span>
-
-      <div class="skirt" id="devis">
+      <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
+          <p class="t"><span>Ihre Gratis-Offerte</span><span>Antwort innert 24 Stunden an Werktagen</span></p>
           <label>Leistung<select name="prestation"><option>Privatumzug</option><option>Firmenumzug</option><option selected>Endreinigung</option><option>Möbellager</option></select></label>
-          <label>PLZ Auszug<input name="npa_depart" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="2000" required></label>
+          <label>PLZ Auszug<input name="npa_depart" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="2000" autocomplete="postal-code" required></label>
           <label>PLZ Einzug<input name="npa_arrivee" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="1700" required></label>
           <label>Wohnung<select name="pieces"><option>Studio</option><option>2,5 Zimmer</option><option selected>3,5 Zimmer</option><option>4,5 Zimmer</option><option>5,5 Zimmer und mehr</option><option>Haus</option><option>Büro</option></select></label>
           <label>Wunschtermin<input type="date" name="date"></label>
           <input type="hidden" name="lang" value="de">
-          <button class="btn yellow" type="submit">Anfrage fortsetzen</button>
+          <div class="go"><button class="btn move" type="submit">Anfrage fortsetzen</button></div>
+          <p class="note"><span class="err" role="alert">Bitte beide vierstelligen PLZ angeben. </span>Kostenlos und unverbindlich. Oder rufen Sie an: <a href="tel:+41325604925">032 560 49 25</a> oder <a href="tel:+41265611025">026 561 10 25</a>.</p>
         </form>
-        <p><span class="err" role="alert">Bitte beide vierstelligen PLZ angeben. </span>Kostenlos und unverbindlich, Antwort innert 24 Stunden an Werktagen. Lieber persönlich? <a href="tel:+41325604925">032 560 49 25</a> oder <a href="tel:+41265611025">026 561 10 25</a>.</p>
       </div>
     </div>
   </div>
 
-  <div class="chassis" role="group" aria-label="Unsere Zahlen">
-    <span class="wheels" aria-hidden="true"><i class="wheel"></i><i class="wheel"></i></span>
-    <span class="wheels back" aria-hidden="true"><i class="wheel"></i></span>
-    <div class="shell">
-      <p class="proof">
-        <span><span class="stars" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg></span><b class="num">5,0</b> auf Google</span>
-        <span><b class="num">3 000+</b> Kunden</span>
-        <span><b class="num">15 Jahre</b> in beiden Kantonen</span>
-      </p>
-    </div>
+  <div class="shell">
+    <p class="proof" aria-label="Unsere Zahlen">
+      <span><span class="stars" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg></span><b>5,0</b> auf Google</span>
+      <span><b>3 000+</b> Kunden</span>
+      <span><b>15 Jahre</b> in beiden Kantonen</span>
+    </p>
   </div>
 
-  <section class="sheet">
+  <section class="band-white">
     <div class="shell">
       <div class="head">
-        <h2 class="wide fit" style="--n:8">Die Abnahme&shy;garantie</h2>
+        <h2 class="fit" style="--n:8">Die Abnahme&shy;garantie</h2>
         <p class="intro">Der Unterschied zu einer gewöhnlichen Reinigung: Wir bleiben verantwortlich, bis das Abgabeprotokoll unterschrieben ist.</p>
       </div>
-      <div class="panels">
-        <div><h3>Bei der Abgabe dabei</h3><p>Unsere verantwortliche Person kommt mit Ihnen zur Schlüsselübergabe, gegenüber Verwaltung oder Vermieter.</p></div>
-        <div><h3>Nachreinigung auf unsere Kosten</h3><p>Beanstandet die Verwaltung die Reinigung, korrigieren wir das kostenlos und so schnell wie möglich.</p></div>
-        <div><h3>Pauschale im Voraus bekannt</h3><p>Der Preis hängt von der Zimmerzahl ab, nicht vom Zeitaufwand.</p></div>
-        <div><h3>Mittel und Material inklusive</h3><p>Profi-Entkalker, Maschinen und Leitern: Sie müssen nichts vorbereiten.</p></div>
-        <div><h3>Kombiniert mit dem Umzug</h3><p>Die Reinigung folgt direkt auf den Umzug, ohne dass Sie zwei Firmen koordinieren müssen.</p></div>
-        <div><h3>Balkon, Keller und Estrich</h3><p>Auf Wunsch, mit den Nebenräumen, die die Verwaltung ebenfalls kontrolliert.</p></div>
-      </div>
+      <ul class="panels">
+        <li><h3>Bei der Abgabe dabei</h3><p>Unsere verantwortliche Person kommt mit Ihnen zur Schlüsselübergabe, gegenüber Verwaltung oder Vermieter.</p></li>
+        <li><h3>Nachreinigung auf unsere Kosten</h3><p>Beanstandet die Verwaltung die Reinigung, korrigieren wir das kostenlos und so schnell wie möglich.</p></li>
+        <li><h3>Pauschale im Voraus bekannt</h3><p>Der Preis hängt von der Zimmerzahl ab, nicht vom Zeitaufwand.</p></li>
+        <li><h3>Mittel und Material inklusive</h3><p>Profi-Entkalker, Maschinen und Leitern: Sie müssen nichts vorbereiten.</p></li>
+        <li><h3>Kombiniert mit dem Umzug</h3><p>Die Reinigung folgt direkt auf den Umzug, ohne dass Sie zwei Firmen koordinieren müssen.</p></li>
+        <li><h3>Balkon, Keller und Estrich</h3><p>Auf Wunsch, mit den Nebenräumen, die die Verwaltung ebenfalls kontrolliert.</p></li>
+      </ul>
+      <figure class="plate-wide"><img src="../images/nettoyage-fenetre.jpg" alt="Reinigung eines Fensters" loading="lazy"><figcaption>Provisorisches Foto, wird durch ein Foto von SwissDem ersetzt.</figcaption></figure>
     </div>
   </section>
 
-  <section class="livery-band clean">
+  <section>
     <div class="shell">
       <div class="head">
-        <h2 class="wide fit" style="--n:10">Was die Verwaltung prüft, erledigen wir</h2>
+        <h2 class="fit" style="--n:10">Was die Verwaltung prüft, erledigen wir</h2>
         <p class="intro">Unsere Checkliste umfasst die Punkte, die bei der Wohnungsabgabe am häufigsten beanstandet werden. Das Wasser in der Region ist sehr kalkhaltig: Entkalken hat bei uns einen grossen Stellenwert.</p>
       </div>
       <div class="zones">
-        <div><h3>Küche</h3><ul><li>Dampfabzug entfettet, Metallfilter inklusive</li><li>Backofen, Kochfeld und Backblech ohne Brandspuren</li><li>Kühlschrank und Tiefkühler abgetaut, Dichtungen gereinigt, offen gelassen</li><li>Geschirrspüler: Filter und Sprüharme entkalkt</li></ul></div>
-        <div><h3>Bad und WC</h3><ul><li>Strahlregler der Armaturen abgeschraubt und entkalkt</li><li>Duschwände und Badewanne ohne Kalk und Seifenreste</li><li>Silikonfugen behandelt, ohne schwarze Punkte</li><li>WC entkalkt, Befestigungen der Brille inklusive</li></ul></div>
-        <div><h3>Fenster und Storen</h3><ul><li>Fenster innen und aussen</li><li>Rahmen und Falze</li><li>Storen Lamelle für Lamelle gewaschen, Kasten inklusive</li></ul></div>
-        <div><h3>Räume, Böden, Nebenräume</h3><ul><li>Steckdosen, Schalter und Griffe entfettet</li><li>Heizkörper zwischen den Rippen gereinigt</li><li>Böden gereinigt, Schiebetürschienen inklusive</li><li>Balkon, Keller und Estrich gewischt, auf Wunsch</li></ul></div>
+        <div><h3><span class="sw clean" aria-hidden="true"></span>Küche</h3><ul><li>Dampfabzug entfettet, Metallfilter inklusive</li><li>Backofen, Kochfeld und Backblech ohne Brandspuren</li><li>Kühlschrank und Tiefkühler abgetaut, Dichtungen gereinigt, offen gelassen</li><li>Geschirrspüler: Filter und Sprüharme entkalkt</li></ul></div>
+        <div><h3><span class="sw clean" aria-hidden="true"></span>Bad und WC</h3><ul><li>Strahlregler der Armaturen abgeschraubt und entkalkt</li><li>Duschwände und Badewanne ohne Kalk und Seifenreste</li><li>Silikonfugen behandelt, ohne schwarze Punkte</li><li>WC entkalkt, Befestigungen der Brille inklusive</li></ul></div>
+        <div><h3><span class="sw clean" aria-hidden="true"></span>Fenster und Storen</h3><ul><li>Fenster innen und aussen</li><li>Rahmen und Falze</li><li>Storen Lamelle für Lamelle gewaschen, Kasten inklusive</li></ul></div>
+        <div><h3><span class="sw clean" aria-hidden="true"></span>Räume, Böden, Nebenräume</h3><ul><li>Steckdosen, Schalter und Griffe entfettet</li><li>Heizkörper zwischen den Rippen gereinigt</li><li>Böden gereinigt, Schiebetürschienen inklusive</li><li>Balkon, Keller und Estrich gewischt, auf Wunsch</li></ul></div>
       </div>
     </div>
   </section>
 
-  <section style="background:var(--alu)">
+  <section class="band-white">
     <div class="shell">
-      <h2 class="wide fit" style="--n:5">So läuft es ab</h2>
-      <ol class="steps">
-        <li><b class="num">1</b><h3>Ihre Anfrage</h3><p>Zimmerzahl, Datum der Wohnungsabgabe und Name der Verwaltung.</p></li>
-        <li><b class="num">2</b><h3>Die Pauschale</h3><p>Sie erhalten die Pauschale innert 24 Stunden an Werktagen, Garantie inklusive.</p></li>
-        <li><b class="num">3</b><h3>Die Reinigung</h3><p>Unser Team reinigt die leere Wohnung am Vortag oder am Tag der Abgabe.</p></li>
-        <li><b class="num">4</b><h3>Die Wohnungsabgabe</h3><p>Unsere verantwortliche Person ist dabei. Beanstandet die Verwaltung etwas, korrigieren wir es.</p></li>
+      <h2 class="fit" style="--n:5">So läuft es ab</h2>
+      <ol class="cote">
+        <li><b>1</b><h3>Ihre Anfrage</h3><p>Zimmerzahl, Datum der Wohnungsabgabe und Name der Verwaltung.</p></li>
+        <li><b>2</b><h3>Die Pauschale</h3><p>Sie erhalten die Pauschale innert 24 Stunden an Werktagen, Garantie inklusive.</p></li>
+        <li><b>3</b><h3>Die Reinigung</h3><p>Unser Team reinigt die leere Wohnung am Vortag oder am Tag der Abgabe.</p></li>
+        <li><b>4</b><h3>Die Wohnungsabgabe</h3><p>Unsere verantwortliche Person ist dabei. Beanstandet die Verwaltung etwas, korrigieren wir es.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="sheet">
+  <section>
     <div class="shell">
-      <h2 class="wide fit" style="--n:10">Eine Pauschale nach Zimmerzahl</h2>
+      <h2 class="fit" style="--n:10">Eine Pauschale nach Zimmerzahl</h2>
       <div class="price">
         <div>
-          <p class="intro" style="margin-bottom:28px">Die Pauschale steht im Voraus fest, Abnahmegarantie inklusive. Sie hängt nicht vom Zeitaufwand ab.</p>
+          <p class="intro" style="margin:0 0 28px">Die Pauschale steht im Voraus fest, Abnahmegarantie inklusive. Sie hängt nicht vom Zeitaufwand ab.</p>
           <dl class="factors">
           <div><dt>Die Zimmer</dt><dd>Vom Studio bis zum Haus: Die Pauschale richtet sich nach der Zimmerzahl.</dd></div>
           <div><dt>Die Nebenräume</dt><dd>Balkon, Terrasse, Keller oder Estrich, mit festem Zuschlag.</dd></div>
@@ -130,49 +126,49 @@
     </div>
   </section>
 
-  <section class="sheet">
+  <section>
     <div class="shell faq">
-      <h2 class="wide fit" style="--n:6">Ihre Fragen</h2>
+      <h2 class="fit" style="--n:6">Ihre Fragen</h2>
       <div>
-        <details><summary>Was passiert, wenn die Verwaltung die Reinigung nicht abnimmt?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Unsere verantwortliche Person ist vor Ort. Wird etwas beanstandet, korrigieren wir es sofort oder kommen auf unsere Kosten zurück, bis zur Unterschrift.</p></details>
-        <details><summary>Muss die Wohnung leer sein?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Ja, damit jede Fläche zugänglich ist. Wenn wir auch den Umzug machen, folgt die Reinigung direkt danach.</p></details>
-        <details><summary>Sind Dübellöcher inbegriffen?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Das Verschliessen gehört nicht zur Reinigung: Sagen Sie es uns bei der Anfrage, wir sagen Ihnen, was möglich ist.</p></details>
+        <details><summary>Was passiert, wenn die Verwaltung die Reinigung nicht abnimmt?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Unsere verantwortliche Person ist vor Ort. Wird etwas beanstandet, korrigieren wir es sofort oder kommen auf unsere Kosten zurück, bis zur Unterschrift.</p></details>
+        <details><summary>Muss die Wohnung leer sein?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Ja, damit jede Fläche zugänglich ist. Wenn wir auch den Umzug machen, folgt die Reinigung direkt danach.</p></details>
+        <details><summary>Sind Dübellöcher inbegriffen?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Das Verschliessen gehört nicht zur Reinigung: Sagen Sie es uns bei der Anfrage, wir sagen Ihnen, was möglich ist.</p></details>
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="band-white">
     <div class="shell">
-      <h2 class="wide fit" style="--n:9">In derselben Offerte</h2>
+      <h2 class="fit" style="--n:9">In derselben Offerte</h2>
       <div class="others">
-        <a class="move" href="umzug.html"><h3 class="wide">Privatumzug</h3><p>Vom Studio bis zum Einfamilienhaus: Einpacken, Abbauen, Transport und Aufbau.</p><span class="more">Mehr erfahren</span></a>
-        <a class="biz" href="firmenumzug.html"><h3 class="wide">Firmenumzug</h3><p>Büros, Praxen und Geschäfte, abends oder am Wochenende, Arbeitsplatz für Arbeitsplatz.</p><span class="more">Mehr erfahren</span></a>
-        <a class="store" href="moebellager.html"><h3 class="wide">Möbellager</h3><p>Ein paar Wochen zwischen zwei Mietverträgen oder mehrere Monate, in einem geschlossenen, überwachten Lager.</p><span class="more">Mehr erfahren</span></a>
+        <a href="umzug.html"><span class="sw move" aria-hidden="true"></span><h3>Privatumzug</h3><p>Vom Studio bis zum Einfamilienhaus: Einpacken, Abbauen, Transport und Aufbau.</p><span class="more">Mehr erfahren</span></a>
+        <a href="firmenumzug.html"><span class="sw biz" aria-hidden="true"></span><h3>Firmenumzug</h3><p>Büros, Praxen und Geschäfte, abends oder am Wochenende, Arbeitsplatz für Arbeitsplatz.</p><span class="more">Mehr erfahren</span></a>
+        <a href="moebellager.html"><span class="sw store" aria-hidden="true"></span><h3>Möbellager</h3><p>Ein paar Wochen zwischen zwei Mietverträgen oder mehrere Monate, in einem geschlossenen, überwachten Lager.</p><span class="more">Mehr erfahren</span></a>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="road">
+<footer class="foot">
   <div class="shell">
     <div class="close">
       <p class="fit" style="--n:8">Wir kümmern uns um die Kartons. Sie um alles Weitere.</p>
-      <div><a class="btn yellow" href="#devis">Gratis-Offerte anfordern</a><a class="btn line" href="tel:+41325604925">Filiale anrufen</a></div>
+      <div><a class="btn move" href="#devis">Gratis-Offerte anfordern</a><a class="btn line" href="tel:+41325604925">Filiale anrufen</a></div>
     </div>
-    <div class="cols">
+    <div class="grid">
       <div>
-        <a class="logo" href="index.html"><img src="../marque/logo-swissdem.webp" width="155" height="52" alt="SwissDem Transports" loading="lazy"></a>
-        <p style="margin-top:20px;max-width:36ch">Umzug, Endreinigung und Möbellager in den Kantonen Neuenburg und Freiburg.</p>
+        <a class="logo" href="index.html"><img src="../marque/logo-swissdem.webp" width="131" height="44" alt="SwissDem Transports" loading="lazy"></a>
+        <p style="margin-top:18px;max-width:36ch">Umzug, Endreinigung und Möbellager in den Kantonen Neuenburg und Freiburg.</p>
       </div>
       <div><p class="col-t">Dienstleistungen</p><ul><li><a href="umzug.html">Privatumzug</a></li><li><a href="firmenumzug.html">Firmenumzug</a></li><li><a href="endreinigung.html">Endreinigung</a></li><li><a href="moebellager.html">Möbellager</a></li></ul></div>
       <div><p class="col-t">Filialen</p><ul><li><a href="tel:+41325604925">Neuenburg 032 560 49 25</a></li><li><a href="tel:+41265611025">Freiburg 026 561 10 25</a></li><li><a href="index.html#agences">Alle Gemeinden</a></li></ul></div>
       <div><p class="col-t">Informationen</p><ul><li><a href="#">AGB Umzug</a></li><li><a href="#">AGB Reinigung</a></li><li><a href="#">Blog</a></li><li><a href="#">Kundenbereich</a></li></ul></div>
     </div>
-    <div class="legal"><span>© 2026 SwissDem Transports SNC</span><span><a href="#">Impressum</a>, <a href="#">Datenschutz</a></span></div>
+    <div class="legal"><span>© 2026 SwissDem Transports SNC</span><span>Provisorische Fotos: Unsplash · <a href="#">Impressum</a>, <a href="#">Datenschutz</a></span></div>
   </div>
 </footer>
 
-<div class="callbar"><a class="btn yellow" href="#devis">Gratis-Offerte</a><a class="btn line" style="color:#fff;border-color:#fff" href="tel:+41325604925">Anrufen</a></div>
+<div class="callbar"><a class="btn move" href="#devis">Gratis-Offerte</a><a class="btn line" href="tel:+41325604925">Anrufen</a></div>
 
 <script src="../site.js"></script>
 </body>

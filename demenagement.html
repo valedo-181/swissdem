@@ -13,7 +13,7 @@
 
 <header class="top">
   <div class="shell">
-    <a class="logo" href="index.html"><img src="marque/logo-swissdem.webp" width="131" height="44" alt="SwissDem Transports, accueil"></a>
+    <a class="logo" href="index.html"><img src="marque/logo-swissdem.webp" width="119" height="40" alt="SwissDem Transports, accueil"></a>
     <nav id="nav-main" aria-label="Navigation principale">
       <a href="demenagement.html" aria-current="page">Déménagement</a>
       <a href="entreprise.html">Entreprises</a>
@@ -22,88 +22,84 @@
       <a href="index.html#agences">Communes</a>
       <a href="index.html#avis">Avis</a>
     </nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-main"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg><span>Menu</span></button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-main"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg><span>Menu</span></button>
     <a class="lang" href="de/umzug.html" lang="de" hreflang="de" aria-label="Deutsch">DE</a>
     <a class="btn" href="#devis">Devis gratuit</a>
   </div>
 </header>
 
 <main>
-  <div class="sheet flank">
-    <div class="shell flank-in">
-      <div>
+  <div class="board">
+    <div class="shell board-in">
+      <div class="copy">
         <nav class="crumbs" aria-label="Fil d'Ariane"><ol><li><a href="index.html">Accueil</a></li><li aria-current="page">Déménagement privé</li></ol></nav>
-        <h1 class="wide fit" style="--n:13">Votre déménagement, au prix du devis</h1>
+        <h1 class="fit" style="--n:13">Votre déménagement, au prix du devis</h1>
         <p class="lead">Une équipe salariée emballe, démonte, transporte et remonte vos meubles. Le prix est fixé après la visite gratuite et ne change pas le jour J.</p>
       </div>
-      <div class="livery">
-        <figure class="decal"><img src="images/demenagement-cartons.jpg" alt="Cartons et plantes dans un appartement en cours de déménagement" fetchpriority="high"><span class="tag">Photo provisoire</span></figure>
+      <div class="plan-wrap">
+        <svg class="plan" viewBox="0 0 900 580" role="img" aria-labelledby="plan-t" data-layout="p35" data-iso="m" data-plan='{"pieces":{"piece":"Pièce principale","hall":"Hall","sejour":"Séjour","chambre":"Chambre","cuisine":"Cuisine","bains":"Bains","cave":"Cave","galetas":"Galetas","open":"Open space","reunion":"Salle de réunion","bureau":"Bureau","archives":"Archives","sanitaires":"Sanitaires"},"notes":{"m":"Emballé, démonté, inventorié","c":"Nettoyé, état des lieux signé","s":"Stocké au dépôt, inventaire photo"},"echelle":"Échelle indicative"}'><title id="plan-t">Plan d'exemple d'un logement, en couleur les pièces dont s'occupe ce service</title></svg>
+        <p class="plan-cap">Plan et cotes d'exemple : en couleur, les pièces dont s'occupe ce service.</p>
       </div>
-
-      <span class="bands focus move" aria-hidden="true"><i></i><i></i><i></i></span>
-
-      <div class="skirt" id="devis">
+      <div class="cartouche" id="devis">
         <form action="https://www.titanor.app/demande/JETON-SWISSDEM" method="get" target="_blank" novalidate>
+          <p class="t"><span>Votre devis gratuit</span><span>Réponse sous 24 heures ouvrables</span></p>
           <label>Prestation<select name="prestation"><option selected>Déménagement privé</option><option>Déménagement d'entreprise</option><option>Nettoyage de fin de bail</option><option>Garde-meubles</option></select></label>
-          <label>NPA de départ<input name="npa_depart" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="2000" required></label>
+          <label>NPA de départ<input name="npa_depart" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="2000" autocomplete="postal-code" required></label>
           <label>NPA d'arrivée<input name="npa_arrivee" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="1700" required></label>
           <label>Logement<select name="pieces"><option>Studio</option><option>2,5 pièces</option><option selected>3,5 pièces</option><option>4,5 pièces</option><option>5,5 pièces et plus</option><option>Maison</option><option>Bureaux</option></select></label>
           <label>Date souhaitée<input type="date" name="date"></label>
           <input type="hidden" name="lang" value="fr">
-          <button class="btn yellow" type="submit">Continuer ma demande</button>
+          <div class="go"><button class="btn move" type="submit">Continuer ma demande</button></div>
+          <p class="note"><span class="err" role="alert">Indiquez les deux NPA à 4 chiffres pour continuer. </span>Gratuit et sans engagement. Ou appelez le <a href="tel:+41325604925">032 560 49 25</a> ou le <a href="tel:+41265611025">026 561 10 25</a>.</p>
         </form>
-        <p><span class="err" role="alert">Indiquez les deux NPA à 4 chiffres pour continuer. </span>Gratuit et sans engagement, réponse sous 24 heures ouvrables. Vous préférez parler à quelqu'un ? <a href="tel:+41325604925">032 560 49 25</a> ou <a href="tel:+41265611025">026 561 10 25</a>.</p>
       </div>
     </div>
   </div>
 
-  <div class="chassis" role="group" aria-label="Nos chiffres">
-    <span class="wheels" aria-hidden="true"><i class="wheel"></i><i class="wheel"></i></span>
-    <span class="wheels back" aria-hidden="true"><i class="wheel"></i></span>
-    <div class="shell">
-      <p class="proof">
-        <span><span class="stars" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg></span><b class="num">5,0</b> sur Google</span>
-        <span><b class="num">3 000+</b> clients</span>
-        <span><b class="num">15 ans</b> dans les deux cantons</span>
-      </p>
-    </div>
+  <div class="shell">
+    <p class="proof" aria-label="Nos chiffres">
+      <span><span class="stars" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.1 1.1 6L10 15l-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg></span><b>5,0</b> sur Google</span>
+      <span><b>3 000+</b> clients</span>
+      <span><b>15 ans</b> dans les deux cantons</span>
+    </p>
   </div>
 
-  <section class="sheet">
+  <section class="band-white">
     <div class="shell">
       <div class="head">
-        <h2 class="wide fit" style="--n:7">Ce qui est compris</h2>
+        <h2 class="fit" style="--n:7">Ce qui est compris</h2>
         <p class="intro">Tout ce qu'il faut pour que vos meubles arrivent comme ils sont partis, et que vos deux logements restent intacts.</p>
       </div>
-      <div class="panels">
-        <div><h3>Visite gratuite</h3><p>Chez vous ou à distance, à partir de vos photos et vidéos. Votre devis arrive sous 24 heures ouvrables.</p></div>
-        <div><h3>Protection complète</h3><p>Couvertures, film, protections de sols, de portes et d'escaliers, au départ comme à l'arrivée.</p></div>
-        <div><h3>Démontage et remontage</h3><p>Lits, armoires et tables sont démontés, étiquetés et remontés là où vous le souhaitez.</p></div>
-        <div><h3>Emballage sur demande</h3><p>Tout le logement, ou seulement la vaisselle et les objets fragiles. Cartons fournis.</p></div>
-        <div><h3>Inventaire signé</h3><p>Chaque meuble et chaque carton est contrôlé avec vous au chargement, puis à la livraison.</p></div>
-        <div><h3>Objets lourds</h3><p>Piano, coffre-fort, armoire massive : monte-meubles et matériel adaptés, sur demande.</p></div>
-      </div>
+      <ul class="panels">
+        <li><h3>Visite gratuite</h3><p>Chez vous ou à distance, à partir de vos photos et vidéos. Votre devis arrive sous 24 heures ouvrables.</p></li>
+        <li><h3>Protection complète</h3><p>Couvertures, film, protections de sols, de portes et d'escaliers, au départ comme à l'arrivée.</p></li>
+        <li><h3>Démontage et remontage</h3><p>Lits, armoires et tables sont démontés, étiquetés et remontés là où vous le souhaitez.</p></li>
+        <li><h3>Emballage sur demande</h3><p>Tout le logement, ou seulement la vaisselle et les objets fragiles. Cartons fournis.</p></li>
+        <li><h3>Inventaire signé</h3><p>Chaque meuble et chaque carton est contrôlé avec vous au chargement, puis à la livraison.</p></li>
+        <li><h3>Objets lourds</h3><p>Piano, coffre-fort, armoire massive : monte-meubles et matériel adaptés, sur demande.</p></li>
+      </ul>
+      <figure class="plate-wide"><img src="images/demenagement-cartons.jpg" alt="Cartons et plantes dans un appartement en cours de déménagement" loading="lazy"><figcaption>Photo provisoire, à remplacer par une photo de SwissDem.</figcaption></figure>
     </div>
   </section>
 
-  <section style="background:var(--alu)">
+  <section>
     <div class="shell">
-      <h2 class="wide fit" style="--n:7">Comment ça se passe</h2>
-      <ol class="steps">
-        <li><b class="num">1</b><h3>Votre demande</h3><p>En ligne en deux minutes, ou par téléphone avec l'agence de votre canton.</p></li>
-        <li><b class="num">2</b><h3>La visite et le devis</h3><p>Nous mesurons le volume, vous recevez un devis détaillé sous 24 heures ouvrables.</p></li>
-        <li><b class="num">3</b><h3>La confirmation</h3><p>Vous validez le devis : la date, le camion et l'équipe sont réservés.</p></li>
-        <li><b class="num">4</b><h3>Le jour J</h3><p>Chargement, transport, remontage, inventaire contrôlé avec vous à l'arrivée.</p></li>
+      <h2 class="fit" style="--n:7">Comment ça se passe</h2>
+      <ol class="cote">
+        <li><b>1</b><h3>Votre demande</h3><p>En ligne en deux minutes, ou par téléphone avec l'agence de votre canton.</p></li>
+        <li><b>2</b><h3>La visite et le devis</h3><p>Nous mesurons le volume, vous recevez un devis détaillé sous 24 heures ouvrables.</p></li>
+        <li><b>3</b><h3>La confirmation</h3><p>Vous validez le devis : la date, le camion et l'équipe sont réservés.</p></li>
+        <li><b>4</b><h3>Le jour J</h3><p>Chargement, transport, remontage, inventaire contrôlé avec vous à l'arrivée.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="sheet">
+  <section class="band-white">
     <div class="shell">
-      <h2 class="wide fit" style="--n:9">Un prix que vous comprenez</h2>
+      <h2 class="fit" style="--n:9">Un prix que vous comprenez</h2>
       <div class="price">
         <div>
-          <p class="intro" style="margin-bottom:28px">Le prix dépend de trois choses, toutes mesurées pendant la visite. Il figure en entier sur le devis, TVA comprise.</p>
+          <p class="intro" style="margin:0 0 28px">Le prix dépend de trois choses, toutes mesurées pendant la visite. Il figure en entier sur le devis, TVA comprise.</p>
           <dl class="factors">
           <div><dt>Le volume</dt><dd>Le nombre de m³ de meubles et de cartons, mesuré pièce par pièce.</dd></div>
           <div><dt>L'accès</dt><dd>Les étages sans ascenseur, la distance entre le camion et la porte, un monte-meubles si nécessaire.</dd></div>
@@ -116,50 +112,50 @@
     </div>
   </section>
 
-  <section class="sheet">
+  <section>
     <div class="shell faq">
-      <h2 class="wide fit" style="--n:9">Vos questions</h2>
+      <h2 class="fit" style="--n:9">Vos questions</h2>
       <div>
-        <details><summary>Le prix peut-il changer le jour du déménagement ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Non. Le devis fixe le prix. Il ne change que si vous ajoutez des objets ou des prestations, et vous le validez par écrit avant que nous commencions.</p></details>
-        <details><summary>Combien de temps à l'avance faut-il réserver ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Idéalement quatre à six semaines, davantage pour les fins de mois et les échéances de bail usuelles (31 mars, 30 juin, 30 septembre).</p></details>
-        <details><summary>Faut-il une autorisation de stationnement pour le camion ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Dans la plupart des communes, oui. Nous faisons la demande pour vous auprès de la commune.</p></details>
-        <details><summary>Mes biens sont-ils assurés ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Oui. L'assurance transport et la responsabilité civile professionnelle couvrent vos biens du chargement à la livraison. Les conditions figurent sur chaque devis.</p></details>
+        <details><summary>Le prix peut-il changer le jour du déménagement ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Non. Le devis fixe le prix. Il ne change que si vous ajoutez des objets ou des prestations, et vous le validez par écrit avant que nous commencions.</p></details>
+        <details><summary>Combien de temps à l'avance faut-il réserver ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Idéalement quatre à six semaines, davantage pour les fins de mois et les échéances de bail usuelles (31 mars, 30 juin, 30 septembre).</p></details>
+        <details><summary>Faut-il une autorisation de stationnement pour le camion ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Dans la plupart des communes, oui. Nous faisons la demande pour vous auprès de la commune.</p></details>
+        <details><summary>Mes biens sont-ils assurés ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Oui. L'assurance transport et la responsabilité civile professionnelle couvrent vos biens du chargement à la livraison. Les conditions figurent sur chaque devis.</p></details>
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="band-white">
     <div class="shell">
-      <h2 class="wide fit" style="--n:5">Sur le même devis</h2>
+      <h2 class="fit" style="--n:5">Sur le même devis</h2>
       <div class="others">
-        <a class="biz" href="entreprise.html"><h3 class="wide">Déménagement d'entreprise</h3><p>Bureaux, cabinets et commerces, le soir ou le week-end, poste par poste.</p><span class="more">En savoir plus</span></a>
-        <a class="clean" href="nettoyage.html"><h3 class="wide">Nettoyage de fin de bail</h3><p>Forfait selon le nombre de pièces, avec garantie de restitution face à la régie.</p><span class="more">En savoir plus</span></a>
-        <a class="store" href="garde-meubles.html"><h3 class="wide">Garde-meubles</h3><p>Quelques semaines entre deux baux ou plusieurs mois, dans un dépôt fermé et surveillé.</p><span class="more">En savoir plus</span></a>
+        <a href="entreprise.html"><span class="sw biz" aria-hidden="true"></span><h3>Déménagement d'entreprise</h3><p>Bureaux, cabinets et commerces, le soir ou le week-end, poste par poste.</p><span class="more">En savoir plus</span></a>
+        <a href="nettoyage.html"><span class="sw clean" aria-hidden="true"></span><h3>Nettoyage de fin de bail</h3><p>Forfait selon le nombre de pièces, avec garantie de restitution face à la régie.</p><span class="more">En savoir plus</span></a>
+        <a href="garde-meubles.html"><span class="sw store" aria-hidden="true"></span><h3>Garde-meubles</h3><p>Quelques semaines entre deux baux ou plusieurs mois, dans un dépôt fermé et surveillé.</p><span class="more">En savoir plus</span></a>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="road">
+<footer class="foot">
   <div class="shell">
     <div class="close">
       <p class="fit" style="--n:8">On s'occupe des cartons. Vous, de la suite.</p>
-      <div><a class="btn yellow" href="#devis">Demander mon devis gratuit</a><a class="btn line" href="tel:+41325604925">Appeler l'agence</a></div>
+      <div><a class="btn move" href="#devis">Demander mon devis gratuit</a><a class="btn line" href="tel:+41325604925">Appeler l'agence</a></div>
     </div>
-    <div class="cols">
+    <div class="grid">
       <div>
-        <a class="logo" href="index.html"><img src="marque/logo-swissdem.webp" width="155" height="52" alt="SwissDem Transports" loading="lazy"></a>
-        <p style="margin-top:20px;max-width:36ch">Déménagement, nettoyage de fin de bail et garde-meubles dans les cantons de Neuchâtel et Fribourg.</p>
+        <a class="logo" href="index.html"><img src="marque/logo-swissdem.webp" width="131" height="44" alt="SwissDem Transports" loading="lazy"></a>
+        <p style="margin-top:18px;max-width:36ch">Déménagement, nettoyage de fin de bail et garde-meubles dans les cantons de Neuchâtel et Fribourg.</p>
       </div>
       <div><p class="col-t">Services</p><ul><li><a href="demenagement.html">Déménagement privé</a></li><li><a href="entreprise.html">Déménagement d'entreprise</a></li><li><a href="nettoyage.html">Nettoyage de fin de bail</a></li><li><a href="garde-meubles.html">Garde-meubles</a></li></ul></div>
       <div><p class="col-t">Agences</p><ul><li><a href="tel:+41325604925">Neuchâtel 032 560 49 25</a></li><li><a href="tel:+41265611025">Fribourg 026 561 10 25</a></li><li><a href="index.html#agences">Toutes les communes</a></li></ul></div>
       <div><p class="col-t">Informations</p><ul><li><a href="#">CGV déménagement</a></li><li><a href="#">CGV nettoyage</a></li><li><a href="#">Blog</a></li><li><a href="#">Espace client</a></li></ul></div>
     </div>
-    <div class="legal"><span>© 2026 SwissDem Transports SNC</span><span><a href="#">Mentions légales</a>, <a href="#">Confidentialité</a></span></div>
+    <div class="legal"><span>© 2026 SwissDem Transports SNC</span><span>Photos provisoires : Unsplash · <a href="#">Mentions légales</a>, <a href="#">Confidentialité</a></span></div>
   </div>
 </footer>
 
-<div class="callbar"><a class="btn yellow" href="#devis">Devis gratuit</a><a class="btn line" style="color:#fff;border-color:#fff" href="tel:+41325604925">Appeler</a></div>
+<div class="callbar"><a class="btn move" href="#devis">Devis gratuit</a><a class="btn line" href="tel:+41325604925">Appeler</a></div>
 
 <script src="site.js"></script>
 </body>

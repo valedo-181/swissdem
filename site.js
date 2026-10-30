@@ -1,32 +1,149 @@
-// SwissDem v4 : menu mobile et bande de devis, communs à toutes les pages.
+// SwissDem v5 : menu mobile, cartouche de devis, barre d'appel et plan interactif, communs à toutes les pages.
 // Menu mobile
 (function(){
-  const top = document.querySelector('.top'), b = top.querySelector('.menu-btn');
-  b.addEventListener('click', () => { const o = top.classList.toggle('open'); b.setAttribute('aria-expanded', o); });
-  top.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => { top.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && top.classList.contains('open')) { top.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); b.focus(); } });
+  const top = document.querySelector('.top'), b = top && top.querySelector('.menu-btn');
+  if (!b) return;
+  const poser = o => { top.classList.toggle('open', o); b.setAttribute('aria-expanded', o); };
+  b.addEventListener('click', () => poser(!top.classList.contains('open')));
+  top.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => poser(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && top.classList.contains('open')) { poser(false); b.focus(); } });
 })();
 
-// Bande de devis : NPA suisses à 4 chiffres obligatoires
+// Cartouche de devis : NPA suisses à 4 chiffres obligatoires
 (function(){
-  const f = document.querySelector('.skirt form');
+  const f = document.querySelector('.cartouche form');
+  if (!f) return;
   f.addEventListener('submit', e => {
-    const ok = [...f.querySelectorAll('input[pattern]')].every(i => /^\d{4}$/.test(i.value.trim()));
+    const champs = [...f.querySelectorAll('input[pattern]')];
+    champs.forEach(i => i.setAttribute('aria-invalid', /^\d{4}$/.test(i.value.trim()) ? 'false' : 'true'));
+    const ok = champs.every(i => i.getAttribute('aria-invalid') === 'false');
     f.classList.toggle('invalid', !ok);
-    f.querySelectorAll('input[pattern]').forEach(i => i.setAttribute('aria-invalid', /^\d{4}$/.test(i.value.trim()) ? 'false' : 'true'));
-    if (!ok) e.preventDefault();
+    if (!ok) { e.preventDefault(); champs.find(i => i.getAttribute('aria-invalid') === 'true').focus(); }
   });
 })();
 
-// Barre d'appel mobile : cachée tant que la bande de devis ou l'appel final du pied de page est à l'écran
+// Barre d'appel mobile : cachée tant que le cartouche ou l'appel final du pied de page est à l'écran
 // (un seul bouton jaune à la fois, et rien ne couvre « Continuer »)
 (function(){
-  const cibles = [...document.querySelectorAll('.skirt, .road .close')];
+  const cibles = [...document.querySelectorAll('.cartouche, .foot .close')];
   if (!cibles.length || !('IntersectionObserver' in window)) return;
   const vues = new Set();
   const io = new IntersectionObserver(es => {
     es.forEach(e => e.isIntersecting ? vues.add(e.target) : vues.delete(e.target));
-    document.body.classList.toggle('skirt-on', vues.size > 0);
+    document.body.classList.toggle('form-on', vues.size > 0);
   });
   cibles.forEach(c => io.observe(c));
+})();
+
+// Plan du logement : redessiné selon le logement choisi dans le cartouche, pièces colorées par service.
+// Les noms de pièces viennent de l'attribut data-plan (JSON), traduit par langue ; data-layout et data-iso
+// fixent le plan et le service mis en avant au chargement (pages de service).
+(function(){
+  const svg = document.querySelector('svg.plan');
+  if (!svg) return;
+  const T = JSON.parse(svg.dataset.plan);
+  const titre = svg.querySelector('title');
+  const NS = 'http://www.w3.org/2000/svg';
+  const INK = '#16181b';
+  const el = (tag, a, txt) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); if (txt) n.textContent = txt; return n; };
+  // Pièces : [x, y, l, h, clé du nom, service] dans un cadre de 800 × 500 (m = déménagement, c = nettoyage, s = garde-meubles)
+  const L = {
+    studio: [[0,0,500,320,'piece','m'],[500,0,300,320,'hall','m'],[0,320,300,180,'cuisine','c'],[300,320,200,180,'bains','c'],[500,320,300,180,'cave','s']],
+    p25: [[0,0,430,320,'sejour','m'],[430,0,370,320,'chambre','m'],[0,320,300,180,'cuisine','c'],[300,320,200,180,'bains','c'],[500,320,300,180,'cave','s']],
+    p35: [[0,0,380,320,'sejour','m'],[380,0,210,210,'chambre','m'],[590,0,210,210,'chambre','m'],[380,210,420,110,'hall','m'],[0,320,280,180,'cuisine','c'],[280,320,190,180,'bains','c'],[470,320,330,180,'cave','s']],
+    p45: [[0,0,340,300,'sejour','m'],[340,0,230,200,'chambre','m'],[570,0,230,200,'chambre','m'],[340,200,460,100,'hall','m'],[0,300,230,200,'chambre','m'],[230,300,210,200,'cuisine','c'],[440,300,150,200,'bains','c'],[590,300,210,200,'cave','s']],
+    p55: [[0,0,320,290,'sejour','m'],[320,0,160,190,'chambre','m'],[480,0,160,190,'chambre','m'],[640,0,160,190,'chambre','m'],[320,190,480,100,'hall','m'],[0,290,220,210,'chambre','m'],[220,290,200,210,'cuisine','c'],[420,290,150,210,'bains','c'],[570,290,230,210,'galetas','s']],
+    bureaux: [[0,0,520,320,'open','m'],[520,0,280,180,'reunion','m'],[520,180,280,140,'bureau','m'],[0,320,260,180,'archives','s'],[260,320,220,180,'cuisine','c'],[480,320,320,180,'sanitaires','c']],
+  };
+  const choix = ['studio','p25','p35','p45','p55','p55','bureaux'];
+  const X = 70, Y = 60, LARG = 12, PROF = 7.5;   // cotes d'exemple : 12,00 × 7,50 m
+  const m = v => v.toFixed(2).replace('.', ',');
+  function dessiner(cle, anime){
+    svg.replaceChildren();
+    if (titre) svg.append(titre);
+    const pieces = L[cle];
+    const defs = el('defs');
+    const pat = el('pattern', {id:'hach', width:7, height:7, patternUnits:'userSpaceOnUse', patternTransform:'rotate(45)'});
+    pat.append(el('rect', {width:7, height:7, fill:'#fff'}), el('line', {x1:0, y1:0, x2:0, y2:7, stroke:'#1f9a3e', 'stroke-width':2}));
+    defs.append(pat); svg.append(defs);
+    const fond = {m:'#fdf1bf', c:'url(#hach)', s:'#dbe6f6'};
+    const groupes = [];
+    pieces.forEach(([x,y,w,h,nom,s], i) => {
+      const g = el('g', {class:'room', 'data-svc':s, style:`--i:${i}`});
+      g.append(el('rect', {x:X+x, y:Y+y, width:w, height:h, fill:fond[s]}));
+      svg.append(g); groupes.push(g);
+    });
+    // Cloisons fines, murs de façade épais
+    for (const [x,y,w,h] of pieces) svg.append(el('rect', {x:X+x, y:Y+y, width:w, height:h, fill:'none', stroke:INK, 'stroke-width':2.5}));
+    svg.append(el('rect', {x:X, y:Y, width:800, height:500, fill:'none', stroke:INK, 'stroke-width':11}));
+    // Fenêtres sur la façade (trois traits)
+    for (const [x,y,w,h] of pieces) {
+      if (y === 0) { const l = Math.min(w * .45, 130), x0 = X + x + (w - l) / 2;
+        svg.append(el('rect', {x:x0, y:Y-5.5, width:l, height:11, fill:'#fff', stroke:INK, 'stroke-width':1}), el('line', {x1:x0, y1:Y, x2:x0+l, y2:Y, stroke:INK, 'stroke-width':1})); }
+      if (x === 0 && h >= 180) { const l = Math.min(h * .4, 110), y0 = Y + y + (h - l) / 2;
+        svg.append(el('rect', {x:X-5.5, y:y0, width:11, height:l, fill:'#fff', stroke:INK, 'stroke-width':1}), el('line', {x1:X, y1:y0, x2:X, y2:y0+l, stroke:INK, 'stroke-width':1})); }
+    }
+    // Portes : une ouverture et un battant par pièce
+    for (const [x,y,w,h,,s] of pieces) {
+      const bg = s === 'c' ? '#fff' : fond[s], R = 42;
+      if (x > 0) { const xb = X + x, yb = Y + y + h - 14;
+        svg.append(el('line', {x1:xb, y1:yb-R, x2:xb, y2:yb, stroke:bg, 'stroke-width':5}), el('line', {x1:xb, y1:yb, x2:xb+R, y2:yb, stroke:INK, 'stroke-width':1.5}), el('path', {d:`M${xb} ${yb-R} A${R} ${R} 0 0 1 ${xb+R} ${yb}`, fill:'none', stroke:INK, 'stroke-width':1}));
+      } else if (y > 0) { const xb = X + x + 14, yb = Y + y;
+        svg.append(el('line', {x1:xb, y1:yb, x2:xb+R, y2:yb, stroke:bg, 'stroke-width':5}), el('line', {x1:xb, y1:yb, x2:xb, y2:yb+R, stroke:INK, 'stroke-width':1.5}), el('path', {d:`M${xb+R} ${yb} A${R} ${R} 0 0 1 ${xb} ${yb+R}`, fill:'none', stroke:INK, 'stroke-width':1}));
+      }
+    }
+    // Noms des pièces et renvois numérotés (repris dans la légende)
+    pieces.forEach(([x,y,w,h,nom,s], i) => {
+      // Une porte dans le mur du haut (pièce contre la façade gauche) : le nom passe après son battant
+      const lb = el('text', {x:X+x+(x === 0 && y > 0 ? 70 : 16), y:Y+y+32, class:'lbl'}, T.pieces[nom]);
+      if (s === 'c') lb.setAttribute('style', 'paint-order:stroke;stroke:#fff;stroke-width:6px');
+      groupes[i].append(lb);
+    });
+    ['m','c','s'].forEach((s, i) => {
+      const k = pieces.findIndex(q => q[5] === s);
+      if (k < 0) return;
+      const [x,y,w,h] = pieces[k], cx = X + x + w / 2, cy = Y + y + h / 2 + 8;
+      groupes[k].append(el('circle', {cx, cy, r:17, class:'key', fill:'#fff', stroke:INK, 'stroke-width':1.5}), el('text', {x:cx, y:cy, dy:'.35em', 'text-anchor':'middle', class:'key-t'}, String(i + 1)));
+    });
+    // Cotes d'exemple, en mètres
+    const cote = (horiz, bornes, total, max) => {
+      const g = el('g', {class:'dims'});
+      const p = horiz ? Y - 34 : X - 34;
+      const pt = (v, d) => horiz ? [X + v, p + d] : [p + d, Y + v];
+      const [a1,b1] = pt(0,0), [a2,b2] = pt(max,0);
+      g.append(el('line', {x1:a1, y1:b1, x2:a2, y2:b2, stroke:INK, 'stroke-width':1}));
+      bornes.forEach(v => { const [cx,cy] = pt(v,0); g.append(el('line', {x1:cx-5, y1:cy+5, x2:cx+5, y2:cy-5, stroke:INK, 'stroke-width':1.5})); });
+      for (let j = 0; j < bornes.length - 1; j++) {
+        const mid = (bornes[j] + bornes[j+1]) / 2, [tx,ty] = pt(mid, -8), val = m((bornes[j+1] - bornes[j]) / max * total);
+        const t = el('text', {x:tx, y:ty, 'text-anchor':'middle', class:'dim'}, val);
+        if (!horiz) t.setAttribute('transform', `rotate(-90 ${tx} ${ty})`);
+        g.append(t);
+      }
+      svg.append(g);
+    };
+    const haut = [...new Set(pieces.filter(q => q[1] === 0).flatMap(q => [q[0], q[0] + q[2]]))].sort((a,b) => a-b);
+    const gauche = [...new Set(pieces.filter(q => q[0] === 0).flatMap(q => [q[1], q[1] + q[3]]))].sort((a,b) => a-b);
+    cote(true, haut, LARG, 800);
+    cote(false, gauche, PROF, 500);
+    svg.classList.toggle('draw', !!anime);
+    isoler(actif);
+  }
+  // Légende : isole les pièces d'un service
+  let actif = svg.dataset.iso || null;
+  const boutons = [...document.querySelectorAll('.legend button')];
+  function isoler(s){
+    actif = s;
+    svg.classList.toggle('isolate', !!s);
+    svg.querySelectorAll('.room').forEach(r => r.classList.toggle('on', r.dataset.svc === s));
+    boutons.forEach(b => b.setAttribute('aria-pressed', b.dataset.svc === s ? 'true' : 'false'));
+  }
+  boutons.forEach(b => {
+    b.addEventListener('click', () => isoler(actif === b.dataset.svc ? null : b.dataset.svc));
+    b.addEventListener('mouseenter', () => { if (!actif) { svg.classList.add('isolate'); svg.querySelectorAll('.room').forEach(r => r.classList.toggle('on', r.dataset.svc === b.dataset.svc)); } });
+    b.addEventListener('mouseleave', () => isoler(actif));
+  });
+  const sel = document.querySelector('.cartouche select[name="pieces"]');
+  const lire = () => choix[sel ? sel.selectedIndex : 2] || 'p35';
+  if (sel) sel.addEventListener('change', () => dessiner(lire(), true));
+  dessiner(svg.dataset.layout || lire(), false);
 })();
