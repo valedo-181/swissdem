@@ -203,6 +203,7 @@ figcaption,.cap{font-size:.82rem;color:var(--mute);margin-top:8px}
 .agency .tel{display:block;text-decoration:none;font-size:clamp(1.9rem,3.2vw,3rem);font-weight:600;letter-spacing:-.025em;line-height:1;margin:14px 0 8px;white-space:nowrap}
 .agency .tel:hover{text-decoration:underline;text-decoration-thickness:2px}
 .agency .mail{color:var(--ink-2)}
+.agency .resp{margin:10px 0 0;color:var(--ink-2)}
 .towns{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-size:.93rem}
 .towns a{text-decoration:none;border-bottom:1px solid var(--line-2)}
 .towns a:hover{border-color:var(--ink)}
@@ -398,6 +399,9 @@ details p{padding:0 0 22px;max-width:64ch;color:var(--ink-2)}
 .plate-wide.todo{aspect-ratio:21/8;display:flex;align-items:flex-end;padding:20px;border:1px dashed var(--line-2);color:var(--mute);font-size:.92rem}
 @media (max-width:560px){.plate-wide img,.plate-wide.todo{aspect-ratio:4/3}}
 /* Photo provisoire du dépôt : cadrée sur les étagères (le reste de l'image montre un véhicule, hors sujet) */
+/* Photos SwissDem : le cadrage garde les camions, dans le bas de l'image */
+img[src*="swissdem-camion"]{object-position:50% 68%}
+img[src*="swissdem-monte-meubles"]{object-position:50% 78%}
 figure:has(> img[src*="garde-meubles"]){overflow:hidden}
 img[src*="garde-meubles"]{transform:scale(2.1);transform-origin:100% 45%}
 figure:has(> img[src*="garde-meubles"]) figcaption{position:relative;background:var(--paper);margin:0;padding-top:8px}
