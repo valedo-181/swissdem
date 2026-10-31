@@ -1,4 +1,6 @@
 // SwissDem v7 : menu mobile, cartouche de devis, barre d'appel, plan interactif et mouvement au défilement, communs à toutes les pages.
+// Langue de la page (fr, de ou it) et format des nombres et des dates qui va avec
+const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr:'fr-CH', de:'de-CH', it:'it-CH'}[LANGUE] || 'fr-CH';
 // Menu mobile
 (function(){
   const top = document.querySelector('.top'), b = top && top.querySelector('.menu-btn');
@@ -184,8 +186,16 @@
 // affiché sur le plateau et transmis au camion 3D (événement « swissdem:volume ») qui se charge en conséquence.
 // Repères : 9 m³ par pièce ; un camion 3,5 t prend environ 20 m³. Aucun prix n'est affiché : il vient du devis.
 (function(){
-  const de = document.documentElement.lang.startsWith('de');
-  const T = de ? {
+  const de = LANGUE === 'de', it = LANGUE === 'it';
+  const T = it ? {
+    m3: v => `≈ ${v} m³`, camion: 'Un furgone da 3,5 t', lourd: 'Autocarro o due viaggi', visite: 'Volume confermato al sopralluogo',
+    plateau: 'secondo il vostro alloggio', inventaire: 'secondo il vostro inventario', types: 'Partire da un alloggio tipo:', vider: 'Svuota',
+    total: 'Il vostro volume stimato', joindre: 'Aggiungere alla richiesta di offerta', joint: 'Aggiunto alla richiesta ✓',
+    note: "Stima indicativa e senza impegno. Il responsabile dell'agenzia conferma il volume al sopralluogo; il prezzo figura nell'offerta.",
+    vide: 'Contate i vostri mobili, oppure scegliete qui sopra un alloggio tipo.', moins: 'Togliere', plus: 'Aggiungere',
+    pieces: {sejour:'Soggiorno', chambres:'Camere', cuisine:'Cucina, lavanderia', cave:'Cantina, balcone', cartons:'Scatoloni'},
+    typesNoms: {studio:'Monolocale', p25:'2,5 locali', p35:'3,5 locali', p45:'4,5 locali', p55:'5,5 locali'},
+  } : de ? {
     m3: v => `≈ ${v} m³`, camion: 'Ein 3,5-t-Lastwagen', lourd: 'Lastwagen oder zwei Fahrten', visite: 'Volumen bei der Besichtigung',
     plateau: 'nach Ihrer Wohnung', inventaire: 'nach Ihrem Inventar', types: 'Von einer typischen Wohnung ausgehen:', vider: 'Leeren',
     total: 'Ihr geschätztes Volumen', joindre: 'Zur Offertanfrage hinzufügen', joint: 'Hinzugefügt ✓',
@@ -222,6 +232,14 @@
     ['poussette','cave',.4,'Poussette','Kinderwagen'], ['valise','cave',.15,'Valise','Koffer'],
     ['carton','cartons',.08,'Carton standard','Umzugskarton',5], ['penderie','cartons',.3,'Carton penderie','Kleiderbox'],
   ];
+  // Noms italiens des objets (mêmes clés que ci-dessus)
+  const ITALIEN = {canape3:'Divano 3 posti', canape2:'Divano 2 posti', fauteuil:'Poltrona', tablebasse:'Tavolino', meubletv:'Mobile TV', tv:'Televisore',
+    biblio:'Libreria', buffet:'Credenza, vetrina', tablemanger:'Tavolo da pranzo', chaise:'Sedia', litdouble:'Letto matrimoniale', litsimple:'Letto singolo',
+    litenfant:'Lettino per bambini', armoire2:'Armadio a 2 ante', armoire3:'Armadio a 3 ante', commode:'Cassettiera', chevet:'Comodino', bureau:'Scrivania',
+    chaisebureau:'Sedia da ufficio', tablecuisine:'Tavolo da cucina', chaisecuisine:'Sedia da cucina', frigo:'Frigorifero', lavelinge:'Lavatrice',
+    seche:'Asciugatrice', microondes:'Microonde', velo:'Bicicletta', etagere:'Scaffale', jardin:'Mobili da giardino o da balcone',
+    sport:'Sci, attrezzatura sportiva', poussette:'Passeggino', valise:'Valigia', carton:'Scatolone standard', penderie:'Scatolone guardaroba'};
+  const nomObjet = o => it ? ITALIEN[o[0]] : de ? o[4] : o[3];
   // Inventaires types, calés sur la règle des 9 m³ par pièce
   const TYPES = {
     studio:{canape2:1,tablebasse:1,meubletv:1,tv:1,litdouble:1,armoire2:1,chevet:1,tablecuisine:1,chaisecuisine:2,microondes:1,etagere:1,valise:2,carton:20},
@@ -231,7 +249,7 @@
     p55:{canape3:1,fauteuil:2,tablebasse:1,meubletv:1,tv:1,biblio:2,buffet:1,tablemanger:1,chaise:6,litdouble:1,armoire3:1,chevet:5,commode:4,bureau:2,chaisebureau:2,tablecuisine:1,chaisecuisine:2,microondes:1,lavelinge:1,velo:4,etagere:4,jardin:2,sport:3,valise:3,carton:110,penderie:4,litsimple:2,armoire2:3,litenfant:1,poussette:1,seche:1,canape2:1},
   };
   const CAMION = 20, PAR_LOGEMENT = [9, 23, 32, 41, 50, null, null];   // ordre des options « Logement » du cartouche
-  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(de ? 'de-CH' : 'fr-CH', {maximumFractionDigits:1});
+  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(LOCALE, {maximumFractionDigits:1});
   const annoncer = m3 => { window.swissdemVolume = m3; document.dispatchEvent(new CustomEvent('swissdem:volume', {detail:{m3}})); };
   const form = document.querySelector('.cartouche form');
 
@@ -314,7 +332,7 @@
       b.querySelector('em').textContent = c || '';
     });
     liste.replaceChildren(...OBJETS.filter(o => o[1] === onglet).map(([k, , m3, fr, al, pas = 1]) => {
-      const li = el('li'), c = n[k] || 0, nom = de ? al : fr;
+      const li = el('li'), c = n[k] || 0, nom = nomObjet([k, , , fr, al]);
       li.classList.toggle('on', c > 0);
       const lab = el('span', 'nom', nom); lab.append(el('small', null, `${fmt(m3 * pas)} m³${pas > 1 ? ` / ${pas}` : ''}`));
       const moins = el('button', 'pas', '−'), val = el('output', null, c), plus = el('button', 'pas', '+');
@@ -349,7 +367,7 @@
     const v = total();
     if (!v || !form) return;
     if (form.elements.volume) form.elements.volume.value = fmt(v);
-    if (form.elements.inventaire) form.elements.inventaire.value = OBJETS.filter(o => n[o[0]]).map(o => `${de ? o[4] : o[3]} × ${n[o[0]]}`).join('; ');
+    if (form.elements.inventaire) form.elements.inventaire.value = OBJETS.filter(o => n[o[0]]).map(o => `${nomObjet(o)} × ${n[o[0]]}`).join('; ');
     afficher(v, T.inventaire);
     annoncer(v);
     go.textContent = T.joint;
@@ -367,8 +385,13 @@
   const zone = document.querySelector('[data-carte]');
   const fiches = [...document.querySelectorAll('#agences .agency')];
   if (!zone || fiches.length < 2) return;
-  const de = document.documentElement.lang.startsWith('de');
-  const T = de ? {
+  const de = LANGUE === 'de';
+  const T = LANGUE === 'it' ? {
+    titre: 'Scegliete il vostro comune', aide: "Toccate un punto della carta: vedete l'agenzia che se ne occupa e il suo responsabile.",
+    agence: v => `Agenzia di ${v}`, siege: 'Agenzia', km: k => `a ${k} km in linea d'aria dall'agenzia`, ici: "Qui si trova l'agenzia",
+    voir: c => `Traslocare a ${c}`, legende: 'Carta schematica, comuni posizionati secondo le loro coordinate reali.',
+    lacs: ['Lago di Neuchâtel', 'Lago di Morat', 'Lago della Gruyère'],
+  } : de ? {
     titre: 'Wählen Sie Ihre Gemeinde', aide: 'Tippen Sie auf einen Punkt der Karte: Sie sehen die zuständige Filiale und ihren Verantwortlichen.',
     agence: v => `Filiale ${v}`, siege: 'Filiale', km: k => `${k} km Luftlinie von der Filiale`, ici: 'Hier befindet sich die Filiale',
     voir: c => `Umzug in ${c}`, legende: 'Schematische Karte, Gemeinden nach ihren tatsächlichen Koordinaten platziert.',
@@ -381,7 +404,7 @@
   };
   // Coordonnées (longitude, latitude), par nom de page de commune
   const GEO = {
-    'neuchatel':[6.931,46.992], 'neuenburg':[6.931,46.992], 'freiburg':[7.161,46.806], 'la-chaux-de-fonds':[6.826,47.100], 'le-locle':[6.749,47.057], 'peseux':[6.889,46.987],
+    'neuchatel':[6.931,46.992], 'neuenburg':[6.931,46.992], 'freiburg':[7.161,46.806], 'friburgo':[7.161,46.806], 'la-chaux-de-fonds':[6.826,47.100], 'le-locle':[6.749,47.057], 'peseux':[6.889,46.987],
     'corcelles':[6.873,46.984], 'boudry':[6.838,46.950], 'marin-epagnier':[7.003,47.012], 'cortaillod':[6.845,46.941],
     'val-de-ruz':[6.902,47.058], 'val-de-travers':[6.583,46.903], 'hauterive':[6.972,47.010], 'saint-blaise':[6.988,47.015],
     'fribourg':[7.161,46.806], 'bulle':[7.057,46.619], 'morat':[7.117,46.928], 'murten':[7.117,46.928],
@@ -438,7 +461,7 @@
   const trajet = el('path', { class: 'trajet', pathLength: 1 });
   svg.append(trajet);
   // Une seule étiquette par grappe de communes voisines : les autres apparaissent au survol ou à la sélection
-  const toujours = new Set(['neuchatel', 'neuenburg', 'freiburg', 'la-chaux-de-fonds', 'le-locle', 'val-de-travers', 'boudry', 'fribourg', 'bulle', 'morat', 'murten', 'estavayer-le-lac', 'romont', 'chatel-saint-denis', 'kerzers', 'dudingen', 'duedingen', 'val-de-ruz']);
+  const toujours = new Set(['neuchatel', 'neuenburg', 'freiburg', 'friburgo', 'la-chaux-de-fonds', 'le-locle', 'val-de-travers', 'boudry', 'fribourg', 'bulle', 'morat', 'murten', 'estavayer-le-lac', 'romont', 'chatel-saint-denis', 'kerzers', 'dudingen', 'duedingen', 'val-de-ruz']);
   // Sur téléphone, ces noms-là ne s'affichent qu'au toucher, faute de place
   const petit = matchMedia('(max-width: 560px)').matches;   // sur téléphone, la carte est réduite : points plus gros
   const mineurs = new Set(['le-locle', 'val-de-ruz', 'boudry', 'kerzers', 'dudingen', 'duedingen', 'chatel-saint-denis']);
@@ -504,7 +527,6 @@
   const outils = document.querySelector('.check-outils[data-check]');
   if (!outils) return;
   const T = JSON.parse(outils.dataset.check);
-  const de = document.documentElement.lang.startsWith('de');
   const CLE = 'swissdem-checklist';
   const cases = [...document.querySelectorAll('.check input[type=checkbox]')];
   const etapes = [...document.querySelectorAll('.check .etape')];
@@ -515,7 +537,7 @@
   cases.forEach(c => { c.checked = !!(etat.cases || []).includes(c.name); });
   if (etat.date) champDate.value = etat.date;
   const jour = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
-  const fmt = d => d.toLocaleDateString(de ? 'de-CH' : 'fr-CH', {weekday:'long', day:'numeric', month:'long'});
+  const fmt = d => d.toLocaleDateString(LOCALE, {weekday:'long', day:'numeric', month:'long'});
 
   function maj(){
     const faites = cases.filter(c => c.checked).length;
@@ -579,14 +601,13 @@
   const zone = document.querySelector('.volume-wrap[data-volume]');
   if (!zone) return;
   const T = JSON.parse(zone.dataset.volume);
-  const de = document.documentElement.lang.startsWith('de');
   const svg = zone.querySelector('.vol-svg'), range = zone.querySelector('input[type=range]');
   const NS = 'http://www.w3.org/2000/svg';
   const el = (tag, at) => { const n = document.createElementNS(NS, tag); for (const k in at) n.setAttribute(k, at[k]); return n; };
   const C = .6, D = 4, H = 4, PAR = D * H;            // carton de 0,6 m ; 4 en profondeur et 4 en hauteur = 2,4 m × 2,4 m
   const A = Math.cos(Math.PI / 6), B = .5;            // projection isométrique
   const iso = (x, y, z) => [(x - z) * A, (x + z) * B - y];
-  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(de ? 'de-CH' : 'fr-CH', {maximumFractionDigits:1});
+  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(LOCALE, {maximumFractionDigits:1});
   const monde = el('g', {class:'vol-monde'}), sol = el('g', {class:'vol-sol'}), pile = el('g', {class:'vol-pile'}), gens = el('g', {class:'vol-gens'});
   monde.append(sol, pile, gens); svg.append(monde);
   const poly = pts => pts.map(p => p.map(v => v.toFixed(2)).join(',')).join(' ');
@@ -734,13 +755,12 @@
   const zone = document.querySelector('.camion-wrap[data-camion-volume]');
   if (!zone) return;
   const T = JSON.parse(zone.dataset.camionVolume);
-  const de = document.documentElement.lang.startsWith('de');
   const svg = zone.querySelector('.vol-svg'), range = zone.querySelector('input[type=range]');
   const NS = 'http://www.w3.org/2000/svg';
   const el = (tag, at) => { const n = document.createElementNS(NS, tag); for (const k in at) n.setAttribute(k, at[k]); return n; };
   const A = Math.cos(Math.PI / 6), B = .5, iso = (x, y, z) => [(x - z) * A, (x + z) * B - y];
   const poly = pts => pts.map(p => p.map(v => v.toFixed(2)).join(',')).join(' ');
-  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(de ? 'de-CH' : 'fr-CH', {maximumFractionDigits:1});
+  const fmt = v => (Math.round(v * 10) / 10).toLocaleString(LOCALE, {maximumFractionDigits:1});
   const C = .52, NX = 8, NY = 4, NZ = 4, PLACES = NX * NY * NZ, CAP = 20;   // caisse ≈ 4,2 × 2,1 × 2,1 m
   const LC = NX * C, PC = NZ * C, HC = NY * C, ESP = LC + 2.4;            // camions à la file, le second derrière le premier
   const monde = el('g', {class:'vol-monde'}); svg.append(monde);
@@ -831,13 +851,12 @@
   const zone = document.querySelector('.postes-wrap[data-postes]');
   if (!zone) return;
   const T = JSON.parse(zone.dataset.postes);
-  const de = document.documentElement.lang.startsWith('de');
   const svg = zone.querySelector('.vol-svg'), range = zone.querySelector('input[type=range]');
   const NS = 'http://www.w3.org/2000/svg';
   const el = (tag, at) => { const n = document.createElementNS(NS, tag); for (const k in at) n.setAttribute(k, at[k]); return n; };
   const A = Math.cos(Math.PI / 6), B = .5, iso = (x, y, z) => [(x - z) * A, (x + z) * B - y];
   const poly = pts => pts.map(p => p.map(v => v.toFixed(2)).join(',')).join(' ');
-  const fmt = v => Math.round(v).toLocaleString(de ? 'de-CH' : 'fr-CH');
+  const fmt = v => Math.round(v).toLocaleString(LOCALE);
   const PAR_RANG = 6, PAS_X = 1.6, PAS_Z = 2.3, ETIQ = ['var(--move)', 'var(--clean)', 'var(--store)'];
   const monde = el('g', {class:'vol-monde'}), sol = el('g', {}), salle = el('g', {});
   monde.append(sol, salle); svg.append(monde);
