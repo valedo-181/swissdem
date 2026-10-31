@@ -1,6 +1,28 @@
 // SwissDem v7 : menu mobile, cartouche de devis, barre d'appel, plan interactif et mouvement au défilement, communs à toutes les pages.
 // Langue de la page (fr, de ou it) et format des nombres et des dates qui va avec
 const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr:'fr-CH', de:'de-CH', it:'it-CH', es:'es'}[LANGUE] || 'fr-CH';
+
+// Consentement : le site n'a ni publicité ni suivi. Seules les « préférences » (inventaire de l'estimateur, checklist)
+// sont gardées sur l'appareil, et seulement avec l'accord du visiteur. Le choix est gardé 90 jours dans un cookie technique.
+const CONSENTEMENT = (() => {
+  const NOM = 'swissdem_consentement', DUREE = 90 * 24 * 3600, CLES = ['swissdem-inventaire', 'swissdem-volume', 'swissdem-checklist'];
+  const m = document.cookie.match(/(?:^|;\s*)swissdem_consentement=(oui|non)/);
+  let choix = m ? m[1] : null;
+  return {
+    choix: () => choix,
+    permis: () => choix === 'oui',
+    ecrire(v){
+      choix = v;
+      document.cookie = `${NOM}=${v}; Max-Age=${DUREE}; Path=/; SameSite=Lax` + (location.protocol === 'https:' ? '; Secure' : '');
+      if (v === 'non') CLES.forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
+    },
+  };
+})();
+// Mémoire de l'appareil, utilisée seulement avec l'accord du visiteur ; sinon tout reste dans la page
+const memoire = {
+  lire(k){ if (!CONSENTEMENT.permis()) return null; try { return localStorage.getItem(k); } catch (e) { return null; } },
+  ecrire(k, v){ if (!CONSENTEMENT.permis()) return; try { localStorage.setItem(k, v); } catch (e) {} },
+};
 // Menu mobile
 (function(){
   const top = document.querySelector('.top'), b = top && top.querySelector('.menu-btn');
@@ -301,7 +323,7 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
   zone.closest('section').hidden = false;
   const CLE = 'swissdem-inventaire';
   let n = {};
-  try { n = JSON.parse(localStorage.getItem(CLE)) || {}; } catch (e) {}
+  try { n = JSON.parse(memoire.lire(CLE)) || {}; } catch (e) {}
   let onglet = 'sejour';
   const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
 
@@ -362,7 +384,7 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
   }
   let dernier = -1;
   function maj(type){
-    try { localStorage.setItem(CLE, JSON.stringify(n)); localStorage.setItem('swissdem-volume', String(Math.round(total() * 10) / 10)); } catch (e) {}
+    memoire.ecrire(CLE, JSON.stringify(n)); memoire.ecrire('swissdem-volume', String(Math.round(total() * 10) / 10));
     const focus = document.activeElement && document.activeElement.getAttribute('aria-label');
     dessiner();
     if (focus) { const b = liste.querySelector(`[aria-label="${CSS.escape(focus)}"]`); if (b && !b.disabled) b.focus(); }
@@ -551,8 +573,8 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
   const etapes = [...document.querySelectorAll('.check .etape')];
   const champDate = outils.querySelector('input[name=date]');
   let etat = {};
-  try { etat = JSON.parse(localStorage.getItem(CLE)) || {}; } catch (e) {}
-  const garder = () => { try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch (e) {} };
+  try { etat = JSON.parse(memoire.lire(CLE)) || {}; } catch (e) {}
+  const garder = () => memoire.ecrire(CLE, JSON.stringify(etat));
   cases.forEach(c => { c.checked = !!(etat.cases || []).includes(c.name); });
   if (etat.date) champDate.value = etat.date;
   const jour = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -685,7 +707,7 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
   }
   // Volume de l'estimateur, s'il a été rempli sur cet appareil
   let mien = 0;
-  try { mien = parseFloat(localStorage.getItem('swissdem-volume')) || 0; } catch (e) {}
+  mien = parseFloat(memoire.lire('swissdem-volume')) || 0;
   if (mien > 0) {
     const b = document.createElement('button');
     b.className = 'chip mien'; b.type = 'button'; b.dataset.v = Math.round(mien); b.textContent = `${T.mon} · ${fmt(mien)} m³`;
@@ -846,7 +868,7 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
     zone.querySelectorAll('.vol-presets .chip').forEach(b => b.setAttribute('aria-pressed', Number(b.dataset.v) === Math.round(v)));
   }
   let mien = 0;
-  try { mien = parseFloat(localStorage.getItem('swissdem-volume')) || 0; } catch (e) {}
+  mien = parseFloat(memoire.lire('swissdem-volume')) || 0;
   if (mien > 0) {
     const b = document.createElement('button');
     b.className = 'chip mien'; b.type = 'button'; b.dataset.v = Math.round(mien); b.textContent = `${T.mon} · ${fmt(mien)} m³`;
@@ -1077,4 +1099,51 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
       c.addEventListener('pointerleave', () => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
     });
   }
+})();
+
+
+// Bandeau de confidentialité : discret, en bas de l'écran, « Tout accepter » et « Refuser » à égalité, « Personnaliser » pour le détail.
+// Il ne revient qu'après 90 jours (durée du cookie) ou par le lien « Gérer les cookies » du pied de page.
+(function(){
+  const T = {
+    fr: { t:'Vos préférences de confidentialité', p:"SwissDem n'utilise ni publicité ni outil de suivi. Avec votre accord, nous gardons sur cet appareil votre inventaire de volume et votre checklist de déménagement, pour les retrouver à votre prochaine visite. Votre choix est conservé 90 jours.",
+          ok:'Tout accepter', non:'Refuser', perso:'Personnaliser', nec:'Nécessaires', necd:'La mémorisation de ce choix, dans un cookie technique gardé 90 jours.', toujours:'Toujours actifs',
+          pref:'Préférences', prefd:"L'inventaire de l'estimateur et la checklist, gardés sur votre appareil uniquement.", save:'Enregistrer mes choix', lien:'Politique de confidentialité', gerer:'Gérer les cookies' },
+    de: { t:'Ihre Datenschutz-Einstellungen', p:'SwissDem verwendet weder Werbung noch Tracking. Mit Ihrer Zustimmung speichern wir Ihr Umzugsinventar und Ihre Checkliste auf diesem Gerät, damit Sie sie beim nächsten Besuch wiederfinden. Ihre Wahl wird 90 Tage gespeichert.',
+          ok:'Alle akzeptieren', non:'Ablehnen', perso:'Anpassen', nec:'Notwendig', necd:'Das Speichern dieser Wahl, in einem technischen Cookie für 90 Tage.', toujours:'Immer aktiv',
+          pref:'Einstellungen', prefd:'Inventar des Volumenrechners und Checkliste, nur auf Ihrem Gerät gespeichert.', save:'Auswahl speichern', lien:'Datenschutzerklärung', gerer:'Cookies verwalten' },
+    it: { t:'Le vostre preferenze sulla privacy', p:'SwissDem non utilizza né pubblicità né strumenti di tracciamento. Con il vostro consenso conserviamo su questo dispositivo il vostro inventario del volume e la vostra checklist di trasloco, per ritrovarli alla prossima visita. La vostra scelta viene conservata per 90 giorni.',
+          ok:'Accettare tutto', non:'Rifiutare', perso:'Personalizzare', nec:'Necessari', necd:'La memorizzazione di questa scelta, in un cookie tecnico conservato per 90 giorni.', toujours:'Sempre attivi',
+          pref:'Preferenze', prefd:"L'inventario dello stimatore e la checklist, conservati solo sul vostro dispositivo.", save:'Salvare le mie scelte', lien:'Protezione dei dati', gerer:'Gestire i cookie' },
+    es: { t:'Sus preferencias de privacidad', p:'SwissDem no utiliza publicidad ni herramientas de seguimiento. Con su consentimiento, guardamos en este dispositivo su inventario de volumen y su checklist de mudanza, para que los encuentre en su próxima visita. Su elección se conserva 90 días.',
+          ok:'Aceptar todo', non:'Rechazar', perso:'Personalizar', nec:'Necesarias', necd:'La memorización de esta elección, en una cookie técnica conservada 90 días.', toujours:'Siempre activas',
+          pref:'Preferencias', prefd:'El inventario del estimador y la checklist, guardados solo en su dispositivo.', save:'Guardar mis elecciones', lien:'Protección de datos', gerer:'Gestionar cookies' },
+  }[LANGUE] || {};
+  if (!T.t) return;
+  const liens = [...document.querySelectorAll('.foot .legal a')], politique = liens[liens.length - 1];
+  const b = document.createElement('section');
+  b.className = 'consent'; b.setAttribute('aria-label', T.t); b.hidden = true;
+  b.innerHTML = `<p class="consent-t">${T.t}</p><p class="consent-p">${T.p}${politique ? ` <a href="${politique.getAttribute('href')}">${T.lien}</a>` : ''}</p>
+    <div class="consent-detail" hidden>
+      <div class="consent-ligne"><div><b>${T.nec}</b><span>${T.necd}</span></div><span class="consent-fixe">${T.toujours}</span></div>
+      <label class="consent-ligne"><div><b>${T.pref}</b><span>${T.prefd}</span></div><input type="checkbox" class="interrupteur" data-pref></label>
+    </div>
+    <div class="consent-boutons"><button class="btn" type="button" data-ok>${T.ok}</button><button class="btn line" type="button" data-non>${T.non}</button><button class="consent-perso" type="button" data-perso>${T.perso}</button><button class="btn" type="button" data-save hidden>${T.save}</button></div>`;
+  document.body.append(b);
+  const detail = b.querySelector('.consent-detail'), pref = b.querySelector('[data-pref]');
+  const ouvrir = () => { pref.checked = CONSENTEMENT.permis(); b.hidden = false; document.body.classList.add('consent-ouvert'); };
+  const fermer = v => { CONSENTEMENT.ecrire(v); b.hidden = true; detail.hidden = true; b.querySelector('[data-save]').hidden = true; b.querySelector('[data-perso]').hidden = false; document.body.classList.remove('consent-ouvert'); };
+  b.querySelector('[data-ok]').addEventListener('click', () => fermer('oui'));
+  b.querySelector('[data-non]').addEventListener('click', () => fermer('non'));
+  b.querySelector('[data-perso]').addEventListener('click', e => { detail.hidden = false; e.currentTarget.hidden = true; b.querySelector('[data-save]').hidden = false; pref.focus(); });
+  b.querySelector('[data-save]').addEventListener('click', () => fermer(pref.checked ? 'oui' : 'non'));
+  // Lien « Gérer les cookies » dans le pied de page, sur chaque page
+  const legal = document.querySelector('.foot .legal span:last-child');
+  if (legal) {
+    const g = document.createElement('button');
+    g.type = 'button'; g.className = 'lien-cookies'; g.textContent = T.gerer;
+    g.addEventListener('click', ouvrir);
+    legal.append(' · ', g);
+  }
+  if (!CONSENTEMENT.choix()) ouvrir();
 })();
