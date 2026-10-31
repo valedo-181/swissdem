@@ -889,3 +889,7 @@ main{overflow-x:clip}
 @keyframes coche-in{from{transform:scale(0)}}
 @media (prefers-reduced-motion:reduce){.pc-taches li,.pc-taches li::before{animation:none}}
 @media (max-width:560px){.pc-plan .pc-nom{font-size:32px}.pc-plan .pc-ok{scale:1.4}}
+/* Sélecteur de langue : les liens des autres langues, groupés */
+.top .lang + .lang{margin-left:calc(6px - 28px)}
+@media (max-width:560px){.top .lang{padding:7px 9px;font-size:.76rem}.top .lang + .lang{margin-left:-4px}}
+.top .btn{white-space:nowrap}

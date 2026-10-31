@@ -1,6 +1,6 @@
 // SwissDem v7 : menu mobile, cartouche de devis, barre d'appel, plan interactif et mouvement au défilement, communs à toutes les pages.
 // Langue de la page (fr, de ou it) et format des nombres et des dates qui va avec
-const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr:'fr-CH', de:'de-CH', it:'it-CH'}[LANGUE] || 'fr-CH';
+const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr:'fr-CH', de:'de-CH', it:'it-CH', es:'es'}[LANGUE] || 'fr-CH';
 // Menu mobile
 (function(){
   const top = document.querySelector('.top'), b = top && top.querySelector('.menu-btn');
@@ -186,8 +186,16 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
 // affiché sur le plateau et transmis au camion 3D (événement « swissdem:volume ») qui se charge en conséquence.
 // Repères : 9 m³ par pièce ; un camion 3,5 t prend environ 20 m³. Aucun prix n'est affiché : il vient du devis.
 (function(){
-  const de = LANGUE === 'de', it = LANGUE === 'it';
-  const T = it ? {
+  const de = LANGUE === 'de', it = LANGUE === 'it', es = LANGUE === 'es';
+  const T = es ? {
+    m3: v => `≈ ${v} m³`, camion: 'Un camión de 3,5 t', lourd: 'Camión pesado o dos viajes', visite: 'Volumen confirmado en la visita',
+    plateau: 'según su vivienda', inventaire: 'según su inventario', types: 'Partir de una vivienda tipo:', vider: 'Vaciar',
+    total: 'Su volumen estimado', joindre: 'Añadir a mi solicitud de presupuesto', joint: 'Añadido a su solicitud ✓',
+    note: 'Estimación orientativa y sin compromiso. El responsable de la agencia confirma el volumen en la visita; el precio figura en el presupuesto.',
+    vide: 'Cuente sus muebles o elija arriba una vivienda tipo.', moins: 'Quitar', plus: 'Añadir',
+    pieces: {sejour:'Salón', chambres:'Dormitorios', cuisine:'Cocina, lavadero', cave:'Sótano, balcón', cartons:'Cajas'},
+    typesNoms: {studio:'Estudio', p25:'2,5 habitaciones', p35:'3,5 habitaciones', p45:'4,5 habitaciones', p55:'5,5 habitaciones'},
+  } : it ? {
     m3: v => `≈ ${v} m³`, camion: 'Un furgone da 3,5 t', lourd: 'Autocarro o due viaggi', visite: 'Volume confermato al sopralluogo',
     plateau: 'secondo il vostro alloggio', inventaire: 'secondo il vostro inventario', types: 'Partire da un alloggio tipo:', vider: 'Svuota',
     total: 'Il vostro volume stimato', joindre: 'Aggiungere alla richiesta di offerta', joint: 'Aggiunto alla richiesta ✓',
@@ -239,7 +247,13 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
     chaisebureau:'Sedia da ufficio', tablecuisine:'Tavolo da cucina', chaisecuisine:'Sedia da cucina', frigo:'Frigorifero', lavelinge:'Lavatrice',
     seche:'Asciugatrice', microondes:'Microonde', velo:'Bicicletta', etagere:'Scaffale', jardin:'Mobili da giardino o da balcone',
     sport:'Sci, attrezzatura sportiva', poussette:'Passeggino', valise:'Valigia', carton:'Scatolone standard', penderie:'Scatolone guardaroba'};
-  const nomObjet = o => it ? ITALIEN[o[0]] : de ? o[4] : o[3];
+  const ESPAGNOL = {canape3:'Sofá de 3 plazas', canape2:'Sofá de 2 plazas', fauteuil:'Sillón', tablebasse:'Mesa baja', meubletv:'Mueble de TV', tv:'Televisor',
+    biblio:'Librería', buffet:'Aparador, vitrina', tablemanger:'Mesa de comedor', chaise:'Silla', litdouble:'Cama de matrimonio', litsimple:'Cama individual',
+    litenfant:'Cama infantil', armoire2:'Armario de 2 puertas', armoire3:'Armario de 3 puertas', commode:'Cómoda', chevet:'Mesilla de noche', bureau:'Escritorio',
+    chaisebureau:'Silla de oficina', tablecuisine:'Mesa de cocina', chaisecuisine:'Silla de cocina', frigo:'Frigorífico', lavelinge:'Lavadora',
+    seche:'Secadora', microondes:'Microondas', velo:'Bicicleta', etagere:'Estantería', jardin:'Muebles de jardín o de balcón',
+    sport:'Esquís, material deportivo', poussette:'Cochecito', valise:'Maleta', carton:'Caja estándar', penderie:'Caja armario'};
+  const nomObjet = o => es ? ESPAGNOL[o[0]] : it ? ITALIEN[o[0]] : de ? o[4] : o[3];
   // Inventaires types, calés sur la règle des 9 m³ par pièce
   const TYPES = {
     studio:{canape2:1,tablebasse:1,meubletv:1,tv:1,litdouble:1,armoire2:1,chevet:1,tablecuisine:1,chaisecuisine:2,microondes:1,etagere:1,valise:2,carton:20},
@@ -386,7 +400,12 @@ const LANGUE = (document.documentElement.lang || 'fr').slice(0, 2), LOCALE = {fr
   const fiches = [...document.querySelectorAll('#agences .agency')];
   if (!zone || fiches.length < 2) return;
   const de = LANGUE === 'de';
-  const T = LANGUE === 'it' ? {
+  const T = LANGUE === 'es' ? {
+    titre: 'Elija su municipio', aide: 'Toque un punto del mapa: verá la agencia que se encarga y su responsable.',
+    agence: v => `Agencia de ${v}`, siege: 'Agencia', km: k => `a ${k} km en línea recta de la agencia`, ici: 'Aquí se encuentra la agencia',
+    voir: c => `Mudarse a ${c}`, legende: 'Mapa esquemático, municipios situados según sus coordenadas reales.',
+    lacs: ['Lago de Neuchâtel', 'Lago de Morat', 'Lago de la Gruyère'],
+  } : LANGUE === 'it' ? {
     titre: 'Scegliete il vostro comune', aide: "Toccate un punto della carta: vedete l'agenzia che se ne occupa e il suo responsabile.",
     agence: v => `Agenzia di ${v}`, siege: 'Agenzia', km: k => `a ${k} km in linea d'aria dall'agenzia`, ici: "Qui si trova l'agenzia",
     voir: c => `Traslocare a ${c}`, legende: 'Carta schematica, comuni posizionati secondo le loro coordinate reali.',

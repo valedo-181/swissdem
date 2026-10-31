@@ -2,511 +2,817 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>https://swissdem.vercel.app/</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it"/>
   </url>
   <url><loc>https://swissdem.vercel.app/cgv-demenagement</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-umzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/cgc-mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/cgc-trasloco"/>
   </url>
   <url><loc>https://swissdem.vercel.app/cgv-nettoyage</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-reinigung"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/cgc-limpieza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-nettoyage"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/cgc-pulizia"/>
   </url>
   <url><loc>https://swissdem.vercel.app/checklist-demenagement</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzugscheckliste"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/checklist-mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/checklist-demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/checklist-trasloco"/>
   </url>
   <url><loc>https://swissdem.vercel.app/confidentialite</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/proteccion-de-datos"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/confidentialite"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/protezione-dati"/>
   </url>
   <url><loc>https://swissdem.vercel.app/demenagement</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco"/>
   </url>
   <url><loc>https://swissdem.vercel.app/entreprise</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/firmenumzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/mudanza-empresas"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/entreprise"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco-aziendale"/>
   </url>
   <url><loc>https://swissdem.vercel.app/garde-meubles</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/moebellager"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/guardamuebles"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/garde-meubles"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/deposito-mobili"/>
   </url>
   <url><loc>https://swissdem.vercel.app/mentions-legales</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/impressum"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/aviso-legal"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/mentions-legales"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/note-legali"/>
   </url>
   <url><loc>https://swissdem.vercel.app/nettoyage</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/endreinigung"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/limpieza-fin-de-alquiler"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/nettoyage"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/pulizia-fine-locazione"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/belfaux</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/belfaux"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/belfaux"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/belfaux"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/belfaux"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/boudry</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/boudry"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/boudry"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/boudry"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/boudry"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/bulle</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/bulle"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/bulle"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/bulle"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/bulle"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/chatel-saint-denis</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/chatel-saint-denis"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/chatel-saint-denis"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/chatel-saint-denis"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/chatel-saint-denis"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/corcelles</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/corcelles"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/corcelles"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/corcelles"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/corcelles"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/cortaillod</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/cortaillod"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/cortaillod"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/cortaillod"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/cortaillod"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/dudingen</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/duedingen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/dudingen"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/dudingen"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/dudingen"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/estavayer-le-lac</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/estavayer-le-lac"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/estavayer-le-lac"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/estavayer-le-lac"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/estavayer-le-lac"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/fribourg</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/freiburg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/friburgo"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/fribourg"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/friburgo"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/givisiez</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/givisiez"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/givisiez"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/givisiez"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/givisiez"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/hauterive</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/hauterive"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/hauterive"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/hauterive"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/hauterive"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/kerzers</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/kerzers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/kerzers"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/kerzers"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/kerzers"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/la-chaux-de-fonds</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/la-chaux-de-fonds"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/la-chaux-de-fonds"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/la-chaux-de-fonds"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/la-chaux-de-fonds"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/le-locle</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/le-locle"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/le-locle"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/le-locle"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/le-locle"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/marin-epagnier</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/marin-epagnier"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/marin-epagnier"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/marin-epagnier"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/marin-epagnier"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/marly</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/marly"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/marly"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/marly"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/marly"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/morat</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/murten"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/morat"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/morat"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/morat"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/neuchatel</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/neuenburg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/neuchatel"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/neuchatel"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/neuchatel"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/peseux</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/peseux"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/peseux"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/peseux"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/peseux"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/romont</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/romont"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/romont"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/romont"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/romont"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/saint-blaise</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/saint-blaise"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/saint-blaise"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/saint-blaise"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/saint-blaise"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/val-de-ruz</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/val-de-ruz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/val-de-ruz"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/val-de-ruz"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/val-de-ruz"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/val-de-travers</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/val-de-travers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/val-de-travers"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/val-de-travers"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/val-de-travers"/>
   </url>
   <url><loc>https://swissdem.vercel.app/communes/villars-sur-glane</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/villars-sur-glane"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/villars-sur-glane"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/villars-sur-glane"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/villars-sur-glane"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/agb-reinigung</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-reinigung"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/cgc-limpieza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-nettoyage"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/cgc-pulizia"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/agb-umzug</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-umzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/cgc-mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/cgc-trasloco"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/datenschutz</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/proteccion-de-datos"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/confidentialite"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/protezione-dati"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/endreinigung</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/endreinigung"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/limpieza-fin-de-alquiler"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/nettoyage"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/pulizia-fine-locazione"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/firmenumzug</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/firmenumzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/mudanza-empresas"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/entreprise"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco-aziendale"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/impressum</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/impressum"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/aviso-legal"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/mentions-legales"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/note-legali"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/moebellager</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/moebellager"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/guardamuebles"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/garde-meubles"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/deposito-mobili"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/umzug</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/umzugscheckliste</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzugscheckliste"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/checklist-mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/checklist-demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/checklist-trasloco"/>
   </url>
+  <url><loc>https://swissdem.vercel.app/es/aviso-legal</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/impressum"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/aviso-legal"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/mentions-legales"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/note-legali"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/cgc-limpieza</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-reinigung"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/cgc-limpieza"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-nettoyage"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/cgc-pulizia"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/cgc-mudanza</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-umzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/cgc-mudanza"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-demenagement"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/cgc-trasloco"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/checklist-mudanza</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzugscheckliste"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/checklist-mudanza"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/checklist-demenagement"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/checklist-trasloco"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/guardamuebles</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/moebellager"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/guardamuebles"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/garde-meubles"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/deposito-mobili"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/limpieza-fin-de-alquiler</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/endreinigung"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/limpieza-fin-de-alquiler"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/nettoyage"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/pulizia-fine-locazione"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/mudanza-empresas</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/firmenumzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/mudanza-empresas"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/entreprise"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco-aziendale"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/mudanza</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/mudanza"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/demenagement"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/proteccion-de-datos</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/proteccion-de-datos"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/confidentialite"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/protezione-dati"/>
+  </url>
   <url><loc>https://swissdem.vercel.app/it/cgc-pulizia</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-reinigung"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/cgc-limpieza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-nettoyage"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/cgc-pulizia"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/cgc-trasloco</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/agb-umzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/cgc-mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/cgv-demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/cgc-trasloco"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/checklist-trasloco</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzugscheckliste"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/checklist-mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/checklist-demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/checklist-trasloco"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/deposito-mobili</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/moebellager"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/guardamuebles"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/garde-meubles"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/deposito-mobili"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/note-legali</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/impressum"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/aviso-legal"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/mentions-legales"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/note-legali"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/protezione-dati</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/datenschutz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/proteccion-de-datos"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/confidentialite"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/protezione-dati"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/pulizia-fine-locazione</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/endreinigung"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/limpieza-fin-de-alquiler"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/nettoyage"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/pulizia-fine-locazione"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/trasloco-aziendale</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/firmenumzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/mudanza-empresas"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/entreprise"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco-aziendale"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/trasloco</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/umzug"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/mudanza"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/belfaux</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/belfaux"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/belfaux"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/belfaux"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/belfaux"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/boudry</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/boudry"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/boudry"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/boudry"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/boudry"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/bulle</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/bulle"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/bulle"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/bulle"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/bulle"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/chatel-saint-denis</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/chatel-saint-denis"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/chatel-saint-denis"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/chatel-saint-denis"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/chatel-saint-denis"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/corcelles</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/corcelles"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/corcelles"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/corcelles"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/corcelles"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/cortaillod</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/cortaillod"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/cortaillod"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/cortaillod"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/cortaillod"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/duedingen</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/duedingen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/dudingen"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/dudingen"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/dudingen"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/estavayer-le-lac</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/estavayer-le-lac"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/estavayer-le-lac"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/estavayer-le-lac"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/estavayer-le-lac"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/freiburg</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/freiburg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/friburgo"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/fribourg"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/friburgo"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/givisiez</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/givisiez"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/givisiez"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/givisiez"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/givisiez"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/hauterive</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/hauterive"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/hauterive"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/hauterive"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/hauterive"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/kerzers</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/kerzers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/kerzers"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/kerzers"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/kerzers"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/la-chaux-de-fonds</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/la-chaux-de-fonds"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/la-chaux-de-fonds"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/la-chaux-de-fonds"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/la-chaux-de-fonds"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/le-locle</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/le-locle"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/le-locle"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/le-locle"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/le-locle"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/marin-epagnier</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/marin-epagnier"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/marin-epagnier"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/marin-epagnier"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/marin-epagnier"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/marly</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/marly"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/marly"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/marly"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/marly"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/murten</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/murten"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/morat"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/morat"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/morat"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/neuenburg</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/neuenburg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/neuchatel"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/neuchatel"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/neuchatel"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/peseux</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/peseux"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/peseux"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/peseux"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/peseux"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/romont</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/romont"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/romont"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/romont"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/romont"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/saint-blaise</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/saint-blaise"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/saint-blaise"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/saint-blaise"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/saint-blaise"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/val-de-ruz</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/val-de-ruz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/val-de-ruz"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/val-de-ruz"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/val-de-ruz"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/val-de-travers</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/val-de-travers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/val-de-travers"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/val-de-travers"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/val-de-travers"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de/gemeinden/villars-sur-glane</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/villars-sur-glane"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/villars-sur-glane"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/villars-sur-glane"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/villars-sur-glane"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/belfaux</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/belfaux"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/belfaux"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/belfaux"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/belfaux"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/boudry</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/boudry"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/boudry"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/boudry"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/boudry"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/bulle</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/bulle"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/bulle"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/bulle"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/bulle"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/chatel-saint-denis</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/chatel-saint-denis"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/chatel-saint-denis"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/chatel-saint-denis"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/chatel-saint-denis"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/corcelles</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/corcelles"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/corcelles"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/corcelles"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/corcelles"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/cortaillod</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/cortaillod"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/cortaillod"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/cortaillod"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/cortaillod"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/dudingen</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/duedingen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/dudingen"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/dudingen"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/dudingen"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/estavayer-le-lac</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/estavayer-le-lac"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/estavayer-le-lac"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/estavayer-le-lac"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/estavayer-le-lac"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/friburgo</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/freiburg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/friburgo"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/fribourg"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/friburgo"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/givisiez</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/givisiez"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/givisiez"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/givisiez"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/givisiez"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/hauterive</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/hauterive"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/hauterive"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/hauterive"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/hauterive"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/kerzers</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/kerzers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/kerzers"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/kerzers"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/kerzers"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/la-chaux-de-fonds</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/la-chaux-de-fonds"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/la-chaux-de-fonds"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/la-chaux-de-fonds"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/la-chaux-de-fonds"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/le-locle</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/le-locle"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/le-locle"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/le-locle"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/le-locle"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/marin-epagnier</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/marin-epagnier"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/marin-epagnier"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/marin-epagnier"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/marin-epagnier"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/marly</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/marly"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/marly"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/marly"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/marly"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/morat</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/murten"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/morat"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/morat"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/morat"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/neuchatel</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/neuenburg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/neuchatel"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/neuchatel"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/neuchatel"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/peseux</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/peseux"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/peseux"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/peseux"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/peseux"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/romont</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/romont"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/romont"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/romont"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/romont"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/saint-blaise</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/saint-blaise"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/saint-blaise"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/saint-blaise"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/saint-blaise"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/val-de-ruz</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/val-de-ruz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/val-de-ruz"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/val-de-ruz"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/val-de-ruz"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/val-de-travers</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/val-de-travers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/val-de-travers"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/val-de-travers"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/val-de-travers"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/es/municipios/villars-sur-glane</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/villars-sur-glane"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/villars-sur-glane"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/villars-sur-glane"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/villars-sur-glane"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/belfaux</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/belfaux"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/belfaux"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/belfaux"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/belfaux"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/boudry</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/boudry"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/boudry"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/boudry"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/boudry"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/bulle</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/bulle"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/bulle"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/bulle"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/bulle"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/chatel-saint-denis</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/chatel-saint-denis"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/chatel-saint-denis"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/chatel-saint-denis"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/chatel-saint-denis"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/corcelles</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/corcelles"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/corcelles"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/corcelles"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/corcelles"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/cortaillod</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/cortaillod"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/cortaillod"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/cortaillod"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/cortaillod"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/dudingen</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/duedingen"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/dudingen"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/dudingen"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/dudingen"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/estavayer-le-lac</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/estavayer-le-lac"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/estavayer-le-lac"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/estavayer-le-lac"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/estavayer-le-lac"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/friburgo</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/freiburg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/friburgo"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/fribourg"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/friburgo"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/givisiez</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/givisiez"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/givisiez"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/givisiez"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/givisiez"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/hauterive</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/hauterive"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/hauterive"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/hauterive"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/hauterive"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/kerzers</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/kerzers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/kerzers"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/kerzers"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/kerzers"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/la-chaux-de-fonds</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/la-chaux-de-fonds"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/la-chaux-de-fonds"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/la-chaux-de-fonds"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/la-chaux-de-fonds"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/le-locle</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/le-locle"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/le-locle"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/le-locle"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/le-locle"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/marin-epagnier</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/marin-epagnier"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/marin-epagnier"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/marin-epagnier"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/marin-epagnier"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/marly</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/marly"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/marly"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/marly"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/marly"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/morat</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/murten"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/morat"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/morat"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/morat"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/neuchatel</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/neuenburg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/neuchatel"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/neuchatel"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/neuchatel"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/peseux</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/peseux"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/peseux"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/peseux"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/peseux"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/romont</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/romont"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/romont"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/romont"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/romont"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/saint-blaise</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/saint-blaise"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/saint-blaise"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/saint-blaise"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/saint-blaise"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/val-de-ruz</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/val-de-ruz"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/val-de-ruz"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/val-de-ruz"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/val-de-ruz"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/val-de-travers</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/val-de-travers"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/val-de-travers"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/val-de-travers"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/val-de-travers"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/comuni/villars-sur-glane</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/gemeinden/villars-sur-glane"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/municipios/villars-sur-glane"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/communes/villars-sur-glane"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/comuni/villars-sur-glane"/>
   </url>
