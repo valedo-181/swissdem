@@ -928,3 +928,25 @@ label.consent-ligne{cursor:pointer}
 @media (max-width:560px){.consent{left:10px;right:10px;bottom:10px;width:auto;padding:18px 16px 14px}body.consent-ouvert .callbar{display:none}}
 @media (prefers-reduced-motion:reduce){.consent{animation:none}}
 @media print{.consent{display:none!important}}
+/* Bandeau plus large et en couleur : centré en bas, texte à gauche, boutons à droite, aux couleurs du logo */
+.consent{left:50%;right:auto;bottom:20px;transform:translateX(-50%);width:min(960px,calc(100vw - 40px));display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:20px;align-items:center;padding:24px 26px 22px;overflow:hidden;background:linear-gradient(120deg,#fff 0%,#fff 55%,var(--store-tint) 100%)}
+.consent::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,var(--clean) 0 33.33%,var(--move) 33.33% 66.66%,var(--store) 66.66%)}
+@keyframes consent-in{from{opacity:0;transform:translate(-50%,16px)}}
+.consent-ico{grid-row:1 / span 2;align-self:start;display:grid;place-items:center;width:52px;height:52px;border-radius:16px;background:var(--move-tint);color:var(--ink)}
+.consent-ico svg{width:28px;height:28px}
+.consent-t,.consent-p,.consent-detail{grid-column:2}
+.consent-p{max-width:62ch}
+.consent-p a{color:var(--store);font-weight:600}
+.consent-boutons{grid-column:3;grid-row:1 / span 2;flex-direction:column;align-items:stretch;margin-top:0;min-width:200px}
+.consent-boutons .btn{flex:none}
+.consent-boutons [data-ok]{background:var(--clean)}
+.consent-boutons [data-ok]:hover{background:#18803a}
+.consent-perso{text-align:center}
+.consent-ligne{background:rgba(255,255,255,.75);box-shadow:inset 0 0 0 1px var(--line)}
+@media (max-width:760px){
+  .consent{grid-template-columns:auto minmax(0,1fr);row-gap:0}
+  .consent-boutons{grid-column:1 / -1;grid-row:auto;flex-direction:row;flex-wrap:wrap;margin-top:16px;min-width:0}
+  .consent-boutons .btn{flex:1 1 auto}
+}
+@media (max-width:560px){.consent{left:10px;right:10px;bottom:10px;width:auto;transform:none;padding:22px 16px 14px}.consent-ico{width:42px;height:42px;border-radius:13px}@keyframes consent-in{from{opacity:0;transform:translateY(16px)}}}
+.consent{max-height:calc(100dvh - 24px);overflow-y:auto}

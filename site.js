@@ -1123,7 +1123,7 @@ const memoire = {
   const liens = [...document.querySelectorAll('.foot .legal a')], politique = liens[liens.length - 1];
   const b = document.createElement('section');
   b.className = 'consent'; b.setAttribute('aria-label', T.t); b.hidden = true;
-  b.innerHTML = `<p class="consent-t">${T.t}</p><p class="consent-p">${T.p}${politique ? ` <a href="${politique.getAttribute('href')}">${T.lien}</a>` : ''}</p>
+  b.innerHTML = `<span class="consent-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.4-4.6"/></svg></span><p class="consent-t">${T.t}</p><p class="consent-p">${T.p}${politique ? ` <a href="${politique.getAttribute('href')}">${T.lien}</a>` : ''}</p>
     <div class="consent-detail" hidden>
       <div class="consent-ligne"><div><b>${T.nec}</b><span>${T.necd}</span></div><span class="consent-fixe">${T.toujours}</span></div>
       <label class="consent-ligne"><div><b>${T.pref}</b><span>${T.prefd}</span></div><input type="checkbox" class="interrupteur" data-pref></label>
