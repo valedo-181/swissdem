@@ -893,3 +893,12 @@ main{overflow-x:clip}
 .top .lang + .lang{margin-left:calc(6px - 28px)}
 @media (max-width:560px){.top .lang{padding:7px 9px;font-size:.76rem}.top .lang + .lang{margin-left:-4px}}
 .top .btn{white-space:nowrap}
+/* Sélecteur de langue : un petit drapeau devant le code de la langue (sur téléphone, le drapeau seul ; le nom reste dans aria-label) */
+.top .lang{display:inline-flex;align-items:center;gap:6px}
+.top .lang::before{content:"";flex:none;width:18px;height:12px;border-radius:2px;box-shadow:0 0 0 1px rgba(16,24,40,.12);background-size:100% 100%}
+.top .lang[hreflang="fr"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Cpath fill='%23002654' d='M0 0h1v2H0z'/%3E%3Cpath fill='%23fff' d='M1 0h1v2H1z'/%3E%3Cpath fill='%23ce1126' d='M2 0h1v2H2z'/%3E%3C/svg%3E")}
+.top .lang[hreflang="de"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 3'%3E%3Cpath fill='%23000' d='M0 0h5v1H0z'/%3E%3Cpath fill='%23dd0000' d='M0 1h5v1H0z'/%3E%3Cpath fill='%23ffce00' d='M0 2h5v1H0z'/%3E%3C/svg%3E")}
+.top .lang[hreflang="it"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Cpath fill='%23009246' d='M0 0h1v2H0z'/%3E%3Cpath fill='%23fff' d='M1 0h1v2H1z'/%3E%3Cpath fill='%23ce2b37' d='M2 0h1v2H2z'/%3E%3C/svg%3E")}
+.top .lang[hreflang="es"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3Cpath fill='%23aa151b' d='M0 0h3v2H0z'/%3E%3Cpath fill='%23f1bf00' d='M0 .5h3v1H0z'/%3E%3C/svg%3E")}
+.top .lang:hover{background:var(--soft-2)}
+@media (max-width:560px){.top .lang{font-size:0;gap:0;padding:9px 8px}.top .lang::before{width:20px;height:14px}}
