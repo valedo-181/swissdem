@@ -974,3 +974,6 @@ label.consent-ligne{cursor:pointer}
 .anim .photo-equipe.vu .equipe-tag{opacity:1;transform:none}
 @media (hover:hover) and (pointer:fine){.anim .photo-equipe.vu:hover img{scale:1.13;transition-duration:2.4s}}
 @media print{.anim .photo-equipe{clip-path:none}.photo-equipe img{scale:1;transform:none}}
+/* Cartes des agences : la photo d'équipe garde le format panoramique de la carte */
+.agency .photo-equipe{margin:0}
+.agency .photo-equipe img{aspect-ratio:16/8}
