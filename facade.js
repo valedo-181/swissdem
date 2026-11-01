@@ -32,9 +32,7 @@
 <rect x="-400" y="510" width="2200" height="110" fill="url(#fa-sol)"/>
 <g stroke="#d9c98a" stroke-opacity=".45" stroke-width="3"><line x1="420" y1="620" x2="500" y2="530"/><line x1="964" y1="620" x2="884" y2="530"/></g>
 <rect x="-6" y="110" width="196" height="400" fill="url(#fa-brique)"/><rect x="-6" y="104" width="196" height="8" fill="#5b6270"/>
-<rect x="6" y="146" width="172" height="66" rx="3" fill="#fff"/><rect x="6" y="212" width="172" height="4" fill="#f4c300"/>
-<image href="${logo}" x="14" y="151" width="156" height="52" preserveAspectRatio="xMidYMid meet"/>
-<rect x="84" y="250" width="16" height="260" fill="#1d2229"/>
+<rect x="84" y="150" width="16" height="360" fill="#1d2229"/>
 <rect x="190" y="110" width="1004" height="400" fill="#2a2f37"/><rect x="190" y="104" width="1004" height="8" fill="#5b6270"/>
 <rect x="190" y="112" width="1004" height="196" fill="url(#fa-bande)"/>`;
 
@@ -64,8 +62,16 @@
     el("rect", { x: dx - 2, y: 502, width: 172, height: 8, fill: "#8a919c" }, svg);
   }
   el("rect", { x: x0 + 5 * pas, y: 110, width: 24, height: 400, fill: "url(#fa-brique)" }, svg);
+  // Deux enseignes posées sur le toit, au-dessus des boxes 02 et 04
+  for (const i of [1, 3]) {
+    const cx = x0 + i * pas + 26 + 84, w = 176, h = 58, y = 30;
+    for (const dx of [-54, 54]) el("rect", { x: cx + dx - 3, y: y + h, width: 6, height: 104 - y - h, fill: "#3d4450" }, svg);
+    el("rect", { x: cx - w / 2, y, width: w, height: h, rx: 3, fill: "#fff" }, svg);
+    el("rect", { x: cx - w / 2, y: y + h - 4, width: w, height: 4, fill: "#f4c300" }, svg);
+    el("image", { href: logo, x: cx - w / 2 + 8, y: y + 4, width: w - 16, height: h - 12, preserveAspectRatio: "xMidYMid meet" }, svg);
+  }
   stage.prepend(svg);
-  // Écran large : on cale la façade à gauche pour garder l'enseigne entière ; écran étroit : centrée sur le box 03
+  // Écran large : on cale la façade à gauche pour la montrer entière ; écran étroit : centrée sur le box 03
   const cadrer = () => svg.setAttribute("preserveAspectRatio", stage.clientWidth / stage.clientHeight >= 1.8 ? "xMinYMax slice" : "xMidYMax slice");
   cadrer(); addEventListener("resize", cadrer, { passive: true });
 
