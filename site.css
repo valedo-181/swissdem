@@ -340,6 +340,11 @@ details p{padding:0 0 22px;max-width:64ch;color:var(--ink-2)}
 .foot ul{list-style:none;display:grid;gap:8px;font-size:.94rem}
 .foot a{text-decoration:none}
 .foot a:hover{color:var(--ink)}
+.foot .reseaux-t{margin:22px 0 10px}
+.foot .reseaux{display:flex;flex-wrap:wrap;gap:8px}
+.foot .reseaux a{display:grid;place-items:center;width:44px;height:44px;border-radius:var(--r-1);background:var(--white);box-shadow:var(--sh-1);color:var(--ink-2);transition:color .2s var(--ease),box-shadow .2s var(--ease)}
+.foot .reseaux a:hover{color:var(--ink);box-shadow:var(--sh-2)}
+.foot .reseaux svg{width:20px;height:20px}
 .foot .legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px clamp(4px,1vw,12px) 0;border-top:1px solid var(--line);font-size:.82rem;color:var(--mute)}
 
 /* Barre d'appel mobile */
