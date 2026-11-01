@@ -955,3 +955,22 @@ label.consent-ligne{cursor:pointer}
 }
 @media (max-width:560px){.consent{left:10px;right:10px;bottom:10px;width:auto;transform:none;padding:22px 16px 14px}.consent-ico{width:42px;height:42px;border-radius:13px}@keyframes consent-in{from{opacity:0;transform:translateY(16px)}}}
 .consent{max-height:calc(100dvh - 24px);overflow-y:auto}
+/* Photos d'équipe (uniforme SwissDem) : cadre arrondi, image légèrement agrandie pour la parallaxe (--py, site.js).
+   Au défilement, le cadre s'ouvre depuis un médaillon (clip-path) pendant que l'image se pose ; au survol, zoom lent. */
+.photo-equipe{position:relative;overflow:hidden;border-radius:var(--r-3);background:var(--soft);isolation:isolate}
+.photo-equipe img{display:block;width:100%;height:auto;object-fit:cover;object-position:var(--pos,50% 30%);border-radius:0;transform:translate3d(0,var(--py,0px),0);scale:1.08;transition:scale 1.2s var(--ease);will-change:transform}
+.trade .photo-equipe img{aspect-ratio:3/2;border-radius:0}
+.plate-wide.photo-equipe img{aspect-ratio:21/9}
+@media (max-width:560px){.plate-wide.photo-equipe img{aspect-ratio:4/3}}
+.photo-equipe::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(15,19,25,.06);background:linear-gradient(to top,rgba(15,19,25,.28),rgba(15,19,25,0) 38%)}
+.equipe-tag{position:absolute;z-index:1;left:clamp(14px,2vw,24px);bottom:clamp(14px,2vw,24px);display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:999px;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 6px 24px rgba(15,19,25,.14);color:var(--ink);font-weight:600;font-size:.92rem}
+.equipe-tag .sw{width:12px;height:12px;border-radius:50%;box-shadow:none}
+@media (hover:hover) and (pointer:fine){.photo-equipe:hover img{scale:1.13;transition-duration:2.4s}}
+.anim .photo-equipe{clip-path:inset(9% 7% round 40px);transition:clip-path 1.3s var(--ease)}
+.anim .photo-equipe img{scale:1.22;transition:scale 1.6s var(--ease)}
+.anim .photo-equipe .equipe-tag{opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease) .7s,transform .7s var(--ease) .7s}
+.anim .photo-equipe.vu{clip-path:inset(0 0 0 0 round var(--r-3))}
+.anim .photo-equipe.vu img{scale:1.08}
+.anim .photo-equipe.vu .equipe-tag{opacity:1;transform:none}
+@media (hover:hover) and (pointer:fine){.anim .photo-equipe.vu:hover img{scale:1.13;transition-duration:2.4s}}
+@media print{.anim .photo-equipe{clip-path:none}.photo-equipe img{scale:1;transform:none}}

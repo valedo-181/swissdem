@@ -1037,6 +1037,8 @@ function demandeTitanor(f){
   const cote = !reduit && document.querySelector('.cote');
   const etapes = cote ? [...cote.children] : [];
   const cartes = reduit ? [] : [...document.querySelectorAll('.panels > li')];
+  // Photos d'équipe : l'image glisse doucement dans son cadre (au plus 3 % de sa hauteur), en sens inverse du défilement
+  const photos = reduit ? [] : [...document.querySelectorAll('.photo-equipe')];
 
   let attente = false;
   function defiler(){
@@ -1051,6 +1053,12 @@ function demandeTitanor(f){
       const i = p > 0 && p < 1 ? Math.min(cartes.length - 1, Math.floor(p * cartes.length)) : -1;
       cartes.forEach((c, k) => c.classList.toggle('actif', k === i));
     }
+    photos.forEach(f => {
+      const r = f.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - innerHeight / 2) / innerHeight));
+      f.style.setProperty('--py', (p * r.height * .03).toFixed(1) + 'px');
+    });
     if (cote) {
       // 0 quand le haut des étapes passe à 80 % de l'écran, 1 quand il atteint 30 %
       const r = cote.getBoundingClientRect(), p = Math.min(1, Math.max(0, (innerHeight * .8 - r.top) / (innerHeight * .5)));
@@ -1112,7 +1120,7 @@ function demandeTitanor(f){
     if (e.target.matches('.proof > span')) e.target.querySelectorAll('b').forEach(b => { if (/^\d/.test(b.textContent)) compter(b); });
     io.unobserve(e.target);
   }), {rootMargin:'0px 0px -8% 0px', threshold:.12});
-  document.querySelectorAll('.rv, .mots, main section h2').forEach(el => io.observe(el));
+  document.querySelectorAll('.rv, .mots, main section h2, .photo-equipe').forEach(el => io.observe(el));
 
   // Cartes inclinées : suivent la souris, au plus 5 degrés
   if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
