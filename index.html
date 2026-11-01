@@ -51,13 +51,14 @@
 
 <main>
   <!-- Premier écran : la façade SwissDem dont le box s'ouvre selon le volume, la demande de devis posée dessous -->
-  <div class="board hero">
+  <div class="board hero plein">
     <div class="shell board-in">
       <div class="copy">
         <h1>Votre déménagement, pièce par pièce.</h1>
         <p class="lead">La même équipe salariée visite, emballe, transporte, nettoie et stocke. Le prix inscrit sur le devis est celui que vous payez.</p>
       </div>
-      <figure class="stage facade" data-camion data-label="La façade d'un garde-meubles SwissDem : la porte du box 43 s'ouvre et les cartons s'empilent selon votre volume.">
+      <figure class="stage facade" data-camion>
+        <img class="photo" src="/images/facade-swissdem-1600.webp" srcset="images/facade-swissdem-1600.webp 1600w, images/facade-swissdem.webp 2560w" sizes="100vw" width="2560" height="1434" alt="La façade du garde-meubles SwissDem, enseigne sur le toit, la porte du box 43 ouverte sur des cartons et des meubles emballés" fetchpriority="high">
       </figure>
       <div class="cartouche" id="devis">
         <!-- Le formulaire ouvre la demande Titanor de SwissDem (jeton à renseigner) -->
@@ -309,6 +310,5 @@
 <div class="callbar"><a class="btn move" href="#devis">Devis gratuit</a><a class="btn line" href="tel:+41325604925">Appeler</a></div>
 
 <script src="/site.js"></script>
-<script src="/facade.js" defer></script>
 </body>
 </html>
