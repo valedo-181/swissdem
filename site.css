@@ -62,7 +62,7 @@ h2{font-size:clamp(2rem,3.8vw,3.6rem);max-width:20ch}
 /* Logo : la marque d'origine, jamais retapée */
 .logo{display:inline-block;line-height:0}
 .logo img{height:38px;width:auto}
-.top .logo img{mix-blend-mode:multiply}
+.top .logo img{filter:drop-shadow(0 1px 0 rgba(255,255,255,.85)) drop-shadow(0 1.5px 0 rgba(15,19,25,.28)) drop-shadow(0 5px 8px rgba(15,19,25,.22))}
 
 /* Boutons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:inherit;font-weight:600;font-size:1rem;text-decoration:none;cursor:pointer;transition:background .2s var(--ease),transform .15s var(--ease),box-shadow .2s var(--ease)}
@@ -335,7 +335,7 @@ details p{padding:0 0 22px;max-width:64ch;color:var(--ink-2)}
 .foot .close p{color:var(--ink);font-size:clamp(1.9rem,3.6vw,3.2rem);font-weight:600;font-stretch:var(--wide);letter-spacing:-.035em;line-height:1.04;max-width:18ch}
 .foot .close div{display:flex;gap:10px;flex-wrap:wrap}
 .foot .grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(20px,3vw,48px);padding:28px clamp(4px,1vw,12px)}
-.foot .logo img{height:40px;mix-blend-mode:multiply}
+.foot .logo img{height:40px;filter:drop-shadow(0 1.5px 0 rgba(15,19,25,.22)) drop-shadow(0 4px 6px rgba(15,19,25,.14))}
 .foot .col-t{color:var(--ink);font-size:.92rem;font-weight:600;margin-bottom:12px}
 .foot ul{list-style:none;display:grid;gap:8px;font-size:.94rem}
 .foot a{text-decoration:none}
@@ -977,3 +977,27 @@ label.consent-ligne{cursor:pointer}
 /* Cartes des agences : la photo d'équipe garde le format panoramique de la carte */
 .agency .photo-equipe{margin:0}
 .agency .photo-equipe img{aspect-ratio:16/8}
+
+/* ---------- Accueil : la photo de la façade en plein écran, le titre posé dessus ---------- */
+.hero.plein{margin-top:-76px;min-height:100svh;display:flex;flex-direction:column}
+.hero.plein .board-in{position:static;flex:1;grid-template-rows:1fr auto;align-content:stretch;padding-top:140px;padding-bottom:clamp(24px,4vh,44px)}
+.hero.plein .stage{position:absolute;inset:0;z-index:0;margin:0;height:auto;border-radius:0;box-shadow:none;background:#1a1e24}
+.hero.plein .stage .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.hero.plein .stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(10,13,18,.74) 0%,rgba(10,13,18,.5) 30%,rgba(10,13,18,0) 58%),linear-gradient(0deg,rgba(10,13,18,.5) 0%,rgba(10,13,18,0) 32%)}
+.hero.plein .copy{position:relative;z-index:1;grid-row:1;align-self:center;justify-self:start;text-align:left;align-items:flex-start;width:min(640px,50%);max-width:none}
+.hero.plein h1{color:#fff;max-width:13ch;text-shadow:0 2px 28px rgba(0,0,0,.35)}
+.hero.plein .lead{color:rgba(255,255,255,.92);margin-inline:0;text-shadow:0 1px 14px rgba(0,0,0,.4)}
+.hero.plein .cartouche{position:relative;z-index:1;grid-row:2;margin-top:28px}
+.hero.plein .volume-badge{z-index:1;left:auto;right:var(--gut);top:110px}
+@media (max-width:900px){
+  .hero.plein{min-height:0;margin-top:-68px}
+  .hero.plein .board-in{padding-top:0}
+  .hero.plein .stage{bottom:auto;height:calc(74svh + 68px)}
+  .hero.plein .stage .photo{object-position:50% 60%}
+  .hero.plein .stage::after{background:linear-gradient(0deg,rgba(10,13,18,.82) 0%,rgba(10,13,18,.45) 38%,rgba(10,13,18,0) 62%)}
+  .hero.plein .copy{width:100%;min-height:calc(74svh + 68px);justify-content:flex-end;padding-top:150px;padding-bottom:26px}
+  .hero.plein h1{font-size:clamp(2.1rem,9vw,2.8rem)}
+  .hero.plein .lead{font-size:1rem;margin-top:14px}
+  .hero.plein .cartouche{margin-top:16px}
+  .hero.plein .volume-badge{top:84px;right:12px}
+}

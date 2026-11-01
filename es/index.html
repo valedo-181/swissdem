@@ -13,9 +13,6 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<!-- El motor 3D se descarga en cuanto se lee la cabecera, sin esperar al resto de la página -->
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" crossorigin>
 <link rel="canonical" href="https://swissdem.vercel.app/es">
 <link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de">
 <link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es">
@@ -54,16 +51,15 @@
 </header>
 
 <main>
-  <!-- Primera pantalla: el camión SwissDem en 3D sobre su plataforma, con la solicitud de presupuesto justo debajo -->
-  <div class="board hero">
+  <!-- Primera pantalla: la fachada SwissDem cuyo box se abre según el volumen, con la solicitud de presupuesto justo debajo -->
+  <div class="board hero plein">
     <div class="shell board-in">
       <div class="copy">
         <h1>Su mudanza, habitación por habitación.</h1>
         <p class="lead">El mismo equipo en plantilla visita, embala, transporta, limpia y almacena. El precio que figura en el presupuesto es el que usted paga.</p>
       </div>
-      <figure class="stage" data-camion data-label="El camión SwissDem en 3D. Arrástrelo o utilice las flechas para hacerlo girar." data-services="Mudanza|Limpieza|Guardamuebles" data-site="swissdem.ch" data-logo="/marque/logo-swissdem.webp">
-        <img width="1020" height="1020" class="poster" src="/images/swissdem-camion.webp" alt="Un camión SwissDem aparcado delante de un edificio antiguo" fetchpriority="high">
-        <figcaption class="hint" aria-hidden="true">Arrastre para hacerlo girar</figcaption>
+      <figure class="stage facade" data-camion>
+        <img class="photo" src="/images/facade-swissdem-1600.webp" srcset="../images/facade-swissdem-1600.webp 1600w, ../images/facade-swissdem.webp 2560w" sizes="100vw" width="2560" height="1434" alt="La fachada del guardamuebles SwissDem, con el letrero en el tejado y la puerta del box 43 abierta sobre cajas y muebles embalados" fetchpriority="high">
       </figure>
       <div class="cartouche" id="devis">
         <!-- Le formulaire ouvre la demande Titanor de SwissDem (jeton à renseigner) -->
@@ -316,6 +312,5 @@
 <div class="callbar"><a class="btn move" href="#devis">Presupuesto gratuito</a><a class="btn line" href="tel:+41325604925">Llamar</a></div>
 
 <script src="/site.js"></script>
-<script type="module" src="/camion3d.js"></script>
 </body>
 </html>
