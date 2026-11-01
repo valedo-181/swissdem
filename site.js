@@ -42,9 +42,38 @@ const memoire = {
     champs.forEach(i => i.setAttribute('aria-invalid', /^\d{4}$/.test(i.value.trim()) ? 'false' : 'true'));
     const ok = champs.every(i => i.getAttribute('aria-invalid') === 'false');
     f.classList.toggle('invalid', !ok);
-    if (!ok) { e.preventDefault(); champs.find(i => i.getAttribute('aria-invalid') === 'true').focus(); }
+    if (!ok) { e.preventDefault(); champs.find(i => i.getAttribute('aria-invalid') === 'true').focus(); return; }
+    // Demande Titanor : le bon formulaire selon la prestation, avec ce que le client a déjà saisi
+    e.preventDefault();
+    const url = demandeTitanor(f), w = window.open(url, '_blank');
+    if (w) w.opener = null; else location.href = url;
   });
 })();
+
+// Adresse du formulaire de demande Titanor de SwissDem, pré-rempli. Sans JavaScript, le formulaire
+// garde son action (même jeton) et Titanor reprend au moins la langue.
+// Options du choix « Prestation » (même ordre dans les 4 langues) : privé, entreprise, fin de bail, garde-meubles.
+// Options du choix « Logement » : studio, 2,5 à 5,5 pièces, maison, bureaux.
+const TITANOR_JETON = 'JETON-SWISSDEM';
+function demandeTitanor(f){
+  const el = f.elements, val = n => (el[n] && el[n].value || '').trim();
+  const prest = el.prestation ? el.prestation.selectedIndex : 0;
+  const log = el.pieces ? el.pieces.selectedIndex : -1;
+  const svc = {'demenagement':'demenagement', 'nettoyage':'nettoyage', 'garde-meubles':'garde_meubles'};
+  let services = val('formule').split(',').map(s => svc[s]).filter(Boolean);
+  if (!services.length) services = [['demenagement', 'demenagement', 'nettoyage', 'garde_meubles'][prest] || 'demenagement'];
+  // Formulaires dédiés de Titanor : entreprise (ou logement « Bureaux »), fin de bail (nettoyage seul)
+  const chemin = prest === 1 || (log === 6 && services[0] === 'demenagement') ? '/entreprise'
+    : services.length === 1 && services[0] === 'nettoyage' ? '/fin-de-bail' : '';
+  const p = new URLSearchParams({ lang: val('lang') || 'fr', src: 'site-web', npa: val('npa_depart'), to_npa: val('npa_arrivee') });
+  if (val('date')) p.set('date', val('date'));
+  if (log >= 0 && log <= 4) { p.set('dwelling', 'appartement'); p.set('rooms', ['1.5', '2.5', '3.5', '4.5', '5.5'][log]); }
+  else if (log === 5) p.set('dwelling', 'maison');
+  if (!chemin) p.set('service', services.join(','));
+  if (val('volume')) p.set('volume', val('volume'));
+  if (val('inventaire')) p.set('inventaire', val('inventaire'));
+  return `https://www.titanor.app/demande/${TITANOR_JETON}${chemin}?${p}`;
+}
 
 // Barre d'appel mobile : cachée tant que le cartouche, le bouton de la formule ou l'appel final du pied de page est à l'écran
 // (un seul bouton jaune à la fois, et rien ne couvre « Continuer »)
