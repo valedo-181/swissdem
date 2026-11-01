@@ -6,9 +6,11 @@
   const stage = document.querySelector("[data-camion]");
   if (!stage) return;
   const NS = "http://www.w3.org/2000/svg";
+  // Le logo est cherché à côté du script (marque/), à la racine du site comme dans la maquette
+  const logo = new URL("marque/logo-swissdem.webp", document.currentScript ? document.currentScript.src : location.href).href;
   const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
 
-  const svg = el("svg", { viewBox: "-28 0 1440 620", preserveAspectRatio: "xMidYMax slice", role: "img", "aria-label": stage.dataset.label || "" });
+  const svg = el("svg", { viewBox: "-20 0 1440 620", preserveAspectRatio: "xMidYMax slice", role: "img", "aria-label": stage.dataset.label || "" });
   svg.innerHTML = `<defs>
  <linearGradient id="fa-ciel" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7f9cc9"/><stop offset=".7" stop-color="#c9d7ea"/><stop offset="1" stop-color="#e9eef5"/></linearGradient>
  <pattern id="fa-brique" width="24" height="10" patternUnits="userSpaceOnUse"><rect width="24" height="10" fill="#8f3e31"/><rect width="23" height="4.2" fill="#9b4536"/><rect x="-12" y="5" width="23" height="4.2" fill="#93402f"/><rect x="12" y="5" width="23" height="4.2" fill="#a04a3a"/></pattern>
@@ -29,10 +31,10 @@
 <path d="M-200 120 q400 -40 800 10 t800 -20" stroke="#fff" stroke-opacity=".35" stroke-width="40" fill="none"/>
 <rect x="-400" y="510" width="2200" height="110" fill="url(#fa-sol)"/>
 <g stroke="#d9c98a" stroke-opacity=".45" stroke-width="3"><line x1="420" y1="620" x2="500" y2="530"/><line x1="964" y1="620" x2="884" y2="530"/></g>
-<rect x="40" y="110" width="150" height="400" fill="url(#fa-brique)"/><rect x="40" y="104" width="150" height="8" fill="#5b6270"/>
-<rect x="112" y="150" width="16" height="360" fill="#1d2229"/>
-<text x="68" y="470" fill="#fff" font-family="Archivo, sans-serif" font-size="15" font-weight="800" letter-spacing="3" transform="rotate(-90 68 470)">SWISS DEM</text>
-<rect x="58" y="482" width="4" height="22" fill="#f4c300"/>
+<rect x="-6" y="110" width="196" height="400" fill="url(#fa-brique)"/><rect x="-6" y="104" width="196" height="8" fill="#5b6270"/>
+<rect x="6" y="146" width="172" height="66" rx="3" fill="#fff"/><rect x="6" y="212" width="172" height="4" fill="#f4c300"/>
+<image href="${logo}" x="14" y="151" width="156" height="52" preserveAspectRatio="xMidYMid meet"/>
+<rect x="84" y="250" width="16" height="260" fill="#1d2229"/>
 <rect x="190" y="110" width="1004" height="400" fill="#2a2f37"/><rect x="190" y="104" width="1004" height="8" fill="#5b6270"/>
 <rect x="190" y="112" width="1004" height="196" fill="url(#fa-bande)"/>`;
 
@@ -63,6 +65,9 @@
   }
   el("rect", { x: x0 + 5 * pas, y: 110, width: 24, height: 400, fill: "url(#fa-brique)" }, svg);
   stage.prepend(svg);
+  // Écran large : on cale la façade à gauche pour garder l'enseigne entière ; écran étroit : centrée sur le box 03
+  const cadrer = () => svg.setAttribute("preserveAspectRatio", stage.clientWidth / stage.clientHeight >= 1.8 ? "xMinYMax slice" : "xMidYMax slice");
+  cadrer(); addEventListener("resize", cadrer, { passive: true });
 
   // De 1 à 9 cartons : environ un carton pour 6 m³ (studio 2, 3,5 pièces 5, maison 9)
   function remplir(m3) {
