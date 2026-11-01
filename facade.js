@@ -1,7 +1,7 @@
 // Façade SwissDem du premier écran (2D, SVG), inspirée des halles de stockage à boxes :
 // pilastres de briques, bandeau anthracite aux grands numéros, portes sectionnelles vitrées.
 // site.js annonce le volume (logement choisi ou inventaire) par l'événement « swissdem:volume » :
-// la porte 03 se lève, la lumière sort du box et les cartons s'empilent selon le volume.
+// la porte du box 43 se lève, la lumière sort du box et les cartons s'empilent selon le volume.
 (() => {
   const stage = document.querySelector("[data-camion]");
   if (!stage) return;
@@ -45,7 +45,7 @@
     el("rect", { x: dx + 14, y: 128, width: 140, height: 62, fill: "#1d2229" }, svg);
     el("rect", { x: dx + 18, y: 132, width: 132, height: 54, fill: "url(#fa-vitre)" }, svg);
     for (const k of [1, 2, 3]) el("rect", { x: dx + 18 + k * 33, y: 132, width: 3, height: 54, fill: "#1d2229" }, svg);
-    el("text", { x: dx + 84, y: 288, "text-anchor": "middle", "font-family": "Archivo, sans-serif", "font-size": 44, "font-weight": 600, fill: i === ouverte ? "#f4c300" : "#d7dbe0" }, svg).textContent = String(i + 1).padStart(2, "0");
+    el("text", { x: dx + 84, y: 288, "text-anchor": "middle", "font-family": "Archivo, sans-serif", "font-size": 44, "font-weight": 600, fill: i === ouverte ? "#f4c300" : "#d7dbe0" }, svg).textContent = String(41 + i);
     const g = el("g", { transform: `translate(${dx} 314)` }, svg);
     if (i === ouverte) {
       el("rect", { width: 168, height: 196, fill: "url(#fa-lumiere)" }, g);
@@ -62,8 +62,8 @@
     el("rect", { x: dx - 2, y: 502, width: 172, height: 8, fill: "#8a919c" }, svg);
   }
   el("rect", { x: x0 + 5 * pas, y: 110, width: 24, height: 400, fill: "url(#fa-brique)" }, svg);
-  // Deux enseignes posées sur le toit, au-dessus des boxes 02 et 04
-  for (const i of [1, 3]) {
+  // L'enseigne posée sur le toit, au-dessus du box 43
+  for (const i of [ouverte]) {
     const cx = x0 + i * pas + 26 + 84, w = 176, h = 58, y = 30;
     for (const dx of [-54, 54]) el("rect", { x: cx + dx - 3, y: y + h, width: 6, height: 104 - y - h, fill: "#3d4450" }, svg);
     el("rect", { x: cx - w / 2, y, width: w, height: h, rx: 3, fill: "#fff" }, svg);
@@ -71,7 +71,7 @@
     el("image", { href: logo, x: cx - w / 2 + 8, y: y + 4, width: w - 16, height: h - 12, preserveAspectRatio: "xMidYMid meet" }, svg);
   }
   stage.prepend(svg);
-  // Écran large : on cale la façade à gauche pour la montrer entière ; écran étroit : centrée sur le box 03
+  // Écran large : on cale la façade à gauche pour la montrer entière ; écran étroit : centrée sur le box 43
   const cadrer = () => svg.setAttribute("preserveAspectRatio", stage.clientWidth / stage.clientHeight >= 1.8 ? "xMinYMax slice" : "xMidYMax slice");
   cadrer(); addEventListener("resize", cadrer, { passive: true });
 
