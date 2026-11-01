@@ -62,7 +62,7 @@ h2{font-size:clamp(2rem,3.8vw,3.6rem);max-width:20ch}
 /* Logo : la marque d'origine, jamais retapée */
 .logo{display:inline-block;line-height:0}
 .logo img{height:38px;width:auto}
-.top .logo img{mix-blend-mode:multiply}
+.top .logo img{filter:drop-shadow(0 1px 0 rgba(255,255,255,.85)) drop-shadow(0 1.5px 0 rgba(15,19,25,.28)) drop-shadow(0 5px 8px rgba(15,19,25,.22))}
 
 /* Boutons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 26px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:inherit;font-weight:600;font-size:1rem;text-decoration:none;cursor:pointer;transition:background .2s var(--ease),transform .15s var(--ease),box-shadow .2s var(--ease)}
@@ -335,7 +335,7 @@ details p{padding:0 0 22px;max-width:64ch;color:var(--ink-2)}
 .foot .close p{color:var(--ink);font-size:clamp(1.9rem,3.6vw,3.2rem);font-weight:600;font-stretch:var(--wide);letter-spacing:-.035em;line-height:1.04;max-width:18ch}
 .foot .close div{display:flex;gap:10px;flex-wrap:wrap}
 .foot .grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(20px,3vw,48px);padding:28px clamp(4px,1vw,12px)}
-.foot .logo img{height:40px;mix-blend-mode:multiply}
+.foot .logo img{height:40px;filter:drop-shadow(0 1.5px 0 rgba(15,19,25,.22)) drop-shadow(0 4px 6px rgba(15,19,25,.14))}
 .foot .col-t{color:var(--ink);font-size:.92rem;font-weight:600;margin-bottom:12px}
 .foot ul{list-style:none;display:grid;gap:8px;font-size:.94rem}
 .foot a{text-decoration:none}
