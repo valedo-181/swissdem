@@ -13,9 +13,6 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<!-- Il motore 3D si scarica già alla lettura dell'intestazione, senza attendere il resto della pagina -->
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" crossorigin>
 <link rel="canonical" href="https://swissdem.vercel.app/it">
 <link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de">
 <link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es">
@@ -54,16 +51,14 @@
 </header>
 
 <main>
-  <!-- Prima schermata: il camion SwissDem in 3D sulla sua pedana, la richiesta d'offerta subito sotto -->
+  <!-- Prima schermata: la facciata SwissDem il cui box si apre secondo il volume, la richiesta d'offerta subito sotto -->
   <div class="board hero">
     <div class="shell board-in">
       <div class="copy">
         <h1>Il vostro trasloco, stanza per stanza.</h1>
         <p class="lead">La stessa squadra di dipendenti fa il sopralluogo, imballa, trasporta, pulisce e deposita. Il prezzo scritto nell'offerta è quello che pagate.</p>
       </div>
-      <figure class="stage" data-camion data-label="Il camion SwissDem in 3D. Trascinate o usate le frecce per farlo ruotare." data-services="Trasloco|Pulizia|Deposito mobili" data-site="swissdem.ch" data-logo="/marque/logo-swissdem.webp">
-        <img width="1020" height="1020" class="poster" src="/images/swissdem-camion.webp" alt="Un camion SwissDem parcheggiato davanti a un palazzo d'epoca" fetchpriority="high">
-        <figcaption class="hint" aria-hidden="true">Trascinate per ruotare</figcaption>
+      <figure class="stage facade" data-camion data-label="La facciata di un deposito mobili SwissDem: la porta del box 03 si apre e gli scatoloni si impilano secondo il vostro volume.">
       </figure>
       <div class="cartouche" id="devis">
         <!-- Le formulaire ouvre la demande Titanor de SwissDem (jeton à renseigner) -->
@@ -316,6 +311,6 @@
 <div class="callbar"><a class="btn move" href="#devis">Offerta gratuita</a><a class="btn line" href="tel:+41325604925">Chiamare</a></div>
 
 <script src="/site.js"></script>
-<script type="module" src="/camion3d.js"></script>
+<script src="/facade.js" defer></script>
 </body>
 </html>
