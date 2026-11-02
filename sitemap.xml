@@ -60,6 +60,8 @@
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/nettoyage"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/pulizia-fine-locazione"/>
   </url>
+  <url><loc>https://swissdem.vercel.app/notre-histoire</loc>
+  </url>
   <url><loc>https://swissdem.vercel.app/de</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es"/>

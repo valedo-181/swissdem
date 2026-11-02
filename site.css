@@ -1001,3 +1001,37 @@ label.consent-ligne{cursor:pointer}
   .hero.plein .cartouche{margin-top:16px}
   .hero.plein .volume-badge{top:84px;right:12px}
 }
+
+/* ---------- Notre histoire ---------- */
+.histoire{padding-top:clamp(28px,5vw,64px)}
+.histoire h1{font-size:clamp(2.4rem,5vw,5rem);max-width:14ch;margin-top:18px}
+.histoire .lead{font-size:1.15rem;color:var(--ink-2);max-width:48ch;margin-top:22px}
+.frise{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(16px,2.4vw,36px);position:relative}
+.frise::before{content:"";position:absolute;left:0;right:0;top:calc(2.6rem + 25px);height:2px;background:var(--line-2)}
+.frise li{display:grid;grid-template-rows:2.6rem 24px auto;gap:14px 0}
+.frise .an{font-weight:800;font-stretch:var(--wide);font-size:clamp(1.6rem,2.6vw,2.4rem);line-height:2.6rem;letter-spacing:-.01em}
+.frise .pt{position:relative;width:24px;height:24px;border-radius:50%;border:6px solid var(--paper);box-shadow:0 0 0 1px var(--line-2)}
+.frise .pt.move{background:var(--move)}.frise .pt.clean{background:var(--clean)}.frise .pt.store{background:var(--store)}
+.frise li>div{background:var(--white);border-radius:var(--r-2);box-shadow:var(--sh-1);padding:22px 24px}
+.frise h3{font-size:1.15rem;font-weight:700;margin:0 0 8px}
+.frise p{color:var(--ink-2);margin:0}
+.reprise-grille{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin-top:40px}
+.reprise-grille .photo-equipe{grid-column:1/-1;margin:0}
+.reprise-grille .photo-equipe img{aspect-ratio:21/9}
+.carte-r{background:var(--white);border-radius:var(--r-2);box-shadow:var(--sh-1);padding:26px 28px}
+.carte-r.neuf{box-shadow:var(--sh-2),inset 0 4px 0 var(--move)}
+.carte-r h3{font-size:1.2rem;font-weight:700;margin:0 0 14px}
+.carte-r ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.carte-r li{position:relative;padding-left:30px;color:var(--ink-2)}
+.carte-r li::before{content:"";position:absolute;left:0;top:.2em;width:18px;height:18px;background:var(--ink);-webkit-mask:var(--coche) center/contain no-repeat;mask:var(--coche) center/contain no-repeat}
+.carte-r.neuf li::before{background:var(--clean)}
+.qui p{max-width:60ch;color:var(--ink-2);font-size:1.08rem;margin:24px 0 14px}
+@media (max-width:760px){
+  .frise{grid-template-columns:1fr;gap:18px;padding-left:34px}
+  .frise::before{left:11px;right:auto;top:6px;bottom:6px;width:2px;height:auto}
+  .frise li{grid-template-rows:auto auto;gap:8px}
+  .frise .pt{position:absolute;left:0;margin-top:8px}
+  .frise li{position:relative;margin-left:-34px;padding-left:34px}
+  .reprise-grille{grid-template-columns:1fr}
+  .reprise-grille .photo-equipe img{aspect-ratio:3/2}
+}
