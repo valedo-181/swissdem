@@ -61,6 +61,10 @@
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/pulizia-fine-locazione"/>
   </url>
   <url><loc>https://swissdem.vercel.app/notre-histoire</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/unsere-geschichte"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/nuestra-historia"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/notre-histoire"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/la-nostra-storia"/>
   </url>
   <url><loc>https://swissdem.vercel.app/de</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de"/>
@@ -278,6 +282,12 @@
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/checklist-demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/checklist-trasloco"/>
   </url>
+  <url><loc>https://swissdem.vercel.app/de/unsere-geschichte</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/unsere-geschichte"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/nuestra-historia"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/notre-histoire"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/la-nostra-storia"/>
+  </url>
   <url><loc>https://swissdem.vercel.app/es/aviso-legal</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/impressum"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/aviso-legal"/>
@@ -326,6 +336,12 @@
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/demenagement"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/trasloco"/>
   </url>
+  <url><loc>https://swissdem.vercel.app/es/nuestra-historia</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/unsere-geschichte"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/nuestra-historia"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/notre-histoire"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/la-nostra-storia"/>
+  </url>
   <url><loc>https://swissdem.vercel.app/es/proteccion-de-datos</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/datenschutz"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/proteccion-de-datos"/>
@@ -355,6 +371,12 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/guardamuebles"/>
     <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/garde-meubles"/>
     <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/deposito-mobili"/>
+  </url>
+  <url><loc>https://swissdem.vercel.app/it/la-nostra-storia</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/unsere-geschichte"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://swissdem.vercel.app/es/nuestra-historia"/>
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://swissdem.vercel.app/notre-histoire"/>
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://swissdem.vercel.app/it/la-nostra-storia"/>
   </url>
   <url><loc>https://swissdem.vercel.app/it/note-legali</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://swissdem.vercel.app/de/impressum"/>
