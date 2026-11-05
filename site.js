@@ -75,10 +75,11 @@ function demandeTitanor(f){
   return `https://www.titanor.app/demande/${TITANOR_JETON}${chemin}?${p}`;
 }
 
-// Barre d'appel mobile : cachée tant que le cartouche, le bouton de la formule ou l'appel final du pied de page est à l'écran
-// (un seul bouton jaune à la fois, et rien ne couvre « Continuer »)
-(function(){
-  const cibles = [...document.querySelectorAll('.cartouche, .recap-go, .foot .close')];
+// Barre d'appel mobile : cachée tant qu'un autre bouton jaune est à l'écran (cartouche, bouton de la formule, prix par écrit,
+// total de l'estimateur, appel final du pied de page) : un seul bouton jaune à la fois, et rien ne couvre « Continuer ».
+// Lancée après le reste du fichier, parce que le total de l'estimateur est créé plus bas.
+setTimeout(function(){
+  const cibles = [...document.querySelectorAll('.cartouche, .recap-go, .prix-ecrit, .estim-total, .foot .close')];
   if (!cibles.length || !('IntersectionObserver' in window)) return;
   const vues = new Set();
   const io = new IntersectionObserver(es => {
@@ -86,7 +87,7 @@ function demandeTitanor(f){
     document.body.classList.toggle('form-on', vues.size > 0);
   });
   cibles.forEach(c => io.observe(c));
-})();
+}, 0);
 
 // Composez votre formule (accueil) : chaque situation ajoute ou retire son service du récapitulatif ;
 // « Préparer mon devis » reporte le choix dans le cartouche (prestation et champ caché « formule »).
@@ -118,130 +119,15 @@ function demandeTitanor(f){
   maj();
 })();
 
-// Plan du logement : redessiné selon le logement choisi dans le cartouche, pièces colorées par service.
-// Les noms de pièces viennent de l'attribut data-plan (JSON), traduit par langue ; data-layout et data-iso
-// fixent le plan et le service mis en avant au chargement (pages de service).
-(function(){
-  const svg = document.querySelector('svg.plan');
-  if (!svg) return;
-  const T = JSON.parse(svg.dataset.plan);
-  const titre = svg.querySelector('title');
-  const NS = 'http://www.w3.org/2000/svg';
-  // Couleurs : les jetons de site.css, pour que le plan suive la palette
-  const css = getComputedStyle(document.documentElement), jeton = n => css.getPropertyValue(n).trim();
-  const INK = jeton('--ink'), BLANC = jeton('--white');
-  const el = (tag, a, txt) => { const n = document.createElementNS(NS, tag); for (const k in a) n.setAttribute(k, a[k]); if (txt) n.textContent = txt; return n; };
-  // Pièces : [x, y, l, h, clé du nom, service] dans un cadre de 800 × 500 (m = déménagement, c = nettoyage, s = garde-meubles)
-  const L = {
-    studio: [[0,0,500,320,'piece','m'],[500,0,300,320,'hall','m'],[0,320,300,180,'cuisine','c'],[300,320,200,180,'bains','c'],[500,320,300,180,'cave','s']],
-    p25: [[0,0,430,320,'sejour','m'],[430,0,370,320,'chambre','m'],[0,320,300,180,'cuisine','c'],[300,320,200,180,'bains','c'],[500,320,300,180,'cave','s']],
-    p35: [[0,0,380,320,'sejour','m'],[380,0,210,210,'chambre','m'],[590,0,210,210,'chambre','m'],[380,210,420,110,'hall','m'],[0,320,280,180,'cuisine','c'],[280,320,190,180,'bains','c'],[470,320,330,180,'cave','s']],
-    p45: [[0,0,340,300,'sejour','m'],[340,0,230,200,'chambre','m'],[570,0,230,200,'chambre','m'],[340,200,460,100,'hall','m'],[0,300,230,200,'chambre','m'],[230,300,210,200,'cuisine','c'],[440,300,150,200,'bains','c'],[590,300,210,200,'cave','s']],
-    p55: [[0,0,320,290,'sejour','m'],[320,0,160,190,'chambre','m'],[480,0,160,190,'chambre','m'],[640,0,160,190,'chambre','m'],[320,190,480,100,'hall','m'],[0,290,220,210,'chambre','m'],[220,290,200,210,'cuisine','c'],[420,290,150,210,'bains','c'],[570,290,230,210,'galetas','s']],
-    bureaux: [[0,0,520,320,'open','m'],[520,0,280,180,'reunion','m'],[520,180,280,140,'bureau','m'],[0,320,260,180,'archives','s'],[260,320,220,180,'cuisine','c'],[480,320,320,180,'sanitaires','c']],
-  };
-  const choix = ['studio','p25','p35','p45','p55','p55','bureaux'];
-  const X = 70, Y = 60, LARG = 12, PROF = 7.5;   // cotes d'exemple : 12,00 × 7,50 m
-  const m = v => v.toFixed(2).replace('.', ',');
-  function dessiner(cle, anime){
-    svg.replaceChildren();
-    if (titre) svg.append(titre);
-    const pieces = L[cle];
-    const defs = el('defs');
-    const pat = el('pattern', {id:'hach', width:7, height:7, patternUnits:'userSpaceOnUse', patternTransform:'rotate(45)'});
-    pat.append(el('rect', {width:7, height:7, fill:BLANC}), el('line', {x1:0, y1:0, x2:0, y2:7, stroke:jeton('--clean'), 'stroke-width':2}));
-    defs.append(pat); svg.append(defs);
-    const fond = {m:jeton('--move-tint'), c:'url(#hach)', s:jeton('--store-tint')};
-    const groupes = [];
-    pieces.forEach(([x,y,w,h,nom,s], i) => {
-      const g = el('g', {class:'room', 'data-svc':s, style:`--i:${i}`});
-      g.append(el('rect', {x:X+x, y:Y+y, width:w, height:h, fill:fond[s]}));
-      svg.append(g); groupes.push(g);
-    });
-    // Cloisons fines, murs de façade épais
-    for (const [x,y,w,h] of pieces) svg.append(el('rect', {x:X+x, y:Y+y, width:w, height:h, fill:'none', stroke:INK, 'stroke-width':2.5}));
-    svg.append(el('rect', {x:X, y:Y, width:800, height:500, fill:'none', stroke:INK, 'stroke-width':11}));
-    // Fenêtres sur la façade (trois traits)
-    for (const [x,y,w,h] of pieces) {
-      if (y === 0) { const l = Math.min(w * .45, 130), x0 = X + x + (w - l) / 2;
-        svg.append(el('rect', {x:x0, y:Y-5.5, width:l, height:11, fill:BLANC, stroke:INK, 'stroke-width':1}), el('line', {x1:x0, y1:Y, x2:x0+l, y2:Y, stroke:INK, 'stroke-width':1})); }
-      if (x === 0 && h >= 180) { const l = Math.min(h * .4, 110), y0 = Y + y + (h - l) / 2;
-        svg.append(el('rect', {x:X-5.5, y:y0, width:11, height:l, fill:BLANC, stroke:INK, 'stroke-width':1}), el('line', {x1:X, y1:y0, x2:X, y2:y0+l, stroke:INK, 'stroke-width':1})); }
-    }
-    // Portes : une ouverture et un battant par pièce
-    for (const [x,y,w,h,,s] of pieces) {
-      const bg = s === 'c' ? BLANC : fond[s], R = 42;
-      if (x > 0) { const xb = X + x, yb = Y + y + h - 14;
-        svg.append(el('line', {x1:xb, y1:yb-R, x2:xb, y2:yb, stroke:bg, 'stroke-width':5}), el('line', {x1:xb, y1:yb, x2:xb+R, y2:yb, stroke:INK, 'stroke-width':1.5}), el('path', {d:`M${xb} ${yb-R} A${R} ${R} 0 0 1 ${xb+R} ${yb}`, fill:'none', stroke:INK, 'stroke-width':1}));
-      } else if (y > 0) { const xb = X + x + 14, yb = Y + y;
-        svg.append(el('line', {x1:xb, y1:yb, x2:xb+R, y2:yb, stroke:bg, 'stroke-width':5}), el('line', {x1:xb, y1:yb, x2:xb, y2:yb+R, stroke:INK, 'stroke-width':1.5}), el('path', {d:`M${xb+R} ${yb} A${R} ${R} 0 0 1 ${xb} ${yb+R}`, fill:'none', stroke:INK, 'stroke-width':1}));
-      }
-    }
-    // Noms des pièces et renvois numérotés (repris dans la légende)
-    pieces.forEach(([x,y,w,h,nom,s], i) => {
-      // Une porte dans le mur du haut (pièce contre la façade gauche) : le nom passe après son battant
-      const lb = el('text', {x:X+x+(x === 0 && y > 0 ? 70 : 16), y:Y+y+32, class:'lbl'}, T.pieces[nom]);
-      if (s === 'c') lb.setAttribute('style', `paint-order:stroke;stroke:${BLANC};stroke-width:6px`);
-      groupes[i].append(lb);
-    });
-    ['m','c','s'].forEach((s, i) => {
-      const k = pieces.findIndex(q => q[5] === s);
-      if (k < 0) return;
-      const [x,y,w,h] = pieces[k], cx = X + x + w / 2, cy = Y + y + h / 2 + 8;
-      groupes[k].append(el('circle', {cx, cy, r:17, class:'key', fill:BLANC, stroke:INK, 'stroke-width':1.5}), el('text', {x:cx, y:cy, dy:'.35em', 'text-anchor':'middle', class:'key-t'}, String(i + 1)));
-    });
-    // Cotes d'exemple, en mètres
-    const cote = (horiz, bornes, total, max) => {
-      const g = el('g', {class:'dims'});
-      const p = horiz ? Y - 34 : X - 34;
-      const pt = (v, d) => horiz ? [X + v, p + d] : [p + d, Y + v];
-      const [a1,b1] = pt(0,0), [a2,b2] = pt(max,0);
-      g.append(el('line', {x1:a1, y1:b1, x2:a2, y2:b2, stroke:INK, 'stroke-width':1}));
-      bornes.forEach(v => { const [cx,cy] = pt(v,0); g.append(el('line', {x1:cx-5, y1:cy+5, x2:cx+5, y2:cy-5, stroke:INK, 'stroke-width':1.5})); });
-      for (let j = 0; j < bornes.length - 1; j++) {
-        const mid = (bornes[j] + bornes[j+1]) / 2, [tx,ty] = pt(mid, -8), val = m((bornes[j+1] - bornes[j]) / max * total);
-        const t = el('text', {x:tx, y:ty, 'text-anchor':'middle', class:'dim'}, val);
-        if (!horiz) t.setAttribute('transform', `rotate(-90 ${tx} ${ty})`);
-        g.append(t);
-      }
-      svg.append(g);
-    };
-    const haut = [...new Set(pieces.filter(q => q[1] === 0).flatMap(q => [q[0], q[0] + q[2]]))].sort((a,b) => a-b);
-    const gauche = [...new Set(pieces.filter(q => q[0] === 0).flatMap(q => [q[1], q[1] + q[3]]))].sort((a,b) => a-b);
-    cote(true, haut, LARG, 800);
-    cote(false, gauche, PROF, 500);
-    svg.classList.toggle('draw', !!anime);
-    isoler(actif);
-  }
-  // Légende : isole les pièces d'un service
-  let actif = svg.dataset.iso || null;
-  const boutons = [...document.querySelectorAll('.legend button')];
-  function isoler(s){
-    actif = s;
-    svg.classList.toggle('isolate', !!s);
-    svg.querySelectorAll('.room').forEach(r => r.classList.toggle('on', r.dataset.svc === s));
-    boutons.forEach(b => b.setAttribute('aria-pressed', b.dataset.svc === s ? 'true' : 'false'));
-  }
-  boutons.forEach(b => {
-    b.addEventListener('click', () => isoler(actif === b.dataset.svc ? null : b.dataset.svc));
-    b.addEventListener('mouseenter', () => { if (!actif) { svg.classList.add('isolate'); svg.querySelectorAll('.room').forEach(r => r.classList.toggle('on', r.dataset.svc === b.dataset.svc)); } });
-    b.addEventListener('mouseleave', () => isoler(actif));
-  });
-  const sel = document.querySelector('.cartouche select[name="pieces"]');
-  const lire = () => choix[sel ? sel.selectedIndex : 2] || 'p35';
-  if (sel) sel.addEventListener('change', () => dessiner(lire(), true));
-  dessiner(svg.dataset.layout || lire(), false);
-})();
-
 // Volume (v7) : le logement choisi dans le cartouche ou l'inventaire de l'estimateur donne un volume en m³,
-// affiché sur le plateau et transmis au camion 3D (événement « swissdem:volume ») qui se charge en conséquence.
+// affiché dans l'étiquette de volume du premier écran.
 // Repères : 9 m³ par pièce ; un camion 3,5 t prend environ 20 m³. Aucun prix n'est affiché : il vient du devis.
 (function(){
   const de = LANGUE === 'de', it = LANGUE === 'it', es = LANGUE === 'es';
   const T = es ? {
     m3: v => `≈ ${v} m³`, camion: 'Un camión de 3,5 t', lourd: 'Camión pesado o dos viajes', visite: 'Volumen confirmado en la visita',
     plateau: 'según su vivienda', inventaire: 'según su inventario', types: 'Partir de una vivienda tipo:', vider: 'Vaciar',
-    total: 'Su volumen estimado', joindre: 'Añadir a mi solicitud de presupuesto', joint: 'Añadido a su solicitud ✓',
+    total: 'Su volumen estimado', joindre: 'Añadir a mi solicitud de presupuesto', joint: 'Añadido a su solicitud',
     note: 'Estimación orientativa y sin compromiso. El responsable de la agencia confirma el volumen en la visita; el precio figura en el presupuesto.',
     vide: 'Cuente sus muebles o elija arriba una vivienda tipo.', moins: 'Quitar', plus: 'Añadir',
     pieces: {sejour:'Salón', chambres:'Dormitorios', cuisine:'Cocina, lavadero', cave:'Sótano, balcón', cartons:'Cajas'},
@@ -249,7 +135,7 @@ function demandeTitanor(f){
   } : it ? {
     m3: v => `≈ ${v} m³`, camion: 'Un furgone da 3,5 t', lourd: 'Autocarro o due viaggi', visite: 'Volume confermato al sopralluogo',
     plateau: 'secondo il vostro alloggio', inventaire: 'secondo il vostro inventario', types: 'Partire da un alloggio tipo:', vider: 'Svuota',
-    total: 'Il vostro volume stimato', joindre: 'Aggiungere alla richiesta di offerta', joint: 'Aggiunto alla richiesta ✓',
+    total: 'Il vostro volume stimato', joindre: 'Aggiungere alla richiesta di offerta', joint: 'Aggiunto alla richiesta',
     note: "Stima indicativa e senza impegno. Il responsabile dell'agenzia conferma il volume al sopralluogo; il prezzo figura nell'offerta.",
     vide: 'Contate i vostri mobili, oppure scegliete qui sopra un alloggio tipo.', moins: 'Togliere', plus: 'Aggiungere',
     pieces: {sejour:'Soggiorno', chambres:'Camere', cuisine:'Cucina, lavanderia', cave:'Cantina, balcone', cartons:'Scatoloni'},
@@ -257,7 +143,7 @@ function demandeTitanor(f){
   } : de ? {
     m3: v => `≈ ${v} m³`, camion: 'Ein 3,5-t-Lastwagen', lourd: 'Lastwagen oder zwei Fahrten', visite: 'Volumen bei der Besichtigung',
     plateau: 'nach Ihrer Wohnung', inventaire: 'nach Ihrem Inventar', types: 'Von einer typischen Wohnung ausgehen:', vider: 'Leeren',
-    total: 'Ihr geschätztes Volumen', joindre: 'Zur Offertanfrage hinzufügen', joint: 'Hinzugefügt ✓',
+    total: 'Ihr geschätztes Volumen', joindre: 'Zur Offertanfrage hinzufügen', joint: 'Hinzugefügt',
     note: 'Unverbindliche Schätzung. Der Verantwortliche bestätigt das Volumen bei der Besichtigung; der Preis steht in der Offerte.',
     vide: 'Zählen Sie Ihre Möbel oder wählen Sie oben eine typische Wohnung.', moins: 'Weniger', plus: 'Mehr',
     pieces: {sejour:'Wohnzimmer', chambres:'Schlafzimmer', cuisine:'Küche, Waschküche', cave:'Keller, Balkon', cartons:'Kartons'},
@@ -265,7 +151,7 @@ function demandeTitanor(f){
   } : {
     m3: v => `≈ ${v} m³`, camion: 'Un camion 3,5 t', lourd: 'Poids lourd ou deux voyages', visite: 'Volume confirmé à la visite',
     plateau: 'selon votre logement', inventaire: 'selon votre inventaire', types: "Partir d'un logement type :", vider: 'Vider',
-    total: 'Votre volume estimé', joindre: 'Joindre à ma demande de devis', joint: 'Joint à votre demande ✓',
+    total: 'Votre volume estimé', joindre: 'Joindre à ma demande de devis', joint: 'Joint à votre demande',
     note: "Estimation indicative et sans engagement. Le responsable de l'agence confirme le volume à la visite ; le prix figure sur le devis.",
     vide: 'Comptez vos meubles, ou choisissez un logement type ci-dessus.', moins: 'Retirer', plus: 'Ajouter',
     pieces: {sejour:'Séjour', chambres:'Chambres', cuisine:'Cuisine, buanderie', cave:'Cave, balcon', cartons:'Cartons'},
@@ -315,7 +201,6 @@ function demandeTitanor(f){
   };
   const CAMION = 20, PAR_LOGEMENT = [9, 23, 32, 41, 50, null, null];   // ordre des options « Logement » du cartouche
   const fmt = v => (Math.round(v * 10) / 10).toLocaleString(LOCALE, {maximumFractionDigits:1});
-  const annoncer = m3 => { window.swissdemVolume = m3; document.dispatchEvent(new CustomEvent('swissdem:volume', {detail:{m3}})); };
   const form = document.querySelector('.cartouche form');
 
   // Plateau : une étiquette sous l'indication de rotation, mise à jour avec le logement ou l'inventaire
@@ -337,12 +222,10 @@ function demandeTitanor(f){
     const logement = () => {
       const v = PAR_LOGEMENT[sel.selectedIndex];
       afficher(v, T.plateau);
-      annoncer(v ?? 60);
       if (form.elements.volume) form.elements.volume.value = '';
     };
     sel.addEventListener('change', logement);
     const v = PAR_LOGEMENT[sel.selectedIndex];
-    window.swissdemVolume = v ?? 60;
     afficher(v, T.plateau);
   }
 
@@ -434,7 +317,6 @@ function demandeTitanor(f){
     if (form.elements.volume) form.elements.volume.value = fmt(v);
     if (form.elements.inventaire) form.elements.inventaire.value = OBJETS.filter(o => n[o[0]]).map(o => `${nomObjet(o)} × ${n[o[0]]}`).join('; ');
     afficher(v, T.inventaire);
-    annoncer(v);
     go.textContent = T.joint;
     // On remonte au plateau : le camion se charge sous les yeux du visiteur, le cartouche juste dessous
     (stage || document.getElementById('devis')).scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
